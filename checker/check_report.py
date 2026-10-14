@@ -47,6 +47,7 @@ def parse_task(task_md: Path):
     # deliverables: lines starting "- `" under ## Deliverables
     m = re.search(r"## Deliverables(.*?)(?:\n## |\Z)", text, re.S)
     deliverables = re.findall(r"-\s*`([^`]+)`", m.group(1)) if m else []
+    deliverables = [x for x in deliverables if x != "report.json"]  # cannot checksum itself
     return tid, set(gated), deliverables
 
 def parse_known_failures(project_md: Path):
