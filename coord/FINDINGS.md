@@ -373,3 +373,31 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.30366e-07
 - Decision rule outcome: inconclusive (stop) — rule 0, n_groups 5 < 6.
 - Commit: task/T02b @ 4fd6380
+
+## 2026-10-15 — T02c (ACCEPT; Part 1 frame agreement) — light recompute (Part 1 exact)
+
+- frame_ratio_load: 1.09032
+- k2_repro_max_abs: 0
+- loss_best_R: 0.0841254
+- mix_joint: 0.111146
+- mix_sep_load: 0.898521
+- mix_sep_noA: 0.643137
+- n_cells_a: 969
+- n_cells_b: 969
+- n_clusters: 3
+- n_starts_near_best_R: 1
+- outcome: frame agreement
+- q_op_vs_load_10: 0.228887
+- r_seed: 0.639769
+- r_split: 0.112076
+- resid_identity_10: 0.607021
+- resid_load_10: 0.313649
+- resid_null_10: 0.287666
+- resid_opfit_10: 0.290044
+- sil_joint: 0.413136
+- sil_sep_load: 0.420815
+- sil_sep_noA: 0.418157
+- subspace_min_sv_10: 0.539825
+- symmetry_max: 2.30366e-07
+- Decision rule outcome: frame agreement (frame_ratio_load 1.090 ≤ 1.5).
+- Commit: task/T02c @ 0dec531
