@@ -1,0 +1,13 @@
+cell_type,n_v2,n_v3,median_depth_v2,median_depth_v3,median_depth_v3thin
+B cells,142,178,2890.0,5510.0,2900.5
+DC,13,17,9118.0,19839.0,9083.0
+ETP,1,0,5230.0,,
+ILC,72,61,2757.5,5071.0,2768.0
+Mast cells,1,0,8627.0,,
+Megakaryocyte precursor,0,1,,24439.0,3391.0
+Megakaryocytes/platelets,7,13,773.0,942.0,751.0
+Monocytes,309,354,3511.0,10687.5,3485.5
+Myelocytes,10,0,980.5,,
+Plasma cells,0,8,,27060.5,3333.0
+T cells,430,473,3564.5,6709.0,3557.0
+pDC,7,8,5517.0,11765.0,5740.5

@@ -1,0 +1,149 @@
+{
+  "branch": "task/T01d",
+  "commit": "4c08220fa1f40da60876ffe052e69caada70bec5",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330"
+    },
+    {
+      "path": "depth_table.csv",
+      "sha256": "fbf4719907ee640e100497029ce2a49406f2dbda190db7f9e21916025d41f248"
+    },
+    {
+      "path": "genes.txt",
+      "sha256": "fa9f0e51a3ef0043b09613ef8ef0f207e0ead71272045539c6b362584b922d53"
+    },
+    {
+      "path": "latent_fa_v2.npy",
+      "sha256": "341258e93ff50f3354ae2d78b262325face1e1bd3cadb4b4ddecc6cd47a30440"
+    },
+    {
+      "path": "latent_fa_v3thin.npy",
+      "sha256": "b86979bd7ecffb33f22fba464b3a0c12b97cac7f0bcb5025047eebbc8d46323b"
+    },
+    {
+      "path": "ops_v2.npz",
+      "sha256": "f4fcffa16874f369151669c4aafaaa43c50be0cdcd72153aa8c9c21a458efefa"
+    },
+    {
+      "path": "ops_v3thin.npz",
+      "sha256": "1dd75178474f43daa4cb7235999a929169ed1dd2751e054c91f45f2e2c564f6b"
+    },
+    {
+      "path": "basin_table.csv",
+      "sha256": "cc4a60671e3e818ee85cb0280a0d7ee71637b0f95eb9857fd00c966d110e0442"
+    },
+    {
+      "path": "draws.csv",
+      "sha256": "5a945944a1338095e3cbd119e47e67f92f6cf26ae6d3962f99b54d7845080acb"
+    },
+    {
+      "path": "fig_spectra.png",
+      "sha256": "4ed4db772ca655c7ab7bff33f67f15070edb69e130eae9321b6dd8f4d84c1f2e"
+    },
+    {
+      "path": "fig_basin.png",
+      "sha256": "af0ade2c2b398440d25fc1dc845fb16ae9c2c8738c7f141d139bb648fe10afba"
+    },
+    {
+      "path": "scripts/t01d_run.py",
+      "sha256": "e92cadef1031a174f5b1ea9288a5507f21ac7481764beaa40418af9f03f1cb93"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Plasma cells (v3-thin, 8 cells, not a tested type) have a tied majority class (fork=4, drift=4); written as an empty class in basin_table.csv.",
+      "why": "The task does not say how to show a tie for an untested type; tested-type statistics are unaffected."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T11:07:30.251512+00:00",
+  "gated": {
+    "basin_class_agreement": 0.0,
+    "basin_index_rho": 0.7999999999999999,
+    "basin_ratio": 1.7648862938936718,
+    "basin_sep_v2": 1.7187879943650923,
+    "basin_sep_v3": 2.841102162421539,
+    "basin_w1_null": 2.497917741537094,
+    "basin_w1_pooled": 4.408540785312653,
+    "class_tv_null": 0.0567806061173241,
+    "class_tv_pooled": 0.5462233230248297,
+    "class_tv_ratio": 9.619892431161874,
+    "depth_match_max_rel": 0.00726288806607804,
+    "depth_v2_median": 3366.0,
+    "depth_v3_median": 7017.0,
+    "depth_v3thin_median": 3378.0,
+    "frac_fa_at_ceiling": 0.0,
+    "n_cell_types_tested": 4,
+    "n_genes_detected_both": 12512,
+    "n_hvg_zero_v2": 0,
+    "n_hvg_zero_v3": 0,
+    "rank_fa_v2": 12.0,
+    "rank_fa_v3": 15.0,
+    "spectral_ratio": 30.70857124637412,
+    "spectral_sep_v2": 3.7895573772765654,
+    "spectral_sep_v3": 13.063030584003316,
+    "spectral_w2_null": 9.804020032286644,
+    "spectral_w2_pooled": 301.0674476623535,
+    "symmetry_v2": 9.462533867576894e-08,
+    "symmetry_v3": 8.587796784809143e-08
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330",
+  "observations": [
+    "Thinned input pbmc_v3_thin.h5ad SHA-256: f0385115a5c8bb4476e9f9f1594d042dba10057f438f6e9d7a64b919205b6efa."
+  ],
+  "regeneration": {
+    "basin_class_agreement": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "basin_index_rho": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "basin_ratio": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "basin_sep_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "basin_sep_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "basin_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "basin_w1_null": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "basin_w1_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "class_tv_null": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "class_tv_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "class_tv_ratio": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "depth_match_max_rel": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "depth_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "depth_v2_median": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "depth_v3_median": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "depth_v3thin_median": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "draws.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "fig_basin.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "fig_spectra.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "frac_fa_at_ceiling": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "genes.txt": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "latent_fa_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "latent_fa_v3thin.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "n_cell_types_tested": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "n_genes_detected_both": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "n_hvg_zero_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "n_hvg_zero_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "ops_v2.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "ops_v3thin.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "rank_fa_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "rank_fa_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "scripts/t01d_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage all",
+    "spectral_ratio": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "spectral_sep_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "spectral_sep_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "spectral_w2_null": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "spectral_w2_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "symmetry_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report",
+    "symmetry_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01d/scripts/t01d_run.py --stage report"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T05:03:03-06:00",
+  "status": "complete",
+  "task_id": "T01d"
+}

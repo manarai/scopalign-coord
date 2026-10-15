@@ -87,7 +87,7 @@ If the axiom fails on a pure technical replicate, the project stops (T01).
 | T01c | Kill test rerun on the T00c layer (T01 design unchanged) | ACCEPT (2026-10-14) — outcome INCONCLUSIVE (rule 3: basin_sep_v2 1.22); T02 stays blocked |
 | T01x | *Exploratory:* is the T01c v2/v3 spectral difference one global scale? (reuses T01c operators; cannot change T01c's outcome) | REJECT (2026-10-15) — max_sep_change computed off-definition; planner's validity threshold too tight; see reports/T01x/REVIEW.md |
 | T01y | *Exploratory:* T01x reissued with relative validity checks against T01c's reported values | ACCEPT (2026-10-15) — "shape differs" (spectral_ratio_s 15.6) |
-| T01d | Kill test at matched depth: v3 thinned to v2's per-type depth; T00c genes/FA and T01c test unchanged | pre-registered |
+| T01d | Kill test at matched depth: v3 thinned to v2's per-type depth; T00c genes/FA and T01c test unchanged | ACCEPT (2026-10-15) — outcome INCONCLUSIVE (rule 3: basin_sep_v2 1.72); T02 stays blocked |
 | T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by T01d |
 | T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |

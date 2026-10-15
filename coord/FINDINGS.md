@@ -104,3 +104,36 @@ planner's recomputed values, not the executor's reported ones.
 - max_sep_change: 3.61e-06
 - Reading-rule outcome: "shape differs" (rule 3).
 - Commit: task/T01y @ 9366943
+
+## 2026-10-15 — T01d (ACCEPT; outcome INCONCLUSIVE)
+
+- depth_v2_median: 3366
+- depth_v3_median: 7017
+- depth_v3thin_median: 3378
+- depth_match_max_rel: 0.00726
+- n_genes_detected_both: 12512
+- n_hvg_zero_v2: 0
+- n_hvg_zero_v3: 0
+- rank_fa_v2: 12
+- rank_fa_v3: 15
+- frac_fa_at_ceiling: 0.0
+- n_cell_types_tested: 4
+- symmetry_v2: 9.46e-08
+- symmetry_v3: 8.59e-08
+- spectral_w2_pooled: 301.07
+- spectral_w2_null: 9.804
+- spectral_ratio: 30.71
+- basin_w1_pooled: 4.409
+- basin_w1_null: 2.498
+- basin_ratio: 1.765
+- class_tv_pooled: 0.5462
+- class_tv_null: 0.05678
+- class_tv_ratio: 9.620
+- spectral_sep_v2: 3.790
+- spectral_sep_v3: 13.06
+- basin_sep_v2: 1.719
+- basin_sep_v3: 2.841
+- basin_index_rho (secondary): 0.80
+- basin_class_agreement (secondary): 0.0
+- Decision rule outcome: INCONCLUSIVE (rule 3 — basin_sep_v2 < 2).
+- Commit: task/T01d @ 721ad25
