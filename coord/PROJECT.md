@@ -78,6 +78,9 @@ If the axiom fails on a pure technical replicate, the project stops (T01).
 
 ## Task ladder
 
+**PAUSED 2026-10-15 (Tom).** No task is issued until the positional layer and
+kill-test design are revised. See the redesign summary of 2026-10-15.
+
 | ID   | Purpose | Status |
 |------|---------|--------|
 | T00  | Environment, scJDO2/scJDO installs, data staging | ACCEPT (2026-10-14) |
