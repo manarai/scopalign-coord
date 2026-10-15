@@ -51,9 +51,10 @@ v3 with null inset; as specified.
 
 ## Planner reading (not findings)
 
-- Dividing out the 6.3× scale cuts `spectral_ratio` from 53.7 to 15.6 and
-  `basin_ratio` from 2.3 to… 5.4 (basin_index now compared on a common
-  scale, so the null shrinks more than the pooled distance). The remaining
+- Dividing out the 6.3× scale cuts `spectral_ratio` from 53.7 to 15.6, but
+  `basin_ratio` rises from 2.3 to 5.4: on a common scale, v2's large
+  within-type spread in basin_index shrinks, so the null shrinks more than
+  the between-chemistry distance. The remaining
   difference is several times the within-chemistry null.
 - In the figure, v2's scaled spectra have a long negative tail (−57…0) with
   the bulk near 0; v3's are concentrated near 0 with a sparse tail to
