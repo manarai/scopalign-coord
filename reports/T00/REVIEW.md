@@ -38,3 +38,17 @@ authorise installing it.
 
 - Observation: "python3.11 is not present on PATH; python3 reports Python
   3.13.2." Confirmed; addressed by item 1.
+
+## Revision 2 (2026-10-14) — supersedes items 1–3 above
+
+Tom changed the velocity source to scJDO2's drift field before any data
+was staged. `tasks/T00.md` has been re-issued as revision 2 under the same
+id (see its amendment log). Binding:
+
+1. Run `tasks/T00.md` revision 2 in full, from Procedure step 1, on branch
+   `task/T00`, in a fresh session. First bring the amended task onto the
+   branch: `git fetch origin && git checkout task/T00 && git merge --no-edit
+   origin/main`. Overwrite the blocked `reports/T00/report.json`.
+2. Python 3.11 from `brew install python@3.11` remains authorised; record it
+   under `deviations` citing this review.
+3. Do not download BAMs, the GTF, or install velocyto/scVelo/samtools.
