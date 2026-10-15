@@ -26,8 +26,8 @@ null 0.287; `frame_ratio_load` **1.20 ≤ 1.5 → frame agreement**.
 
 - Centroid (T02c, 1.09) and basin floor (T02d, 1.20) agree: both give frame
   agreement; the floor reading is ~10% further from the null
-  (`floor_vs_centroid` 1.10), as expected for a summary built from the
-  steepest-sampled, lowest-density-of-neighbours point of the well.
+  (`floor_vs_centroid` 1.10). The floor is the density peak (lowest
+  energy); the centroid is the mean position.
 - The two summaries use largely different cells (overlap 0.38), so the
   agreement is not one set of cells counted twice.
 
