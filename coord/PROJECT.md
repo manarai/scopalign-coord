@@ -172,7 +172,7 @@ that K0 shows to be reproducible, can decide it.
 | T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
-| T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | issued (2026-10-15) |
+| T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
 | T06  | Locally varying orthogonal `A` (only if T02 residual is uneven) | conditional |
 
 ## Folders (all under ~/Documents)

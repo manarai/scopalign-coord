@@ -418,3 +418,31 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.30366e-07
 - Decision rule outcome: frame agreement (frame_ratio_load 1.202 ≤ 1.5).
 - Commit: task/T02d @ da59e7f
+
+## 2026-10-15 — T05a (ACCEPT; descriptive benchmark) — light recompute (exact)
+
+- frame_outcome_centre: agreement
+- frame_outcome_harmony: agreement
+- frame_outcome_joint: inconclusive
+- frame_outcome_ours: inconclusive
+- frame_outcome_scvi: agreement
+- frame_ratio_centre: 1.36376
+- frame_ratio_harmony: 1.34944
+- frame_ratio_joint: 1.5489
+- frame_ratio_ours: 1.55313
+- frame_ratio_scvi: 1.41606
+- mix_centre: 0.704575
+- mix_harmony: 1.00131
+- mix_joint: 0.111146
+- mix_ours: 0.898521
+- mix_scvi: 0.982766
+- n_clusters: 3
+- ours_repro_max_abs: 0
+- sil_centre: 0.437443
+- sil_harmony: 0.447127
+- sil_joint: 0.413136
+- sil_ours: 0.420815
+- sil_scvi: 0.0820816
+- symmetry_max: 2.36e-07
+- Pre-registered readings: ours not competitive (mix, sil); ours adds no operator information; Harmony mixes, keeps types and reaches agreement → the gene-anchored rotation offers nothing extra on this pair.
+- Commit: task/T05a @ 762fbb9
