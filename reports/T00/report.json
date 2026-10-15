@@ -1,0 +1,19 @@
+{
+  "task_id": "T00",
+  "executor": "manus",
+  "branch": "task/T00",
+  "commit": "c765636d3d74abc678c591b502ba9b3821e2e009",
+  "seed": 20261014,
+  "started": "2026-10-14T18:30:47-06:00",
+  "finished": "2026-10-15T00:31:07Z",
+  "status": "blocked",
+  "blocked_reason": "Required Python 3.11 is unavailable on PATH: python3.11: command not found. The available python3 is Python 3.13.2. T00 specifies a Python 3.11 venv and does not authorize selecting or installing a different Python version.",
+  "gated": {},
+  "deliverables": [],
+  "regeneration": {},
+  "deviations": [],
+  "deviations_requested": [],
+  "observations": ["python3.11 is not present on PATH; python3 reports Python 3.13.2."],
+  "known_failures": [],
+  "lockfile_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+}
