@@ -1,0 +1,92 @@
+{
+  "branch": "task/T01e",
+  "commit": "34b8d380fd6cb827ce21ca0c39611a0ba96a078a",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "7e78562b03ab1aad3ba18f8ab8c3c63f26c2c1d7783dc7ac81f288b423c733ba"
+    },
+    {
+      "path": "data_checksums.txt",
+      "sha256": "2af2666169b541626b21860df6a384863c3a4cb4a8a684095cc5993e006a1bbf"
+    },
+    {
+      "path": "match_table.csv",
+      "sha256": "630a9df55277ae4ebeec5a2bc8d41f474d721e76bcdbb69d2bcdbecafc2d0bbb"
+    },
+    {
+      "path": "genes.txt",
+      "sha256": "4a30c174cd0918c02fde5c646600093cd6c21c6d142951fc1a2d826c70777643"
+    },
+    {
+      "path": "latent_fa_a.npy",
+      "sha256": "f99317adcd13cd744ade9d13c177adc5c05296c161bef29ae72818308f595767"
+    },
+    {
+      "path": "latent_fa_b.npy",
+      "sha256": "81647939f8e64c7610931a2100052ff8a8fb693dd4a6a3dcd9c501cbe96af51f"
+    },
+    {
+      "path": "scripts/t01e_run.py",
+      "sha256": "3efbfde06f0f115dbd5bd74d0340edbf6474cb4275b877b864047880bbb999b9"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T11:42:42.239718+00:00",
+  "gated": {
+    "count_match_max_abs": 0,
+    "depth_a_median": 6607.0,
+    "depth_b_median": 6605.0,
+    "depth_match_max_rel": 0.00157952930026852,
+    "frac_fa_at_ceiling": 0.0,
+    "n_cells_a": 1113,
+    "n_cells_b_qc": 11043,
+    "n_cells_b_raw": 11769,
+    "n_cells_bsub": 1113,
+    "n_genes_detected_both": 14475,
+    "n_hvg_zero_a": 0,
+    "n_hvg_zero_b": 0,
+    "rank_fa_a": 8.0,
+    "rank_fa_b": 9.0
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "7e78562b03ab1aad3ba18f8ab8c3c63f26c2c1d7783dc7ac81f288b423c733ba",
+  "observations": [
+    "The pre-registered stop rule was triggered after FA tangent-rank evaluation."
+  ],
+  "regeneration": {
+    "count_match_max_abs": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage match",
+    "data_checksums.txt": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage stage",
+    "depth_a_median": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage match",
+    "depth_b_median": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage match",
+    "depth_match_max_rel": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage match",
+    "frac_fa_at_ceiling": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "genes.txt": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "latent_fa_a.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "latent_fa_b.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "match_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage match",
+    "n_cells_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage match",
+    "n_cells_b_qc": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage stage",
+    "n_cells_b_raw": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage stage",
+    "n_cells_bsub": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage match",
+    "n_genes_detected_both": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "n_hvg_zero_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "n_hvg_zero_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "rank_fa_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "rank_fa_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01e/scripts/t01e_run.py --stage latent",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && source .venv/bin/activate && pip freeze > reports/T01e/requirements.lock",
+    "scripts/t01e_run.py": "tracked task implementation"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T05:20:21-06:00",
+  "status": "stopped",
+  "stop_rule": "0. FA not admissible by T00c's rule (median rank \u2265 10 in both, gap \u2264 5, ceiling \u2264 0.20) \u2192 inconclusive (stop)",
+  "task_id": "T01e"
+}
