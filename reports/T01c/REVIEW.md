@@ -67,9 +67,12 @@ T02 stays blocked.
   Without the v2 basin guard, rule 4 would have called **axiom fails**.
 - Most of it is a global scale: median |λ| is 30.3 in v2 vs 4.8 in v3
   (≈ 6.3×); range −1727…+195 vs −550…+161. v2's wells are uniformly
-  much steeper. Because `tol` is 0.1 × each dataset's median |λ|, the
-  classes then differ too: v2 has no holders (747 drift / 245 fork), v3 has
-  247 holders (377 drift / 489 fork).
+  much steeper. The classes also differ: v2 has no holders (747 drift /
+  245 fork), v3 has 247 holders (377 drift / 489 fork). *Correction
+  (2026-10-14, while drafting T01x):* because `tol` is 0.1 × each dataset's
+  own median |λ|, the `lead_eig` classes are scale-invariant, so this class
+  difference is **not** a scale effect; it reflects where the leading
+  eigenvalue sits relative to the bulk of each spectrum.
 - An orthogonal A cannot change eigenvalues, so if chemistry rescales the
   whole spectrum, the axiom as written ("wells are not reshaped") fails even
   if the wells' *shape* agrees. Whether shape agrees after a single
