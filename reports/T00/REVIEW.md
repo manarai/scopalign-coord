@@ -52,3 +52,18 @@ id (see its amendment log). Binding:
 2. Python 3.11 from `brew install python@3.11` remains authorised; record it
    under `deviations` citing this review.
 3. Do not download BAMs, the GTF, or install velocyto/scVelo/samtools.
+
+## Revision 3 (2026-10-14) — supersedes Revision 2
+
+Tom rewrote the project around scJDO2's basin operator (956c901, ported
+here). `tasks/T00.md` is re-issued as revision 3 under the same id; nothing
+was staged in earlier attempts. Binding:
+
+1. On branch `task/T00`, in a fresh session:
+   `git fetch origin && git checkout task/T00 && git merge --no-edit origin/main`,
+   then run `tasks/T00.md` revision 3 in full from Procedure step 1.
+   Overwrite the blocked `reports/T00/report.json`.
+2. Python 3.11 from `brew install python@3.11` is authorised; record it
+   under `deviations` citing this review.
+3. scJDO v1 is installed only through the worktree route in the task
+   file. Never check out or tag `~/Documents/scJDO`.

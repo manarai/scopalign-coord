@@ -1,81 +1,110 @@
 # PROJECT.md — scOpAlign (operator-level dataset alignment)
 
 Owner: Tom Terooatea (planner / reviewer)
-Executor role: "Manus" (see MANUS.md) — a role name, not a vendor. Any agent or
-person bound by MANUS.md and the checker can fill it.
+Executor role: "Manus" (see MANUS.md) — a role name, not a vendor.
 
 ## What this project is
 
-scOpAlign aligns single-cell datasets on their **local dynamics** (per-cell operators
-from scJDO2's neighbourhood operator field) rather than on cell positions.
+scOpAlign aligns single-cell datasets on their **basin operators** rather
+than on cell positions. The basin operator is scJDO2's symmetric latent
+Hessian: for each cell, `J_c = −β · Hess E_θ(z_c)`, where `E_θ` is a scalar
+energy fit by exact score matching on the dataset's own latent coordinates.
+Its eigenvalues are real and basis-free; its leading eigenvalue defines the
+cell's `basin_index`.
 
-Axiom under test: *batch effects change where cells are, not how they move.*
+Axiom under test: *batch effects move cells, they do not reshape the local
+wells they sit in.* If that holds, eigenvalue spectra and `basin_index`
+agree across batches before any alignment, and alignment is a single
+orthogonal change of basis that never touches eigenvalues.
 
-If the axiom fails on a pure technical replicate, the project stops. That is
-the point of task T01.
+If the axiom fails on a pure technical replicate, the project stops (T01).
 
-## Fixed design decisions (do not revisit inside a task)
+## What scJDO2 actually provides (verified from source, Oct 14 2026)
 
-1. Positional layer is **linear** (PCA or FactorAnalysis). No scVI, no UMAP,
-   no nonlinear embedding anywhere upstream of operator estimation.
-   Reason: a linear map keeps latent Jacobians a similarity transform of
-   gene-space Jacobians, and lets the alignment map be carried back to the
-   embedding exactly.
-2. Number of latent components is fixed across datasets within a task.
-3. Drift field estimated by scJDO2 from the PCA embedding; no
-   spliced/unspliced counts used. Estimator: `scjdo2.energy_drift.EnergyDriftAdapter`
-   (snapshot score drift, no time axis). Operators are the per-cell
-   Jacobians of that drift by autodiff (symmetric by construction).
-   (Amended 2026-10-14 by Tom, before any scientific run; replaces an
-   earlier RNA-velocity rule that never ran.)
-4. Alignment map A is a **change of basis only**: orthogonal Procrustes
-   first; locally linear A's with a graph-smoothness penalty only if a task
-   explicitly authorises it. Eigenvalues must never be altered by alignment.
-5. Spectral / stability-class agreement is checked **before** alignment and
-   is the primary outcome. Eigenvector-frame agreement after alignment is
-   secondary.
-6. Reference libraries: scanpy, scikit-learn, scipy, POT (Python Optimal
-   Transport), CellTypist (labels), scJDO2 (local checkout `~/Documents/scJDO2`, installed
-   editable, commit sha recorded per task). scJDO v1 is not used.
-7. Any dataset or parameter not named in a task file is out of scope.
+- `scjdo2.energy_drift.EnergyDriftAdapter` — energy-parameterised score,
+  Hyvärinen exact score matching by default (`loss="esm"`), no pseudotime.
+- `.jacobian_autodiff(z)` — per-cell `(d, d)` symmetric Hessian in latent.
+- `scjdo2.opspace.classify_basin_latent(rule="lead_eig")` — writes
+  `op_basin_index = −lead_re` and `op_behaviour_basin ∈ {holder, fork, drift}`.
+- Gene-space Jacobians (Phase C) exist but are rank-limited to `d` and are
+  **not used** by scOpAlign.
+- Known limitation recorded in scJDO2 SUMMARY §5.7: PCA latents saturate
+  the tangent rank at `d`. This is why the positional layer here is not PCA.
+
+## Fixed design decisions
+
+1. **Positional layer is a linear-decoder model.** Default: Factor Analysis
+   (`sklearn.decomposition.FactorAnalysis`, `d = 30`, fit **separately**
+   per dataset). LDVAE (scvi-tools, linear decoder) is the authorised
+   upgrade if T00b shows FA still saturates tangent rank. PCA is kept only
+   as the T00b comparator. scVI and any nonlinear decoder are excluded:
+   the alignment map must carry back to cell positions exactly, which
+   requires a linear decoder.
+2. `d` is fixed across datasets within a task.
+3. **Operators** are scJDO2 latent symmetric Hessians, autodiff, from an
+   energy drift fit with ESM at fixed seed and epochs.
+4. **Alignment** is an orthogonal map `A` with `J_v3 ≈ A J_v2 Aᵀ` on
+   matched neighbourhoods (Procrustes on eigenvector frames, or direct
+   minimisation of the Frobenius mismatch; T02 pre-registers which).
+   Eigenvalues are untouched by construction. Locally varying `A`
+   (orthogonal per neighbourhood, graph-smoothness penalised) only under
+   T06.
+5. **Correction** lands in the latent embedding: `z ↦ A z`. Operators are
+   never corrected; they are the evidence used to find `A`. Whatever
+   positional difference remains after `A` is the candidate biology.
+6. Gene-space lift of the correction (through the FA loadings) is out of
+   scope until after T03.
+7. **Primary outcome** at every stage is agreement of eigenvalue spectra
+   and `basin_index` **before** alignment. Eigenvector-frame agreement
+   after alignment is secondary.
+8. No RNA velocity, no velocyto, no scVelo anywhere.
+9. Any dataset or parameter not named in a task file is out of scope.
+
+## Known risks (pinned so task writers see them)
+
+- **Identifiability.** Count-level batch distortion is nonlinear and bends
+  the learned energy. Operators alone cannot separate "chemistry bent the
+  well" from "biology changed the well." T01 bounds the chemistry effect
+  on a pair with no biology; T04 is the only task with both a known batch
+  and a known biological difference, so it runs before T03.
+- **Correspondence.** Procrustes needs matched pairs. Cell-type labels
+  are the weak link; spectral-similarity matching via optimal transport
+  is the reserve.
+- **Tangent rank.** A linear decoder may still saturate rank at `d`.
+  T00b measures this before any operator is compared.
+- **Local freedom.** Locally varying `A` can bend anything into anything.
+  T06 must report residual removed beyond the global `A`; a large value is
+  a warning, not a success.
 
 ## Task ladder
 
-| ID  | Purpose | Status |
-|-----|---------|--------|
-| T01 | Kill test: technical replicate, spectra agree pre-alignment? | pre-registered |
-| T02 | Global Procrustes alignment on T01 data; frame agreement post-alignment | blocked by T01 |
-| T03 | Back-translation to embedding; residual = biology check on a two-lab dataset | blocked by T02 |
-| T04 | Simulator ground truth: inject nonlinear batch distortion, recover operators | blocked by T02 |
-| T05 | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
-| T06 | Locally linear A's (only if T02 residual is uneven) | conditional |
-
-## Repository layout
-
-```
-scopalign-coord/
-  coord/PROJECT.md        this file
-  coord/MANUS.md          executor instructions (copy to executor folder as CLAUDE.md if executor is Claude)
-  coord/FINDINGS.md       accepted results only; appended by planner on ACCEPT
-  tasks/Txx.md            one pre-registered task per file
-  templates/              task and report templates
-  checker/check_report.py mechanical gate
-  reports/Txx/            executor output: report.json, lockfile, figures
-  skills/scopalign-planner/   Claude planner skill
-```
+| ID   | Purpose | Status |
+|------|---------|--------|
+| T00  | Environment, scJDO2/scJDO installs, data staging | pre-registered |
+| T00b | Positional layer: PCA vs FA vs LDVAE tangent-rank on PBMC pair; pick FA unless it saturates | blocked by T00 |
+| T01  | Kill test: eigenvalue spectra + basin_index agree across v2/v3 chemistry before alignment? | blocked by T00b |
+| T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by T01 |
+| T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
+| T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
+| T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
+| T06  | Locally varying orthogonal `A` (only if T02 residual is uneven) | conditional |
 
 ## Folders (all under ~/Documents)
 
 ```
 ~/Documents/scopalign-coord/   planner side — this repo
-~/Documents/scopalign-manus/   executor side — clone of this repo + .venv + data/ + reports/
-~/Documents/scJDO2/            scJDO2 source (editable install into the executor .venv)
+~/Documents/scopalign-manus/   executor side — clone + .venv + data/ + reports/
+~/Documents/scJDO2/            scJDO2 source, editable install, read-only to executor
+~/Documents/scJDO/             scJDO v1 repo, read-only; never checked out
+~/Documents/scopalign-manus/vendor/scJDO-v1-r25/
+                               git worktree of scJDO at tag scjdo-v56-submission-20260922-r25
+                               (a47729b), editable install — scJDO2's own install route
+                               (scripts/install_v1_compare.sh), so the live scJDO HEAD never moves
 ```
 
-Every analysis runs inside `~/Documents/scopalign-manus/`. Nothing is read
-from or written to any other location except the scJDO2 checkout, which
-is read-only to the executor. Planner never edits the executor folder.
-Executor never edits `coord/` or `tasks/`.
+Every analysis runs inside `~/Documents/scopalign-manus/`. Planner never
+edits that folder. Executor never edits `coord/`, `tasks/`, `templates/`,
+`checker/`, `skills/`.
 
 ## Known-failure allowlist
 
@@ -85,24 +114,27 @@ Pinned by test ID. Checker fails if the set changes in either direction.
 KNOWN_FAILURES = []
 ```
 
-(Populate after the first environment build in T00; thereafter edit only via
-an accepted task.)
+(Set from T00's report on ACCEPT; thereafter edited only via an accepted task.)
 
 ## Environment
 
-- Executor runs on Tom's Mac, in the project `.venv`. Large `.h5ad` files do
-  not leave the machine.
-- Every report commits a lockfile (`pip freeze > reports/Txx/requirements.lock`).
-  Checker flags diffs against the previous accepted task.
-- Local-first: no remote required. The executor folder is a local clone of
-  this repo and pushes task branches back here. Add a backup remote later.
+- Executor runs on Tom's Mac in the project `.venv`. Data never leaves the
+  machine.
+- Every report commits `requirements.lock`; checker flags diffs against the
+  previous accepted task.
+- Git is local only: the executor folder is a clone of this repo and pushes
+  task branches back here. No GitHub remote.
+- Backup on every ACCEPT: planner's merge step copies the repo to the
+  backup location below. Not optional.
+
+  BACKUP_LOCATION = <unset — Tom to choose before the first ACCEPT>
 
 ## Vocabulary
 
 - **Gated number**: a value named in a task's pre-registration. Only gated
   numbers can enter FINDINGS.md.
 - **Deviation**: anything the executor did that the task file did not say.
-  Must be listed. An unlisted deviation is grounds for REJECT.
-- **Observation**: anything the executor noticed that was not asked for.
-  Quarantined. Never enters FINDINGS.md until a new task tests it.
+  Must be listed; unlisted → REJECT.
+- **Observation**: anything noticed but not asked for. Quarantined; never
+  enters FINDINGS until a task tests it.
 - **ACCEPT / REVISE / REJECT**: the planner's only three verdicts.

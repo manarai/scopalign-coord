@@ -41,7 +41,7 @@ def sha256(p: Path) -> str:
 
 def parse_task(task_md: Path):
     text = task_md.read_text()
-    tid = re.match(r"#\s*(T\d{2})\b", text).group(1)
+    tid = re.match(r"#\s*(T\d{2}[a-z]?)\b", text).group(1)
     # gated table rows: | `name` | ... |
     gated = re.findall(r"^\|\s*`([A-Za-z0-9_]+)`\s*\|", text, re.M)
     # deliverables: lines starting "- `" under ## Deliverables

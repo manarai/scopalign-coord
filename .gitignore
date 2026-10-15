@@ -2,3 +2,4 @@
 data/
 reports/*/ops_*.npz
 __pycache__/
+vendor/

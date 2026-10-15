@@ -62,8 +62,9 @@ Repo: `scopalign-coord/` (planner side). Executor side: `~/Documents/scopalign-m
    - append to `coord/FINDINGS.md`: date, task id, gated numbers
      (recomputed values), decision-rule outcome, commit sha. Nothing else.
    - update the ladder row in PROJECT.md to ACCEPT.
-   - `git checkout main && git merge --no-ff task/<TASK_ID>`
-     (local-first: push only if Tom has added a remote).
+   - `git checkout main && git merge --no-ff task/<TASK_ID>`, then copy the
+     repo to `BACKUP_LOCATION` in PROJECT.md (mandatory, not on request;
+     if unset, stop and ask Tom).
    - if the task changed the known-failure set legitimately, update
      `KNOWN_FAILURES` in PROJECT.md in the same commit and say so in the
      review.
