@@ -1,0 +1,15 @@
+cell_type,n_qc,n_h1,n_h2
+B cells,1560,780,780
+Cycling cells,3,1,1
+DC,159,79,79
+HSC/MPP,20,10,10
+ILC,665,332,332
+Macrophages,2,1,1
+Mast cells,2,1,1
+Megakaryocyte precursor,5,2,2
+Megakaryocytes/platelets,148,74,74
+Monocytes,3790,1895,1895
+Myelocytes,1,0,0
+Plasma cells,19,9,9
+T cells,4586,2293,2293
+pDC,83,41,41

@@ -156,3 +156,55 @@ planner's recomputed values, not the executor's reported ones.
 - frac_fa_at_ceiling: 0.0
 - Decision rule outcome: INCONCLUSIVE (rule 0 — FA not admissible; run stopped before operators).
 - Commit: task/T01e @ cd0223e
+
+## 2026-10-15 — K0 (ACCEPT; selected_layer none)
+
+- basin_ratio_fa10: 1.5045017257755493
+- basin_ratio_fa30: 1.4269434779310777
+- basin_ratio_pca30: 1.7902583378565315
+- basin_sep_h1_fa10: 7.4132886790852
+- basin_sep_h1_fa30: 4.64836922735241
+- basin_sep_h1_pca30: 5.742357362492693
+- basin_sep_h2_fa10: 7.0873374618521625
+- basin_sep_h2_fa30: 6.001543232084296
+- basin_sep_h2_pca30: 5.5761102144414
+- class_tv_ratio_fa10: 2.136610290440111
+- class_tv_ratio_fa30: 2.394813423187858
+- class_tv_ratio_pca30: 1.8746014871369239
+- count_match_max_abs: 0
+- frac_rank_ge10_fa10: 0.3085357013410656
+- frac_rank_ge10_fa30: 0.8136100036245016
+- frac_rank_ge10_pca30: 0.9757158390721276
+- n_cell_types_tested: 6
+- n_cells_h1: 5518
+- n_cells_h2: 5518
+- n_cells_qc: 11043
+- n_genes_detected_both: 18082
+- n_hvg_zero_h1: 0
+- n_hvg_zero_h2: 0
+- rank_h1_fa10: 9.0
+- rank_h1_fa30: 12.0
+- rank_h1_pca30: 20.0
+- rank_h2_fa10: 9.0
+- rank_h2_fa30: 12.0
+- rank_h2_pca30: 20.0
+- selected_layer: none
+- spectral_ratio_fa10: 7.153349751698642
+- spectral_ratio_fa30: 3.0186477939083467
+- spectral_ratio_full_fa30: 4.710526750099895
+- spectral_ratio_full_pca30: 2.328833799569238
+- spectral_ratio_pca30: 1.7164611382311468
+- spectral_sep_h1_fa10: 28.316617237383564
+- spectral_sep_h1_fa30: 11.986176201735196
+- spectral_sep_h1_pca30: 23.37868863118697
+- spectral_sep_h2_fa10: 28.667597821699562
+- spectral_sep_h2_fa30: 16.025976980544748
+- spectral_sep_h2_pca30: 21.75086046954761
+- symmetry_h1_fa10: 1.2901113422003618e-07
+- symmetry_h1_fa30: 1.1325257176508785e-07
+- symmetry_h1_pca30: 1.8742955631978475e-07
+- symmetry_h2_fa10: 1.2580034791653816e-07
+- symmetry_h2_fa30: 9.608473305888765e-08
+- symmetry_h2_pca30: 1.9434391873573986e-07
+- Decision rule outcome: pca30 inconclusive (rule 6); fa30 fails (rule 4); fa10 fails (rule 4); selected_layer "none" (no config survives, not all fail).
+- Commit: task/K0 @ d360565

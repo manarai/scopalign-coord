@@ -1,0 +1,227 @@
+{
+  "branch": "task/K0",
+  "commit": "4cd6ef9ba477f4e818c5e66c1f02c38902ec17fc",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "45a46fe780c3f807b33ff9175f9c3cffdf7c1163cd8defcb9bb11e5be12000f4"
+    },
+    {
+      "path": "split_table.csv",
+      "sha256": "c2940e1cc424386720d9bff95d1c0469545fbd5c403da6924a940871356e8919"
+    },
+    {
+      "path": "genes.txt",
+      "sha256": "9c6a8589b6268b367ecdb412b7cd479c299eb77f3834888c16f02b3be0a5ba99"
+    },
+    {
+      "path": "latent_pca30_h1.npy",
+      "sha256": "195226b0296ae29274161e5d1fcf5c73751a8220be5f7593ef89b4610010a7e5"
+    },
+    {
+      "path": "latent_pca30_h2.npy",
+      "sha256": "44a02acd94c8cbbc3a19372a735d9220543fede8837a9e42c278e70560334e92"
+    },
+    {
+      "path": "latent_fa30_h1.npy",
+      "sha256": "53eb9c9218f0885ad589c6e02b5210f567e103e74606b5d0fb1947c8b984babd"
+    },
+    {
+      "path": "latent_fa30_h2.npy",
+      "sha256": "af63b8ee7d4c5f601256afb1c177f0cc82266d24ecf3e3376b37eba33891e270"
+    },
+    {
+      "path": "latent_fa10_h1.npy",
+      "sha256": "f1833c37b5575598cc321a94fd9e33f81b8ac26fe1749142d66828b6127fb1f0"
+    },
+    {
+      "path": "latent_fa10_h2.npy",
+      "sha256": "54dd4aa122364a8d4d676c38ae84cb7fd72473868533eb3f6b1789e0631e12f1"
+    },
+    {
+      "path": "ops_pca30_h1.npz",
+      "sha256": "2d96934c68091c3f1346c860b32dc5c8c3287f2a54ed2361c54f4141929bab87"
+    },
+    {
+      "path": "ops_pca30_h2.npz",
+      "sha256": "1e4a3e98268a7fef5519fe1f72bd1c1e30df9b681f3c979b7ce5261144fca9c1"
+    },
+    {
+      "path": "ops_fa30_h1.npz",
+      "sha256": "6398bf29e3cd989224ef9d4815513af59f7d376773a86810821e79561daa1230"
+    },
+    {
+      "path": "ops_fa30_h2.npz",
+      "sha256": "6ea0f12a059fdf382a7bc7174c037f2972a4344fa5a3f1f27a994647aaed22ca"
+    },
+    {
+      "path": "ops_fa10_h1.npz",
+      "sha256": "1f274c3477fa2cd50b7bad4be4d736e6bf078cd319d6d53bb3816f4580156023"
+    },
+    {
+      "path": "ops_fa10_h2.npz",
+      "sha256": "f0b65c8061d0c5e117934ed9850865dd72d305f8b8db7868c5634b1c8a44bb4a"
+    },
+    {
+      "path": "draw_indices.npz",
+      "sha256": "c1b37e0db7569df608499ce07605dd5b6a265f737702e85bbc92a6f0f866fb20"
+    },
+    {
+      "path": "basin_table.csv",
+      "sha256": "d9dfb5bcee4df736f842a0af4f617c124705925c6fb905696a78e005eded6321"
+    },
+    {
+      "path": "draws.csv",
+      "sha256": "4aad9e8538ef8bcb6aeaaf43fbfa8b6eeb59c85624fe07116154dfb74270fca0"
+    },
+    {
+      "path": "fig_spectra.png",
+      "sha256": "ec5ee02567860d74d3b96328050d2e8849f300340e8101bb22b0b95cfd94ca07"
+    },
+    {
+      "path": "fig_basin.png",
+      "sha256": "98d4d1531c536080acafcb6ee48052291d0350b7292d42d018e7a7680830a278"
+    },
+    {
+      "path": "scripts/k0_run.py",
+      "sha256": "094d083f5be57d8235c58db1ae7a701ab64400242a5781cf5ab4f624ccf0d364"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T14:32:25.208506+00:00",
+  "gated": {
+    "basin_ratio_fa10": 1.5045017257755493,
+    "basin_ratio_fa30": 1.4269434779310777,
+    "basin_ratio_pca30": 1.7902583378565315,
+    "basin_sep_h1_fa10": 7.4132886790852,
+    "basin_sep_h1_fa30": 4.64836922735241,
+    "basin_sep_h1_pca30": 5.742357362492693,
+    "basin_sep_h2_fa10": 7.0873374618521625,
+    "basin_sep_h2_fa30": 6.001543232084296,
+    "basin_sep_h2_pca30": 5.5761102144414,
+    "class_tv_ratio_fa10": 2.136610290440111,
+    "class_tv_ratio_fa30": 2.394813423187858,
+    "class_tv_ratio_pca30": 1.8746014871369239,
+    "count_match_max_abs": 0,
+    "frac_rank_ge10_fa10": 0.3085357013410656,
+    "frac_rank_ge10_fa30": 0.8136100036245016,
+    "frac_rank_ge10_pca30": 0.9757158390721276,
+    "n_cell_types_tested": 6,
+    "n_cells_h1": 5518,
+    "n_cells_h2": 5518,
+    "n_cells_qc": 11043,
+    "n_genes_detected_both": 18082,
+    "n_hvg_zero_h1": 0,
+    "n_hvg_zero_h2": 0,
+    "rank_h1_fa10": 9.0,
+    "rank_h1_fa30": 12.0,
+    "rank_h1_pca30": 20.0,
+    "rank_h2_fa10": 9.0,
+    "rank_h2_fa30": 12.0,
+    "rank_h2_pca30": 20.0,
+    "selected_layer": "none",
+    "spectral_ratio_fa10": 7.153349751698642,
+    "spectral_ratio_fa30": 3.0186477939083467,
+    "spectral_ratio_full_fa30": 4.710526750099895,
+    "spectral_ratio_full_pca30": 2.328833799569238,
+    "spectral_ratio_pca30": 1.7164611382311468,
+    "spectral_sep_h1_fa10": 28.316617237383564,
+    "spectral_sep_h1_fa30": 11.986176201735196,
+    "spectral_sep_h1_pca30": 23.37868863118697,
+    "spectral_sep_h2_fa10": 28.667597821699562,
+    "spectral_sep_h2_fa30": 16.025976980544748,
+    "spectral_sep_h2_pca30": 21.75086046954761,
+    "symmetry_h1_fa10": 1.2901113422003618e-07,
+    "symmetry_h1_fa30": 1.1325257176508785e-07,
+    "symmetry_h1_pca30": 1.8742955631978475e-07,
+    "symmetry_h2_fa10": 1.2580034791653816e-07,
+    "symmetry_h2_fa30": 9.608473305888765e-08,
+    "symmetry_h2_pca30": 1.9434391873573986e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "45a46fe780c3f807b33ff9175f9c3cffdf7c1163cd8defcb9bb11e5be12000f4",
+  "observations": [
+    "Input pbmc_10k_v3.h5ad SHA-256: f449ff0a02c3749be88a51e83200e69757acb3547bd7ea9d1319aad7c1e8aa4b."
+  ],
+  "regeneration": {
+    "basin_ratio_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_ratio_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_ratio_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_sep_h1_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_sep_h1_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_sep_h1_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_sep_h2_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_sep_h2_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_sep_h2_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "basin_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "class_tv_ratio_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "class_tv_ratio_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "class_tv_ratio_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "count_match_max_abs": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "draw_indices.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "draws.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "fig_basin.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "fig_spectra.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "frac_rank_ge10_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "frac_rank_ge10_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "frac_rank_ge10_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "genes.txt": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "latent_fa10_h1.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "latent_fa10_h2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "latent_fa30_h1.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "latent_fa30_h2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "latent_pca30_h1.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "latent_pca30_h2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "n_cell_types_tested": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "n_cells_h1": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "n_cells_h2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "n_cells_qc": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "n_genes_detected_both": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "n_hvg_zero_h1": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "n_hvg_zero_h2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "ops_fa10_h1.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "ops_fa10_h2.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "ops_fa30_h1.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "ops_fa30_h2.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "ops_pca30_h1.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "ops_pca30_h2.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "rank_h1_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "rank_h1_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "rank_h1_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "rank_h2_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "rank_h2_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "rank_h2_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "scripts/k0_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "selected_layer": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_ratio_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_ratio_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_ratio_full_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_ratio_full_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_ratio_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_sep_h1_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_sep_h1_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_sep_h1_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_sep_h2_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_sep_h2_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "spectral_sep_h2_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "split_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage all",
+    "symmetry_h1_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "symmetry_h1_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "symmetry_h1_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "symmetry_h2_fa10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "symmetry_h2_fa30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report",
+    "symmetry_h2_pca30": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K0/scripts/k0_run.py --stage report"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T08:26:08-06:00",
+  "status": "complete",
+  "task_id": "K0"
+}

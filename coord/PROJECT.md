@@ -135,7 +135,7 @@ that K0 shows to be reproducible, can decide it.
 | T01y | *Exploratory:* T01x reissued with relative validity checks against T01c's reported values | ACCEPT (2026-10-15) — "shape differs" (spectral_ratio_s 15.6) |
 | T01d | Kill test at matched depth: v3 thinned to v2's per-type depth; T00c genes/FA and T01c test unchanged | ACCEPT (2026-10-15) — outcome INCONCLUSIVE (rule 3: basin_sep_v2 1.72); T02 stays blocked |
 | T01e | Same-chemistry control: pbmc_1k_v3 vs pbmc_10k_v3 (count- and depth-matched), T01d pipeline and rule | ACCEPT (2026-10-15) — stopped, INCONCLUSIVE (rule 0: FA ranks 8/9 < 10) |
-| K0   | Split-half control on pbmc_10k_v3 for PCA-30, FA-30 and FA-10: which layer gives reproducible operators? Selects the layer | pre-registered |
+| K0   | Split-half control on pbmc_10k_v3 for PCA-30, FA-30 and FA-10: which layer gives reproducible operators? Selects the layer | ACCEPT (2026-10-15) — pca30 inconclusive (1.72/1.79), fa30 fails (3.02), fa10 fails (7.15); selected_layer none → Tom |
 | K1   | Same chemistry, two runs: pbmc_1k_v3 vs pbmc_10k_v3 subsample (count/depth matched) | blocked by K0 |
 | K2   | Chemistry: pbmc_1k_v2 vs pbmc_1k_v3 (count/depth matched) | blocked by K1 |
 | T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by K2 |
