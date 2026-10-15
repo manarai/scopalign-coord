@@ -47,3 +47,21 @@ planner's recomputed values, not the executor's reported ones.
 - basin_class_agreement (secondary): 1.0
 - Decision rule outcome: INCONCLUSIVE (rule 3 — spectral_sep_v2, spectral_sep_v3, basin_sep_v3 < 2).
 - Commit: task/T01 @ 2673fe9
+
+## 2026-10-14 — T00c (ACCEPT)
+
+- n_genes_detected_both: 12890
+- n_hvg_zero_v2: 0
+- n_hvg_zero_v3: 0
+- n_fa_tiny_noise_v2: 0
+- n_fa_tiny_noise_v3: 0
+- rank_pca_v2: 21
+- rank_pca_v3: 19
+- rank_fa_v2: 11
+- rank_fa_v3: 14
+- rank_ldvae_v2: 19
+- rank_ldvae_v3: 13
+- frac_fa_at_ceiling: 0.0
+- frac_ldvae_at_ceiling: 0.0
+- Decision rule outcome: FA is the positional layer for T01c.
+- Commit: task/T00c @ 91a5449

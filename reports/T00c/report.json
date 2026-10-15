@@ -1,0 +1,114 @@
+{
+  "branch": "task/T00c",
+  "commit": "e3d48e17461c790fd6bd5813bf996776ff82890b",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330"
+    },
+    {
+      "path": "genes.txt",
+      "sha256": "e68a08f073b94eaef3f1bf838d0c135fd93335ba07fe61e6803f212e19ebfc8c"
+    },
+    {
+      "path": "rank_summary.csv",
+      "sha256": "6e8c4e1c907847814c094da5d1dcf9b89cf75d38a696b521bbbd341c662daf68"
+    },
+    {
+      "path": "fig_rank_dist.png",
+      "sha256": "434a6ad4d9ba9caadb944b8e7d42745c0f4c4ebc5062c48ea0fe68aa68075cf1"
+    },
+    {
+      "path": "latent_fa_v2.npy",
+      "sha256": "446a5414655e0ae1ae2f21c9bcf96f263c189bb077127918d12a539791e4b0f4"
+    },
+    {
+      "path": "latent_fa_v3.npy",
+      "sha256": "691d66b9f5237dce6a3579ec37a4e17a0cfb746f03054af62b00b179fea10eb0"
+    },
+    {
+      "path": "latent_ldvae_v2_20261014.npy",
+      "sha256": "573b4ba27a5ae2b6850f10f4fc527f422e8f6cb715733445b9159dc2e682bc57"
+    },
+    {
+      "path": "latent_ldvae_v3_20261014.npy",
+      "sha256": "6524b9bc94df4588fb7033aec612c1228cf454e060a3595f403fcc76668670e4"
+    },
+    {
+      "path": "scripts/t00c_rank.py",
+      "sha256": "410fb73ffacd5391381273d68c0cef980688674fcb8fa2dec2879b6cf5872d6e"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T03:51:16Z",
+  "gated": {
+    "frac_fa_at_ceiling": 0.0,
+    "frac_ldvae_at_ceiling": 0.0,
+    "n_fa_tiny_noise_v2": 0,
+    "n_fa_tiny_noise_v3": 0,
+    "n_genes_detected_both": 12890,
+    "n_hvg_zero_v2": 0,
+    "n_hvg_zero_v3": 0,
+    "rank_fa_v2": 11.0,
+    "rank_fa_v3": 14.0,
+    "rank_ldvae_v2": 19.0,
+    "rank_ldvae_v3": 13.0,
+    "rank_pca_v2": 21.0,
+    "rank_pca_v3": 19.0
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330",
+  "observations": [
+    "The LDVAE histogram pools the three prescribed seed-specific rank arrays for each dataset."
+  ],
+  "regeneration": {
+    "fig_rank_dist.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "frac_fa_at_ceiling": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "frac_ldvae_at_ceiling": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "genes.txt": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --genes",
+    "latent_fa_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed fa --dataset v2 --seed 20261014",
+    "latent_fa_v3.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed fa --dataset v3 --seed 20261014",
+    "latent_ldvae_v2_20261014.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v2 --seed 20261014",
+    "latent_ldvae_v2_20261015.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v2 --seed 20261015",
+    "latent_ldvae_v2_20261016.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v2 --seed 20261016",
+    "latent_ldvae_v3_20261014.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v3 --seed 20261014",
+    "latent_ldvae_v3_20261015.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v3 --seed 20261015",
+    "latent_ldvae_v3_20261016.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v3 --seed 20261016",
+    "latent_pca_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed pca --dataset v2 --seed 20261014",
+    "latent_pca_v3.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed pca --dataset v3 --seed 20261014",
+    "n_fa_tiny_noise_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "n_fa_tiny_noise_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "n_genes_detected_both": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "n_hvg_zero_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "n_hvg_zero_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "rank_fa_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "rank_fa_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed fa --dataset v2 --seed 20261014",
+    "rank_fa_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "rank_fa_v3.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed fa --dataset v3 --seed 20261014",
+    "rank_ldvae_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "rank_ldvae_v2_20261014.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v2 --seed 20261014",
+    "rank_ldvae_v2_20261015.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v2 --seed 20261015",
+    "rank_ldvae_v2_20261016.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v2 --seed 20261016",
+    "rank_ldvae_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "rank_ldvae_v3_20261014.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v3 --seed 20261014",
+    "rank_ldvae_v3_20261015.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v3 --seed 20261015",
+    "rank_ldvae_v3_20261016.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed ldvae --dataset v3 --seed 20261016",
+    "rank_pca_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "rank_pca_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed pca --dataset v2 --seed 20261014",
+    "rank_pca_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "rank_pca_v3.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --embed pca --dataset v3 --seed 20261014",
+    "rank_summary.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00c/scripts/t00c_rank.py --summarise",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && source .venv/bin/activate && pip freeze > reports/T00c/requirements.lock"
+  },
+  "seed": 20261014,
+  "started": "2026-10-14T21:46:29-06:00",
+  "status": "complete",
+  "task_id": "T00c"
+}
