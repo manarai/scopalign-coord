@@ -19,7 +19,7 @@ Checks (all mechanical, no judgment):
   8. every gated name has a regeneration command
   9. observations contain no interpretive language (soft check, warns)
 """
-import argparse, hashlib, json, re, sys
+import argparse, ast, hashlib, json, re, sys
 from pathlib import Path
 
 try:
@@ -51,11 +51,14 @@ def parse_task(task_md: Path):
     return tid, set(gated), deliverables
 
 def parse_known_failures(project_md: Path):
+    # Parse the fenced Python list literally: test IDs contain brackets.
     text = project_md.read_text()
-    m = re.search(r"KNOWN_FAILURES\s*=\s*\[(.*?)\]", text, re.S)
+    m = re.search(r"^KNOWN_FAILURES\s*=\s*(\[.*?^\])", text, re.S | re.M)
     if not m:
-        return set()
-    return set(re.findall(r"['\"]([^'\"]+)['\"]", m.group(1)))
+        m = re.search(r"KNOWN_FAILURES\s*=\s*(\[\])", text)
+    if not m:
+        raise SystemExit("KNOWN_FAILURES list not found in PROJECT.md")
+    return set(ast.literal_eval(m.group(1)))
 
 def lock_versions(p: Path):
     out = {}
