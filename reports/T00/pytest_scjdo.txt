@@ -1,0 +1,43 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.17, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/terooatt/Documents/scopalign-manus/vendor/scJDO-v1-r25
+configfile: pyproject.toml
+testpaths: tests
+plugins: platformdirs-4.13.0, zarr-3.1.6, cov-7.1.0, anyio-4.15.1
+collected 162 items
+
+tests/test_branch_api.py sssss........                                   [  8%]
+tests/test_corrections.py .......ss.............                         [ 21%]
+tests/test_decompose_seminmf.py .........                                [ 27%]
+tests/test_flow_topology.py .....                                        [ 30%]
+tests/test_hybrid_grn.py ....                                            [ 32%]
+tests/test_identifiability_ext.py .......                                [ 37%]
+tests/test_imports_smoke.py ........                                     [ 41%]
+tests/test_koopman.py ...............                                    [ 51%]
+tests/test_models_smoke.py ..                                            [ 52%]
+tests/test_scopatlas.py ................................................ [ 82%]
+                                                                         [ 82%]
+tests/test_training_smoke.py .                                           [ 82%]
+tests/test_transport_sinkhorn_smoke.py .                                 [ 83%]
+tests/test_validation.py ...........................                     [100%]
+
+=============================== warnings summary ===============================
+tests/test_branch_api.py::test_fit_bridge_branches_runs_and_stores_uns
+tests/test_branch_api.py::test_fit_bridge_branches_runs_and_stores_uns
+  /Users/terooatt/Documents/scopalign-manus/vendor/scJDO-v1-r25/scjdo/tl/_bridge.py:221: UserWarning: [SchrodingerBridge] Training reached the maximum of 2 iterations without satisfying the convergence criterion (|ΔCOST| < 0.001). Consider increasing max_iterations, loosening convergence_tol, or increasing epsilon (OT regularisation).
+    history = bridge.train_bridge(verbose=verbose)
+
+tests/test_corrections.py::TestSchrodingerBridgeConvergence::test_history_returned
+  /Users/terooatt/Documents/scopalign-manus/vendor/scJDO-v1-r25/tests/test_corrections.py:241: UserWarning: [SchrodingerBridge] Training reached the maximum of 10 iterations without satisfying the convergence criterion (|ΔCOST| < 0.01). Consider increasing max_iterations, loosening convergence_tol, or increasing epsilon (OT regularisation).
+    history = sb.train_bridge(verbose=False)
+
+tests/test_corrections.py::TestSchrodingerBridgeConvergence::test_forward_integrate_shape
+  /Users/terooatt/Documents/scopalign-manus/vendor/scJDO-v1-r25/tests/test_corrections.py:261: UserWarning: [SchrodingerBridge] Training reached the maximum of 10 iterations without satisfying the convergence criterion (|ΔCOST| < 0.01). Consider increasing max_iterations, loosening convergence_tol, or increasing epsilon (OT regularisation).
+    sb.train_bridge(verbose=False)
+
+tests/test_corrections.py::TestSchrodingerBridgeConvergence::test_backward_integrate_shape
+  /Users/terooatt/Documents/scopalign-manus/vendor/scJDO-v1-r25/tests/test_corrections.py:268: UserWarning: [SchrodingerBridge] Training reached the maximum of 10 iterations without satisfying the convergence criterion (|ΔCOST| < 0.01). Consider increasing max_iterations, loosening convergence_tol, or increasing epsilon (OT regularisation).
+    sb.train_bridge(verbose=False)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================= 155 passed, 7 skipped, 5 warnings in 13.14s ==================

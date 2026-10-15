@@ -1,0 +1,72 @@
+{
+  "branch": "task/T00",
+  "commit": "5bd0bdcb9eabac78e0262a4a81a7cc49098b873b",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "d81486d0042fee36b34c58e87db4bc39891a3650134845d7246233bfd4aa6873"
+    },
+    {
+      "path": "pytest_scjdo2.txt",
+      "sha256": "b5ff696f5073b517d26b2ffe844d96b6b0049e7b452a7b663c89730be5314341"
+    },
+    {
+      "path": "pytest_scjdo.txt",
+      "sha256": "567048c842297ce088ca17ada3318902282427cc9e6524e2ab7bea47a5224309"
+    },
+    {
+      "path": "label_map.csv",
+      "sha256": "85e28e0011c425e8e55f8f762181a51e61b5935ec31f2f936930e4e604d439a9"
+    },
+    {
+      "path": "data_checksums.txt",
+      "sha256": "a09c30e8d1f6528aff25ec0f52962de9cc34d108703749965c37d8eb8005dd76"
+    },
+    {
+      "path": "scripts/t00_stage.py",
+      "sha256": "9c5e28398da002da2f702cb34918ceccfaf86d1cec8633cf5bd2ec9bfca99404"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Installed and used Python 3.11.17 from Homebrew to create .venv.",
+      "why": "Authorised by reports/T00/REVIEW.md Revision 3, item 2."
+    },
+    {
+      "what": "Set PYTHONDONTWRITEBYTECODE=1 for both pytest invocations.",
+      "why": "Required to meet T00's instruction that the test runs not write into either source checkout."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T02:32:08Z",
+  "gated": {
+    "n_cells_v2_raw": 996,
+    "n_cells_v3_raw": 1222,
+    "n_failing_tests": 4,
+    "scjdo2_sha": "949fb9cc285f99219a95b8cdc9001c6e5d1d4c13",
+    "scjdo_tag": "scjdo-v56-submission-20260922-r25"
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "d81486d0042fee36b34c58e87db4bc39891a3650134845d7246233bfd4aa6873",
+  "observations": [
+    "scJDO2 pytest reported 4 failing test IDs.",
+    "scJDO v1 pytest reported no failing test IDs."
+  ],
+  "regeneration": {
+    "n_cells_v2_raw": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00/scripts/t00_stage.py --count",
+    "n_cells_v3_raw": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00/scripts/t00_stage.py --count",
+    "n_failing_tests": "cd \"$HOME/Documents/scJDO2\" && PYTHONDONTWRITEBYTECODE=1 \"$HOME/Documents/scopalign-manus/.venv/bin/python\" -m pytest tests -q -p no:cacheprovider -rf; cd \"$HOME/Documents/scopalign-manus/vendor/scJDO-v1-r25\" && PYTHONDONTWRITEBYTECODE=1 \"$HOME/Documents/scopalign-manus/.venv/bin/python\" -m pytest -q -p no:cacheprovider -rf",
+    "scjdo2_sha": "git -C \"$HOME/Documents/scJDO2\" rev-parse HEAD",
+    "scjdo_tag": "git -C \"$HOME/Documents/scopalign-manus/vendor/scJDO-v1-r25\" describe --tags"
+  },
+  "seed": 20261014,
+  "started": "2026-10-14T20:24:34-06:00",
+  "status": "complete",
+  "task_id": "T00"
+}

@@ -80,8 +80,8 @@ If the axiom fails on a pure technical replicate, the project stops (T01).
 
 | ID   | Purpose | Status |
 |------|---------|--------|
-| T00  | Environment, scJDO2/scJDO installs, data staging | pre-registered |
-| T00b | Positional layer: PCA vs FA vs LDVAE tangent-rank on PBMC pair; pick FA unless it saturates | blocked by T00 |
+| T00  | Environment, scJDO2/scJDO installs, data staging | ACCEPT (2026-10-14) |
+| T00b | Positional layer: PCA vs FA vs LDVAE tangent-rank on PBMC pair; pick FA unless it saturates | pre-registered |
 | T01  | Kill test: eigenvalue spectra + basin_index agree across v2/v3 chemistry before alignment? | blocked by T00b |
 | T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by T01 |
 | T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
@@ -98,7 +98,7 @@ If the axiom fails on a pure technical replicate, the project stops (T01).
 ~/Documents/scJDO/             scJDO v1 repo, read-only; never checked out
 ~/Documents/scopalign-manus/vendor/scJDO-v1-r25/
                                git worktree of scJDO at tag scjdo-v56-submission-20260922-r25
-                               (a47729b), editable install — scJDO2's own install route
+                               (commit cbfd591), editable install — scJDO2's own install route
                                (scripts/install_v1_compare.sh), so the live scJDO HEAD never moves
 ```
 
@@ -111,7 +111,12 @@ edits that folder. Executor never edits `coord/`, `tasks/`, `templates/`,
 Pinned by test ID. Checker fails if the set changes in either direction.
 
 ```
-KNOWN_FAILURES = []
+KNOWN_FAILURES = [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility",
+]
 ```
 
 (Set from T00's report on ACCEPT; thereafter edited only via an accepted task.)

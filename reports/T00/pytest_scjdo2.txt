@@ -1,0 +1,31 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.17, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/terooatt/Documents/scJDO2
+configfile: pyproject.toml
+plugins: platformdirs-4.13.0, zarr-3.1.6, cov-7.1.0, anyio-4.15.1
+collected 48 items
+
+tests/test_aging_figures.py .......                                      [ 14%]
+tests/test_compare_aging.py .........                                    [ 33%]
+tests/test_io_phase_c_sidecar.py .                                       [ 35%]
+tests/test_measured_flow_figures.py ..                                   [ 39%]
+tests/test_opspace_figures.py ........                                   [ 56%]
+tests/test_opspace_pitchfork.py ...Xxxx...xx                             [ 81%]
+tests/test_phase_b_pitchfork.py ..FFFF                                   [ 93%]
+tests/test_smoke.py ...                                                  [100%]
+
+=================================== FAILURES ===================================
+___________________ test_pitchfork_saddle_localisation[0.1] ____________________
+[XPASS(strict)] Documented negative control. Snapshot data from the non-stationary α-ramp pitchfork does not carry basin structure: cells are always transient, never equilibrate, and the DSM score at (z, pseudotime) is uncorrelated with the toggle vector field (see benchmarks/phase_b_gate/convergence_audit/*). The acceptance gate lives on the equilibrated pitchfork — benchmarks/phase_b_gate/equilibrated/.
+___________________ test_pitchfork_saddle_localisation[0.3] ____________________
+[XPASS(strict)] Documented negative control. Snapshot data from the non-stationary α-ramp pitchfork does not carry basin structure: cells are always transient, never equilibrate, and the DSM score at (z, pseudotime) is uncorrelated with the toggle vector field (see benchmarks/phase_b_gate/convergence_audit/*). The acceptance gate lives on the equilibrated pitchfork — benchmarks/phase_b_gate/equilibrated/.
+___________________ test_pitchfork_saddle_localisation[0.5] ____________________
+[XPASS(strict)] Documented negative control. Snapshot data from the non-stationary α-ramp pitchfork does not carry basin structure: cells are always transient, never equilibrate, and the DSM score at (z, pseudotime) is uncorrelated with the toggle vector field (see benchmarks/phase_b_gate/convergence_audit/*). The acceptance gate lives on the equilibrated pitchfork — benchmarks/phase_b_gate/equilibrated/.
+__________________ test_pitchfork_half_split_reproducibility ___________________
+[XPASS(strict)] Documented negative control — same reason as the saddle-localisation test above. Half-split reproducibility on α-ramp snapshot data is not expected to pass; the acceptance gate uses the equilibrated pitchfork.
+=========================== short test summary info ============================
+FAILED tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]
+FAILED tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]
+FAILED tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]
+FAILED tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility
+======== 4 failed, 38 passed, 5 xfailed, 1 xpassed in 201.26s (0:03:21) ========
