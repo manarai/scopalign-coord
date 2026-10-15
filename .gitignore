@@ -3,3 +3,4 @@ data/
 reports/*/ops_*.npz
 __pycache__/
 vendor/
+reports/O1/cases/
