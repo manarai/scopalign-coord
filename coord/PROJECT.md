@@ -30,7 +30,9 @@ the point of task T01.
    is the primary outcome. Eigenvector-frame agreement after alignment is
    secondary.
 6. Reference libraries: scanpy, scikit-learn, scipy, POT (Python Optimal
-   Transport), scJDO2 (pinned), scJDO v1 (pinned, imputation mode only).
+   Transport), scJDO2 (local checkout `~/Documents/scJDO2`, installed
+   editable, commit sha recorded per task), scJDO v1 (local checkout
+   `~/Documents/scJDO`, frozen at the preprint tag; imputation mode only).
 7. Any dataset or parameter not named in a task file is out of scope.
 
 ## Task ladder
@@ -58,9 +60,19 @@ scopalign-coord/
   skills/scopalign-planner/   Claude planner skill
 ```
 
-Executor works in a **separate** folder (`~/Documents/scopalign-manus/`) that
-clones the repo. Planner never edits that folder. Executor never edits
-`coord/` or `tasks/`.
+## Folders (all under ~/Documents)
+
+```
+~/Documents/scopalign-coord/   planner side — this repo
+~/Documents/scopalign-manus/   executor side — clone of this repo + .venv + data/ + reports/
+~/Documents/scJDO2/            scJDO2 source (editable install into the executor .venv)
+~/Documents/scJDO/             scJDO v1 source, frozen at preprint tag (editable install)
+```
+
+Every analysis runs inside `~/Documents/scopalign-manus/`. Nothing is read
+from or written to any other location except the two scJDO checkouts, which
+are read-only to the executor. Planner never edits the executor folder.
+Executor never edits `coord/` or `tasks/`.
 
 ## Known-failure allowlist
 

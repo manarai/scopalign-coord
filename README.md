@@ -7,13 +7,16 @@ Planner/executor protocol for scOpAlign (operator-level single-cell dataset alig
 
 ## Setup
 
-Planner side (this repo):
+Planner side:
 ```
-git init && git add . && git commit -m "protocol: initial"
-# push to origin
-cp -r skills/scopalign-planner ~/.claude/skills/scopalign-planner   # or symlink
+# unpack to ~/Documents/scopalign-coord, then
+cd ~/Documents/scopalign-coord
+git remote add origin <github url> && git push -u origin main
+ln -s ~/Documents/scopalign-coord/skills/scopalign-planner ~/.claude/skills/scopalign-planner
 pip install jsonschema
 ```
+
+scJDO2 and scJDO v1 are expected at `~/Documents/scJDO2` and `~/Documents/scJDO` (the latter on the preprint tag).
 
 Executor side:
 ```
