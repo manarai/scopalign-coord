@@ -78,6 +78,17 @@ Repo: `scopalign-coord/` (planner side). Executor side: `~/Documents/scopalign-m
 Print the task ladder with statuses, the last FINDINGS entry, and any branch
 `task/*` with no REVIEW.md.
 
+## Working mode (Tom, 2026-10-15)
+
+- **Routine follow-ups** (revisions, reruns, same-design variants): commit
+  the task and give the executor message directly; new designs or rule
+  changes are shown to Tom before committing.
+- **Recompute depth:** for decisive tasks, recompute end to end. When the
+  executor has saved deterministic intermediates (full operators, draw
+  indices), recompute every gated number from those arrays and spot-check
+  one fit end to end.
+- **Replies:** verdict, key numbers, next step. Details live in REVIEW.md.
+
 ## Rules for the planner
 
 - You never run scripts that produce gated numbers except to **recompute**
