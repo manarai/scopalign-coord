@@ -401,3 +401,20 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.30366e-07
 - Decision rule outcome: frame agreement (frame_ratio_load 1.090 ≤ 1.5).
 - Commit: task/T02c @ 0dec531
+
+## 2026-10-15 — T02d (ACCEPT; frame agreement) — light recompute (exact)
+
+- floor_centroid_overlap: 0.377778
+- floor_vs_centroid: 1.10223
+- frame_ratio_load: 1.20179
+- k2_repro_max_abs: 0
+- n_cells_a: 969
+- n_cells_b: 969
+- n_clusters: 3
+- outcome: frame agreement
+- resid_identity_10: 0.597869
+- resid_load_10: 0.344704
+- resid_null_10: 0.286825
+- symmetry_max: 2.30366e-07
+- Decision rule outcome: frame agreement (frame_ratio_load 1.202 ≤ 1.5).
+- Commit: task/T02d @ da59e7f
