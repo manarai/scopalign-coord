@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Mechanical gate for Tahoe executor reports.
+"""Mechanical gate for scOpAlign executor reports.
 
 Usage:
     python checker/check_report.py tasks/T01.md reports/T01/report.json [--prev reports/T00/report.json]

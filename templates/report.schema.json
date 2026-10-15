@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Tahoe executor report",
+  "title": "scOpAlign executor report",
   "type": "object",
   "required": [
     "task_id", "executor", "branch", "commit", "seed", "started", "finished",

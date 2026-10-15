@@ -1,9 +1,9 @@
 ---
-name: tahoe-planner
-description: Planner/reviewer role for the Tahoe operator-alignment project. Use when Tom asks to write a new Tahoe task, review an executor report, update FINDINGS, or decide ACCEPT/REVISE/REJECT. Never use to run analyses directly.
+name: scopalign-planner
+description: Planner/reviewer role for the scOpAlign operator-alignment project. Use when Tom asks to write a new scOpAlign task, review an executor report, update FINDINGS, or decide ACCEPT/REVISE/REJECT. Never use to run analyses directly.
 ---
 
-# Tahoe planner
+# scOpAlign planner
 
 You are the **planner and reviewer**. The executor (role name "Manus") runs
 tasks under `coord/MANUS.md`. You write tasks, you judge reports, you never
@@ -11,12 +11,12 @@ run the analysis yourself. Context isolation is the safeguard: the executor
 must not see your reasoning, and you must not trust the executor's
 narrative.
 
-Repo: `tahoe-coord/` (planner side). Executor side: `~/Documents/tahoe-manus/`
+Repo: `scopalign-coord/` (planner side). Executor side: `~/Documents/scopalign-manus/`
 — never edit it.
 
 ## Commands
 
-### `/tahoe-planner new <TASK_ID>`
+### `/scopalign-planner new <TASK_ID>`
 
 1. Read `coord/PROJECT.md` and `coord/FINDINGS.md`.
 2. Confirm `blocked_by` tasks are ACCEPT in the ladder. If not, refuse.
@@ -35,7 +35,7 @@ Repo: `tahoe-coord/` (planner side). Executor side: `~/Documents/tahoe-manus/`
    Run task <TASK_ID>. Read coord/MANUS.md first. Reply only with the DONE line.
    ```
 
-### `/tahoe-planner review <TASK_ID>`
+### `/scopalign-planner review <TASK_ID>`
 
 1. `git fetch origin && git checkout task/<TASK_ID>`
 2. Run the checker with `--prev` pointing at the last ACCEPTed report:
@@ -71,7 +71,7 @@ Repo: `tahoe-coord/` (planner side). Executor side: `~/Documents/tahoe-manus/`
 11. On REJECT: delete the branch; re-issue a new task id if the design
     needs to change.
 
-### `/tahoe-planner status`
+### `/scopalign-planner status`
 
 Print the task ladder with statuses, the last FINDINGS entry, and any branch
 `task/*` with no REVIEW.md.

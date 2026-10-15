@@ -1,4 +1,4 @@
-# PROJECT.md — Tahoe (operator-level dataset alignment)
+# PROJECT.md — scOpAlign (operator-level dataset alignment)
 
 Owner: Tom Terooatea (planner / reviewer)
 Executor role: "Manus" (see MANUS.md) — a role name, not a vendor. Any agent or
@@ -6,7 +6,7 @@ person bound by MANUS.md and the checker can fill it.
 
 ## What this project is
 
-Tahoe aligns single-cell datasets on their **local dynamics** (per-cell operators
+scOpAlign aligns single-cell datasets on their **local dynamics** (per-cell operators
 from scJDO2's neighbourhood operator field) rather than on cell positions.
 
 Axiom under test: *batch effects change where cells are, not how they move.*
@@ -47,7 +47,7 @@ the point of task T01.
 ## Repository layout
 
 ```
-tahoe-coord/
+scopalign-coord/
   coord/PROJECT.md        this file
   coord/MANUS.md          executor instructions (copy to executor folder as CLAUDE.md if executor is Claude)
   coord/FINDINGS.md       accepted results only; appended by planner on ACCEPT
@@ -55,10 +55,10 @@ tahoe-coord/
   templates/              task and report templates
   checker/check_report.py mechanical gate
   reports/Txx/            executor output: report.json, lockfile, figures
-  skills/tahoe-planner/   Claude planner skill
+  skills/scopalign-planner/   Claude planner skill
 ```
 
-Executor works in a **separate** folder (`~/Documents/tahoe-manus/`) that
+Executor works in a **separate** folder (`~/Documents/scopalign-manus/`) that
 clones the repo. Planner never edits that folder. Executor never edits
 `coord/` or `tasks/`.
 
