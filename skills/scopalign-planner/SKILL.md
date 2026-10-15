@@ -29,7 +29,8 @@ Repo: `scopalign-coord/` (planner side). Executor side: `~/Documents/scopalign-m
    fix the choice.
 6. Out-of-scope list names the tempting extras explicitly.
 7. Record `planner_commit` = current main sha.
-8. Commit: `task: pre-register <TASK_ID>`. Push.
+8. Commit: `task: pre-register <TASK_ID>`. (No push; the executor clone
+   fetches from this folder.)
 9. Print the one-line executor paste:
    ```
    Run task <TASK_ID>. Read coord/MANUS.md first. Reply only with the DONE line.
@@ -37,7 +38,7 @@ Repo: `scopalign-coord/` (planner side). Executor side: `~/Documents/scopalign-m
 
 ### `/scopalign-planner review <TASK_ID>`
 
-1. `git fetch origin && git checkout task/<TASK_ID>`
+1. `git checkout task/<TASK_ID>` (the executor pushed it into this repo)
 2. Run the checker with `--prev` pointing at the last ACCEPTed report:
    `python checker/check_report.py tasks/<TASK_ID>.md reports/<TASK_ID>/report.json --prev reports/<PREV>/report.json`
    Checker FAIL → verdict is REVISE, list the failures, stop.
@@ -61,8 +62,8 @@ Repo: `scopalign-coord/` (planner side). Executor side: `~/Documents/scopalign-m
    - append to `coord/FINDINGS.md`: date, task id, gated numbers
      (recomputed values), decision-rule outcome, commit sha. Nothing else.
    - update the ladder row in PROJECT.md to ACCEPT.
-   - `git checkout main && git merge --no-ff task/<TASK_ID> && git push origin main`
-     (push is mandatory, not on request).
+   - `git checkout main && git merge --no-ff task/<TASK_ID>`
+     (local-first: push only if Tom has added a remote).
    - if the task changed the known-failure set legitimately, update
      `KNOWN_FAILURES` in PROJECT.md in the same commit and say so in the
      review.

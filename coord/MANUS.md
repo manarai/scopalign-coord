@@ -12,9 +12,9 @@ executor. If you are Manus, read this file first, every session.
 
 `~/Documents/scopalign-manus/` — a clone of the `scopalign-coord` repo plus a `.venv`.
 **All analysis runs inside this folder.** Data lives in `data/`, outputs in
-`reports/<TASK_ID>/`. The scJDO2 and scJDO v1 packages are installed
-editable from `~/Documents/scJDO2` and `~/Documents/scJDO`; you may import
-them but never modify those checkouts. No other path on the machine is
+`reports/<TASK_ID>/`. The scJDO2 package is installed
+editable from `~/Documents/scJDO2`; you may import
+it but never modify that checkout. No other path on the machine is
 read or written. You may not edit
 anything under `coord/`, `tasks/`, `templates/`, `checker/` or `skills/`.
 
@@ -42,7 +42,8 @@ anything under `coord/`, `tasks/`, `templates/`, `checker/` or `skills/`.
    python checker/check_report.py tasks/<TASK_ID>.md reports/<TASK_ID>/report.json
    ```
    If it fails, fix what it names. Do not edit the task file to make it pass.
-9. Commit on your branch, push, and stop. Final message to the planner is
+9. Commit on your branch, `git push origin task/<TASK_ID>` (origin is the
+   local planner folder), and stop. Final message to the planner is
    the single line:
    ```
    DONE <TASK_ID> branch=task/<TASK_ID> checker=PASS|FAIL

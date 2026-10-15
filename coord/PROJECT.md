@@ -31,8 +31,7 @@ the point of task T01.
    secondary.
 6. Reference libraries: scanpy, scikit-learn, scipy, POT (Python Optimal
    Transport), scJDO2 (local checkout `~/Documents/scJDO2`, installed
-   editable, commit sha recorded per task), scJDO v1 (local checkout
-   `~/Documents/scJDO`, frozen at the preprint tag; imputation mode only).
+   editable, commit sha recorded per task). scJDO v1 is not used.
 7. Any dataset or parameter not named in a task file is out of scope.
 
 ## Task ladder
@@ -66,12 +65,11 @@ scopalign-coord/
 ~/Documents/scopalign-coord/   planner side — this repo
 ~/Documents/scopalign-manus/   executor side — clone of this repo + .venv + data/ + reports/
 ~/Documents/scJDO2/            scJDO2 source (editable install into the executor .venv)
-~/Documents/scJDO/             scJDO v1 source, frozen at preprint tag (editable install)
 ```
 
 Every analysis runs inside `~/Documents/scopalign-manus/`. Nothing is read
-from or written to any other location except the two scJDO checkouts, which
-are read-only to the executor. Planner never edits the executor folder.
+from or written to any other location except the scJDO2 checkout, which
+is read-only to the executor. Planner never edits the executor folder.
 Executor never edits `coord/` or `tasks/`.
 
 ## Known-failure allowlist
@@ -91,7 +89,8 @@ an accepted task.)
   not leave the machine.
 - Every report commits a lockfile (`pip freeze > reports/Txx/requirements.lock`).
   Checker flags diffs against the previous accepted task.
-- Push to origin on every ACCEPT (planner's merge step, not optional).
+- Local-first: no remote required. The executor folder is a local clone of
+  this repo and pushes task branches back here. Add a backup remote later.
 
 ## Vocabulary
 
