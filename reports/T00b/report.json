@@ -1,0 +1,95 @@
+{
+  "branch": "task/T00b",
+  "commit": "cec3c284ff4e31a7fcd88c3ad961e9b1cfb4ecdb",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330"
+    },
+    {
+      "path": "rank_summary.csv",
+      "sha256": "6fc8bb7034804be05b054d08f59d2679b8b0abd9f3f171497e381cf151a204e3"
+    },
+    {
+      "path": "fig_rank_dist.png",
+      "sha256": "b57c394163e5ac3b6e99e6b297e7b6a24804e2c33fdc5378ed46b4745afd1123"
+    },
+    {
+      "path": "latent_fa_v2.npy",
+      "sha256": "9198040c2af7d4ca8866fb3118ffae875932297346f711c242b64b40c9b82268"
+    },
+    {
+      "path": "latent_fa_v3.npy",
+      "sha256": "6d7a86fee3e30cd4ada3f16d6bd492d1f8bfd909d11e971fcc2fe59c6e5cffd5"
+    },
+    {
+      "path": "scripts/t00b_rank.py",
+      "sha256": "1b5c581256e7da8bdec6bb211ff4c93d80b0102c65c59e78a5f857d034d95c60"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Upgraded anndata from 0.10.9 to 0.12.19 in .venv.",
+      "why": "scvi-tools 1.4.2 could not import LinearSCVI with anndata 0.10.9 because the anndata.io module was absent; T00b requires LinearSCVI."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T03:01:24Z",
+  "gated": {
+    "frac_fa_at_ceiling": 0.0,
+    "rank_fa_v2": 6.0,
+    "rank_fa_v3": 6.0,
+    "rank_ldvae_v2": 19.0,
+    "rank_ldvae_v3": 13.0,
+    "rank_pca_v2": 21.0,
+    "rank_pca_v3": 19.0
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330",
+  "observations": [
+    "pip reported that dynamo-release 1.5.3 declares anndata<0.11.0 while the T00b environment uses anndata 0.12.19.",
+    "The LDVAE histogram pools the three prescribed seed-specific rank arrays for each dataset."
+  ],
+  "regeneration": {
+    "fig_rank_dist.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "frac_fa_at_ceiling": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "latent_fa_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed fa --dataset v2 --seed 20261014",
+    "latent_fa_v3.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed fa --dataset v3 --seed 20261014",
+    "latent_ldvae_v2_20261014.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v2 --seed 20261014",
+    "latent_ldvae_v2_20261015.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v2 --seed 20261015",
+    "latent_ldvae_v2_20261016.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v2 --seed 20261016",
+    "latent_ldvae_v3_20261014.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v3 --seed 20261014",
+    "latent_ldvae_v3_20261015.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v3 --seed 20261015",
+    "latent_ldvae_v3_20261016.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v3 --seed 20261016",
+    "latent_pca_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed pca --dataset v2 --seed 20261014",
+    "latent_pca_v3.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed pca --dataset v3 --seed 20261014",
+    "rank_fa_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "rank_fa_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed fa --dataset v2 --seed 20261014",
+    "rank_fa_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "rank_fa_v3.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed fa --dataset v3 --seed 20261014",
+    "rank_ldvae_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "rank_ldvae_v2_20261014.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v2 --seed 20261014",
+    "rank_ldvae_v2_20261015.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v2 --seed 20261015",
+    "rank_ldvae_v2_20261016.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v2 --seed 20261016",
+    "rank_ldvae_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "rank_ldvae_v3_20261014.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v3 --seed 20261014",
+    "rank_ldvae_v3_20261015.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v3 --seed 20261015",
+    "rank_ldvae_v3_20261016.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed ldvae --dataset v3 --seed 20261016",
+    "rank_pca_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "rank_pca_v2.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed pca --dataset v2 --seed 20261014",
+    "rank_pca_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "rank_pca_v3.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --embed pca --dataset v3 --seed 20261014",
+    "rank_summary.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T00b/scripts/t00b_rank.py --summarise",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && source .venv/bin/activate && pip freeze > reports/T00b/requirements.lock"
+  },
+  "seed": 20261014,
+  "started": "2026-10-14T20:53:47-06:00",
+  "status": "complete",
+  "task_id": "T00b"
+}
