@@ -1,0 +1,8 @@
+quantity,value
+n_clusters,3.0
+resid_identity_10,0.5978690384129592
+resid_load_10,0.3447041176163285
+resid_null_10,0.2868254798167652
+frame_ratio_load,1.2017904331112366
+floor_vs_centroid,1.1022338836853895
+floor_centroid_overlap,0.37777777777777777

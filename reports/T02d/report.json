@@ -1,0 +1,86 @@
+{
+  "branch": "task/T02d",
+  "commit": "ed6e3acacdab7e0f5234076967c129f1ae725105",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "7c62f83cea5039633e72fcb88b90c149c782ee8cd59cc5c283e4f167a736cb2f"
+    },
+    {
+      "path": "floor_ops.npz",
+      "sha256": "2d93e26b713c87024b83ab6e05d9b2c0dd73579d28b5921a818d6b2e6b8eb393"
+    },
+    {
+      "path": "scripts/t02d_run.py",
+      "sha256": "4381227bc8ac86f4eba78da9ee6d68db9cddb939c832221dbf6917eece200aac"
+    },
+    {
+      "path": "part1.csv",
+      "sha256": "298a5f6c4815d7ac5cb067d6e426372c2190841c228967ed53ad7604eb2341ff"
+    },
+    {
+      "path": "null.csv",
+      "sha256": "97fc8cc3500623a978f90cf070d0bbf41e5fdae8290116fa2be8a003e7c61de3"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T21:45:45.171956+00:00",
+  "gated": {
+    "floor_centroid_overlap": 0.37777777777777777,
+    "floor_vs_centroid": 1.1022338836853895,
+    "frame_ratio_load": 1.2017904331112366,
+    "k2_repro_max_abs": 0.0,
+    "n_cells_a": 969,
+    "n_cells_b": 969,
+    "n_clusters": 3,
+    "outcome": "frame agreement",
+    "resid_identity_10": 0.5978690384129592,
+    "resid_load_10": 0.3447041176163285,
+    "resid_null_10": 0.2868254798167652,
+    "symmetry_max": 2.3036565011125276e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "7c62f83cea5039633e72fcb88b90c149c782ee8cd59cc5c283e4f167a736cb2f",
+  "observations": [
+    "Input SHA-256: reports/K2/latent_pca30_a.npy = bb98f615aedad7ab1653931e9e713f7f6e3cb333af2e881baf0b18c95febb087.",
+    "Input SHA-256: reports/K2/latent_pca30_b.npy = 91a3f85176e46303e61dd65a1c1dd3d8e804d11de1c7b5e06b63f39c31cc572a.",
+    "Input SHA-256: reports/K2/ops_a.npz = 585d21c75fd6e6c550c2db60feaafbef49a0d5f42b0639ec9b7d6bd73e06d678.",
+    "Input SHA-256: reports/K2/ops_b.npz = 58c6e98dfac69a494359834e67a7562e190a456026509cf6e3dfdf1ee3bddaf8.",
+    "Input SHA-256: reports/T02b/loadings.npz = 29979da0ee264b1f1cb06438c2fbc460d06ee8988a3bb1a0391fc0b2bea4179c.",
+    "Input SHA-256: data/pbmc_v2_v3/k2_cells.csv = d59d4e47489f1f50e4839e7d9d25f8e827eaa45a99b710598f5e0396de132a07.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v2.h5ad = aecbc9823c907e9a42082095c9a952fe1fb5c3152fe0e2497fa5ddf5b615309e.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v3_thin.h5ad = f0385115a5c8bb4476e9f9f1594d042dba10057f438f6e9d7a64b919205b6efa.",
+    "Input SHA-256: reports/T01d/genes.txt = fa9f0e51a3ef0043b09613ef8ef0f207e0ead71272045539c6b362584b922d53.",
+    "Input SHA-256: reports/T02c/report.json = 2d423db6067aa5fcb56489dc1bc836051f5596ce5fca6388df98c01ced0567ed."
+  ],
+  "regeneration": {
+    "floor_centroid_overlap": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage part1",
+    "floor_ops.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage all",
+    "floor_vs_centroid": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage part1",
+    "frame_ratio_load": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage part1",
+    "k2_repro_max_abs": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage fits",
+    "n_cells_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage fits",
+    "n_cells_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage fits",
+    "n_clusters": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage part1",
+    "null.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage all",
+    "outcome": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage part1",
+    "part1.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage all",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage all",
+    "resid_identity_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage part1",
+    "resid_load_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage part1",
+    "resid_null_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage part1",
+    "scripts/t02d_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage all",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02d/scripts/t02d_run.py --stage fits"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T15:43:00-06:00",
+  "status": "complete",
+  "task_id": "T02d"
+}
