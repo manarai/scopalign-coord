@@ -22,7 +22,10 @@ the point of task T01.
    gene-space Jacobians, and lets the alignment map be carried back to the
    embedding exactly.
 2. Number of latent components is fixed across datasets within a task.
-3. Operators are per-cell Jacobians from kNN balls (scJDO2 estimator).
+3. Operators are per-cell Jacobians from kNN balls (scJDO2
+   `JacobianField`, k = 50 so the ball exceeds the 30 latent dimensions).
+   Velocities are RNA velocity (velocyto counts, scVelo stochastic mode),
+   carried into the linear latent space by the chain rule.
 4. Alignment map A is a **change of basis only**: orthogonal Procrustes
    first; locally linear A's with a graph-smoothness penalty only if a task
    explicitly authorises it. Eigenvalues must never be altered by alignment.
@@ -30,7 +33,7 @@ the point of task T01.
    is the primary outcome. Eigenvector-frame agreement after alignment is
    secondary.
 6. Reference libraries: scanpy, scikit-learn, scipy, POT (Python Optimal
-   Transport), scJDO2 (local checkout `~/Documents/scJDO2`, installed
+   Transport), velocyto, scVelo, CellTypist (labels), scJDO2 (local checkout `~/Documents/scJDO2`, installed
    editable, commit sha recorded per task). scJDO v1 is not used.
 7. Any dataset or parameter not named in a task file is out of scope.
 

@@ -11,8 +11,8 @@ executor. If you are Manus, read this file first, every session.
 ## Your folder
 
 `~/Documents/scopalign-manus/` — a clone of the `scopalign-coord` repo plus a `.venv`.
-**All analysis runs inside this folder.** Data lives in `data/`, outputs in
-`reports/<TASK_ID>/`. The scJDO2 package is installed
+**All analysis runs inside this folder.** Data lives in `data/` (gitignored;
+write there only what the task names), outputs in `reports/<TASK_ID>/`. The scJDO2 package is installed
 editable from `~/Documents/scJDO2`; you may import
 it but never modify that checkout. No other path on the machine is
 read or written. You may not edit
@@ -82,7 +82,9 @@ anything under `coord/`, `tasks/`, `templates/`, `checker/` or `skills/`.
 
 ## What you must never do
 
-- Edit, rename or delete anything outside `reports/<TASK_ID>/`.
+- Edit, rename or delete anything outside `reports/<TASK_ID>/` and the
+  `data/` paths the task names. System installs only where the task names
+  them (e.g. `brew install samtools`).
 - Merge to main.
 - Read or write `coord/FINDINGS.md`.
 - Choose a dataset, cell subset, gene set, number of components, kernel
