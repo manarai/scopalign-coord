@@ -3,64 +3,145 @@
   "title": "scOpAlign executor report",
   "type": "object",
   "required": [
-    "task_id", "executor", "branch", "commit", "seed", "started", "finished",
-    "status", "gated", "deliverables", "regeneration", "deviations",
-    "deviations_requested", "observations", "known_failures", "lockfile_sha256"
+    "task_id",
+    "executor",
+    "branch",
+    "commit",
+    "seed",
+    "started",
+    "finished",
+    "status",
+    "gated",
+    "deliverables",
+    "regeneration",
+    "deviations",
+    "deviations_requested",
+    "observations",
+    "known_failures",
+    "lockfile_sha256"
   ],
   "additionalProperties": false,
   "properties": {
-    "task_id": { "type": "string", "pattern": "^T[0-9]{2}[a-z]?$" },
-    "executor": { "type": "string", "description": "e.g. manus, claude-code, human:initials" },
-    "branch": { "type": "string" },
-    "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
-    "seed": { "type": "integer" },
-    "started": { "type": "string", "format": "date-time" },
-    "finished": { "type": "string", "format": "date-time" },
-    "status": { "type": "string", "enum": ["complete", "blocked"] },
-    "blocked_reason": { "type": "string" },
+    "task_id": {
+      "type": "string",
+      "pattern": "^T[0-9]{2}[a-z]?$"
+    },
+    "executor": {
+      "type": "string",
+      "description": "e.g. manus, claude-code, human:initials"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "started": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finished": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "blocked",
+        "stopped"
+      ]
+    },
+    "blocked_reason": {
+      "type": "string"
+    },
     "gated": {
       "type": "object",
       "description": "Only the names listed in the task's pre-registration table.",
-      "additionalProperties": { "type": ["number", "string", "boolean"] }
+      "additionalProperties": {
+        "type": [
+          "number",
+          "string",
+          "boolean"
+        ]
+      }
     },
     "deliverables": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["path", "sha256"],
+        "required": [
+          "path",
+          "sha256"
+        ],
         "properties": {
-          "path": { "type": "string" },
-          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
         }
       }
     },
     "regeneration": {
       "type": "object",
       "description": "gated name or deliverable path -> single shell command that recreates it from the .venv",
-      "additionalProperties": { "type": "string" }
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "deviations": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["what", "why"],
-        "properties": { "what": { "type": "string" }, "why": { "type": "string" } }
+        "required": [
+          "what",
+          "why"
+        ],
+        "properties": {
+          "what": {
+            "type": "string"
+          },
+          "why": {
+            "type": "string"
+          }
+        }
       }
     },
     "deviations_requested": {
       "type": "array",
       "description": "Things the executor would have changed but did not.",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "observations": {
       "type": "array",
       "description": "Descriptive only. Quarantined from FINDINGS.",
-      "items": { "type": "string", "maxLength": 300 }
+      "items": {
+        "type": "string",
+        "maxLength": 300
+      }
     },
     "known_failures": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
-    "lockfile_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    "lockfile_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "stop_rule": {
+      "type": "string",
+      "description": "For status 'stopped': the pre-registered decision-rule line that ended the run early."
+    }
   }
 }

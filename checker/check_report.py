@@ -92,9 +92,13 @@ def main():
     if report.get("task_id") != tid:
         fails.append(f"task_id {report.get('task_id')} != {tid}")
 
-    # 3 gated keys
+    # 3 gated keys (a pre-registered early stop reports only the numbers reached)
+    stopped = report.get("status") == "stopped"
     rep_gated = set(report.get("gated", {}))
-    if rep_gated != task_gated:
+    if stopped:
+        if not rep_gated or rep_gated - task_gated:
+            fails.append(f"stopped report: gated must be a non-empty subset of the task's; extra={rep_gated-task_gated}")
+    elif rep_gated != task_gated:
         fails.append(f"gated keys mismatch: missing={task_gated-rep_gated} extra={rep_gated-task_gated}")
 
     # 4 deliverables exist + checksums
@@ -102,7 +106,8 @@ def main():
     for d in task_deliv:
         p = report_dir / d
         if not p.exists():
-            fails.append(f"deliverable missing on disk: {d}")
+            if not (stopped and d not in ("requirements.lock",) and not d.startswith("scripts/")):
+                fails.append(f"deliverable missing on disk: {d}")
             continue
         if d not in rep_deliv:
             fails.append(f"deliverable not listed in report: {d}")
@@ -135,7 +140,7 @@ def main():
 
     # 8 regeneration
     regen = report.get("regeneration", {})
-    for g in task_gated:
+    for g in (rep_gated if stopped else task_gated):
         if g not in regen:
             fails.append(f"no regeneration command for gated `{g}`")
 
@@ -147,6 +152,8 @@ def main():
     # status
     if report.get("status") == "blocked" and not report.get("blocked_reason"):
         fails.append("status blocked without blocked_reason")
+    if stopped and not report.get("stop_rule"):
+        fails.append("status stopped without stop_rule (the decision-rule line that fired)")
 
     for w in warns:
         print("WARN ", w)

@@ -42,6 +42,12 @@ anything under `coord/`, `tasks/`, `templates/`, `checker/` or `skills/`.
    python checker/check_report.py tasks/<TASK_ID>.md reports/<TASK_ID>/report.json
    ```
    If it fails, fix what it names. Do not edit the task file to make it pass.
+8b. **Pre-registered stop.** If a task's decision rule says to stop early
+   (e.g. "not admissible → inconclusive (stop)"), stop there and still
+   write `report.json` with `"status": "stopped"`, `"stop_rule"` quoting
+   the rule line that fired, and only the gated numbers computed before the
+   stop (each with its regeneration command). List deliverables only for
+   stages that ran. The checker accepts this; commit and push as usual.
 9. Commit on your branch, `git push origin task/<TASK_ID>` (origin is the
    local planner folder), and stop. Final message to the planner is
    the single line:
