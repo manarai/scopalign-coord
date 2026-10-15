@@ -1,0 +1,142 @@
+{
+  "branch": "task/T02c",
+  "commit": "0a6000352c99106a284b5c2d26e1c182ac3a7ea4",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "2cbbdd73fbec170d2781a2037d4697ced803d9a3a9fe90b6b061bda34dbced18"
+    },
+    {
+      "path": "centroid_ops.npz",
+      "sha256": "584476ebf32f89b331c8b64d67efd8f63aee1c8676d2bc819ca3d6cc392157e1"
+    },
+    {
+      "path": "scripts/t02c_run.py",
+      "sha256": "a673e1e300fc429b7244f5f9af3fbf32d052cbc7d324688f3c122f5595a62a1e"
+    },
+    {
+      "path": "part1.csv",
+      "sha256": "2e7e4d4b7e87440de87517c9f4ba37b545d4b7b550dc8c3ca7445ca69a0c444a"
+    },
+    {
+      "path": "null.csv",
+      "sha256": "819d8684584aebc10e559996582042bdd31bfd103587c30ef682f44aa94f9b80"
+    },
+    {
+      "path": "R.npy",
+      "sha256": "abb6efb0edb4a9360be8e1a9bebef33a239c902e99d65cd23a30b0b850cbaeba"
+    },
+    {
+      "path": "R_split.npy",
+      "sha256": "df9f618f1179bd843add562797bca3f96c5ad3c93cb9370504cbb30e0de8b759"
+    },
+    {
+      "path": "R_seed.npy",
+      "sha256": "e9797bf3d65530ceb28df19344e5ef60565d995aa14fc24f207d421be9e8996b"
+    },
+    {
+      "path": "starts_R.csv",
+      "sha256": "c0c3d1c9b808f14fc43064733d0bb29e47af7a1218bdfa1ea1923665d4d6be12"
+    },
+    {
+      "path": "umap_views.npz",
+      "sha256": "096fcbd69ee4adf4ff6ca0e9053928786214057e3a0a0f556c730e251fbc6670"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "1de3b96558bb141d79d815346682bcff0069dd6975150678a3d6e305a53a90c9"
+    },
+    {
+      "path": "fig_frames.png",
+      "sha256": "84f8bb73cb9fa734822b23f6f317146aa093e335d5748c7b14ad7e35b5ac0f80"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T21:41:39.967094+00:00",
+  "gated": {
+    "frame_ratio_load": 1.0903225267335943,
+    "k2_repro_max_abs": 0.0,
+    "loss_best_R": 0.08412541792319914,
+    "mix_joint": 0.1111455108359133,
+    "mix_sep_load": 0.8985208118335053,
+    "mix_sep_noA": 0.6431372549019608,
+    "n_cells_a": 969,
+    "n_cells_b": 969,
+    "n_clusters": 3,
+    "n_starts_near_best_R": 1,
+    "outcome": "frame agreement",
+    "q_op_vs_load_10": 0.22888747252040237,
+    "r_seed": 0.6397688113606494,
+    "r_split": 0.11207634217368828,
+    "resid_identity_10": 0.607021052940733,
+    "resid_load_10": 0.31364903808520017,
+    "resid_null_10": 0.28766629175757286,
+    "resid_opfit_10": 0.2900438206947342,
+    "sil_joint": 0.4131355583667755,
+    "sil_sep_load": 0.4208145005990807,
+    "sil_sep_noA": 0.41815715201883213,
+    "subspace_min_sv_10": 0.5398254438432118,
+    "symmetry_max": 2.3036565011125276e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "2cbbdd73fbec170d2781a2037d4697ced803d9a3a9fe90b6b061bda34dbced18",
+  "observations": [
+    "Input SHA-256: reports/K2/latent_pca30_a.npy = bb98f615aedad7ab1653931e9e713f7f6e3cb333af2e881baf0b18c95febb087.",
+    "Input SHA-256: reports/K2/latent_pca30_b.npy = 91a3f85176e46303e61dd65a1c1dd3d8e804d11de1c7b5e06b63f39c31cc572a.",
+    "Input SHA-256: reports/K2/ops_a.npz = 585d21c75fd6e6c550c2db60feaafbef49a0d5f42b0639ec9b7d6bd73e06d678.",
+    "Input SHA-256: reports/K2/ops_b.npz = 58c6e98dfac69a494359834e67a7562e190a456026509cf6e3dfdf1ee3bddaf8.",
+    "Input SHA-256: reports/T02b/loadings.npz = 29979da0ee264b1f1cb06438c2fbc460d06ee8988a3bb1a0391fc0b2bea4179c.",
+    "Input SHA-256: data/pbmc_v2_v3/k2_cells.csv = d59d4e47489f1f50e4839e7d9d25f8e827eaa45a99b710598f5e0396de132a07.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v2.h5ad = aecbc9823c907e9a42082095c9a952fe1fb5c3152fe0e2497fa5ddf5b615309e.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v3_thin.h5ad = f0385115a5c8bb4476e9f9f1594d042dba10057f438f6e9d7a64b919205b6efa.",
+    "Input SHA-256: reports/T01d/genes.txt = fa9f0e51a3ef0043b09613ef8ef0f207e0ead71272045539c6b362584b922d53."
+  ],
+  "regeneration": {
+    "R.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "R_seed.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "R_split.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "centroid_ops.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "fig_frames.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "frame_ratio_load": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part1",
+    "k2_repro_max_abs": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage fits",
+    "loss_best_R": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part2",
+    "mix_joint": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage views",
+    "mix_sep_load": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage views",
+    "mix_sep_noA": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage views",
+    "n_cells_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage fits",
+    "n_cells_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage fits",
+    "n_clusters": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part1",
+    "n_starts_near_best_R": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part2",
+    "null.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "outcome": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part1",
+    "part1.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "q_op_vs_load_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part2",
+    "r_seed": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part2",
+    "r_split": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part2",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "resid_identity_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part1",
+    "resid_load_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part1",
+    "resid_null_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part1",
+    "resid_opfit_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part2",
+    "scripts/t02c_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "sil_joint": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage views",
+    "sil_sep_load": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage views",
+    "sil_sep_noA": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage views",
+    "starts_R.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all",
+    "subspace_min_sv_10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage part1",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage fits",
+    "umap_views.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02c/scripts/t02c_run.py --stage all"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T15:38:00-06:00",
+  "status": "complete",
+  "task_id": "T02c"
+}
