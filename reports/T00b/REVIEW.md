@@ -84,3 +84,8 @@ Proposed to Tom as T00c.
 ## Quarantined (not evidence)
 
 (The report's `observations` and `deviations_requested` are empty.)
+
+## Decision (Tom, 2026-10-14)
+
+T00c not written. Proceed to T01 on the T00b FA latents as pre-registered.
+The planner notes above stand as recorded caveats for interpreting T01.
