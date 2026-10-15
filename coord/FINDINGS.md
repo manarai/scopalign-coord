@@ -340,3 +340,24 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.30366e-07
 - Decision rule outcome: survives (rule 5 — spectral_ratio_refit 1.209, basin_ratio_refit 0.907, class_tv_ratio_refit 0.713, all ≤ 1.5; separations ≥ 3.37).
 - Commit: task/K2 @ 0af20a1
+
+## 2026-10-15 — T02 (ACCEPT; stopped; outcome inconclusive) — not recomputed (Tom's instruction)
+
+- frame_ratio: 1.24972
+- heldout_ratio: 2.52649
+- heldout_resid: 0.6752
+- k2_repro_max_abs: 0
+- loss_best: 0.111546
+- n_cell_types_tested: 4
+- n_cells_a: 969
+- n_cells_b: 969
+- n_starts_near_best: 1
+- outcome: stopped
+- q_op_vs_pos: 0.953905
+- resid_aligned: 0.333985
+- resid_identity: 0.732471
+- resid_null: 0.267248
+- resid_pos: 0.793384
+- symmetry_max: 2.30366e-07
+- Decision rule outcome: inconclusive (stop) — rule 0, n_starts_near_best 1 < 2.
+- Commit: task/T02 @ b947a8c
