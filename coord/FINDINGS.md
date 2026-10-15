@@ -12,3 +12,15 @@ planner's recomputed values, not the executor's reported ones.
 - n_cells_v3_raw: 1222
 - Decision rule outcome: ACCEPT (both packages and both scJDO2 imports load; tag matches; both .h5ad have qc_pass and cell_type).
 - Commit: task/T00 @ 9ca4e14
+
+## 2026-10-14 — T00b (ACCEPT)
+
+- rank_pca_v2: 21
+- rank_pca_v3: 19
+- rank_fa_v2: 6
+- rank_fa_v3: 6
+- rank_ldvae_v2: 19
+- rank_ldvae_v3: 13
+- frac_fa_at_ceiling: 0.0
+- Decision rule outcome: FA is the positional layer.
+- Commit: task/T00b @ 0bc9c53
