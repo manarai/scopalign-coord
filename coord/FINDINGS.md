@@ -208,3 +208,26 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_h2_pca30: 1.9434391873573986e-07
 - Decision rule outcome: pca30 inconclusive (rule 6); fa30 fails (rule 4); fa10 fails (rule 4); selected_layer "none" (no config survives, not all fail).
 - Commit: task/K0 @ d360565
+
+## 2026-10-15 — K0b (ACCEPT; outcome_avg inconclusive)
+
+- basin_ratio_avg: 1.48809
+- basin_sep_h1_avg: 6.61314
+- basin_sep_h2_avg: 5.94479
+- class_tv_ratio_avg: 1.47497
+- fitnoise_basin_h1: 2.25529
+- fitnoise_basin_h2: 1.50136
+- fitnoise_spectral_h1: 2.15
+- fitnoise_spectral_h2: 1.86577
+- k0_repro_max_rel: 9.7017e-07
+- k0_vs_refit_basin: 0.979622
+- k0_vs_refit_spectral: 0.847724
+- outcome_avg: inconclusive
+- refit_w2_h1: 0.0359505
+- refit_w2_h2: 0.0351126
+- spectral_ratio_avg: 1.8075
+- spectral_sep_h1_avg: 27.1127
+- spectral_sep_h2_avg: 24.6951
+- symmetry_max: 2.00214e-07
+- Decision rule outcome: Part B inconclusive (spectral_ratio_avg 1.807 > 1.5); Part A: H1 vs H2 within refit noise (k0_vs_refit 0.848 / 0.980).
+- Commit: task/K0b @ e3ba7e9
