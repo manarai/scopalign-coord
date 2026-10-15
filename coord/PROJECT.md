@@ -164,7 +164,7 @@ that K0 shows to be reproducible, can decide it.
 | K0c  | FA-30 only: the K0b design (fit-to-fit noise, seed-averaged split-half test) | ACCEPT (2026-10-15) — avg fails (spectral 4.39); halves within refit noise (1.07/0.78); larger, less stable fit noise than PCA-30 |
 | K0d  | FA-10 only: the K0b design (fit-to-fit noise, seed-averaged split-half test), for completeness | ACCEPT (2026-10-15) — avg fails (spectral 4.09); halves within refit noise (0.93/0.53); fit noise 7.6–7.9×, seed-specific solutions |
 | K1   | Same chemistry, two runs: pbmc_1k_v3 vs pbmc_10k_v3 subsample (count/depth matched), PCA-30, refit yardstick | ACCEPT (2026-10-15, rev 1) — inconclusive: spectral 1.529 (> 1.5), basin 0.87, class 1.09 → Tom |
-| K2   | Chemistry: pbmc_1k_v2 vs pbmc_1k_v3 (count/depth matched) | blocked by K1 |
+| K2   | Chemistry: pbmc_1k_v2 vs pbmc_1k_v3 (count/depth matched), PCA-30, refit yardstick; ratios also vs K1 | issued (2026-10-15; Tom's decision after K1 inconclusive) |
 | T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by K2 |
 | T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
