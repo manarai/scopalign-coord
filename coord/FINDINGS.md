@@ -137,3 +137,22 @@ planner's recomputed values, not the executor's reported ones.
 - basin_class_agreement (secondary): 0.0
 - Decision rule outcome: INCONCLUSIVE (rule 3 — basin_sep_v2 < 2).
 - Commit: task/T01d @ 721ad25
+
+## 2026-10-15 — T01e (ACCEPT; stopped; outcome INCONCLUSIVE)
+
+- n_cells_b_raw: 11769
+- n_cells_b_qc: 11043
+- n_cells_a: 1113
+- n_cells_bsub: 1113
+- count_match_max_abs: 0
+- depth_a_median: 6607
+- depth_b_median: 6605
+- depth_match_max_rel: 0.00158
+- n_genes_detected_both: 14475
+- n_hvg_zero_a: 0
+- n_hvg_zero_b: 0
+- rank_fa_a: 8
+- rank_fa_b: 9
+- frac_fa_at_ceiling: 0.0
+- Decision rule outcome: INCONCLUSIVE (rule 0 — FA not admissible; run stopped before operators).
+- Commit: task/T01e @ cd0223e

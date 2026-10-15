@@ -42,3 +42,78 @@ report.
 4. Deviations as `{"what", "why"}` objects (if none, `[]`).
 5. Checker must PASS; commit `reports/T01e`; `git push origin task/T01e`.
    Reply with the DONE line.
+
+---
+
+# T01e review — revision 1
+
+reviewed_commit: cd0223e (task/T01e)
+date: 2026-10-15
+verdict: ACCEPT (stopped run) — decision-rule outcome: INCONCLUSIVE (rule 0: FA not admissible)
+
+## Checker
+
+`check_report.py tasks/T01e.md reports/T01e/report.json --prev reports/T01d/report.json`
+→ PASS (0 fail, 0 warn), status `stopped`, `stop_rule` quotes rule 0.
+Branch changes only `reports/T01e/`. Raw 10k file sha256 ebc5dedc… matches.
+
+## Recomputation
+
+Planner's own end-to-end script (download checksum, read, QC, CellTypist on
+all 11,769 cells, B-sub draw, depth thinning, gene filter, sorted HVGs, FA,
+tangent rank). QC flags and cell-type labels equal the staged file
+cell-for-cell.
+
+**Spec gap (planner's):** T01e says thinning goes "cells in file order"
+and also "thin A's cells first (types in sorted order), then B-sub's". The
+executor read this as: types in sorted order, cells in file order within
+each type. Under that reading, the planner's matched files, gene list and
+FA latents (≤ 9.5e-7) are identical to the executor's, and:
+
+| gated | report | recomputed | match |
+|---|---|---|---|
+| `n_cells_b_raw` | 11769 | 11769 | yes |
+| `n_cells_b_qc` | 11043 | 11043 | yes |
+| `n_cells_a` | 1113 | 1113 | yes |
+| `n_cells_bsub` | 1113 | 1113 | yes |
+| `count_match_max_abs` | 0 | 0 | yes |
+| `depth_a_median` | 6607 | 6607 | yes |
+| `depth_b_median` | 6605 | 6605 | yes |
+| `depth_match_max_rel` | 0.00158 | 0.00158 | yes |
+| `n_genes_detected_both` | 14475 | 14475 | yes |
+| `n_hvg_zero_a` | 0 | 0 | yes |
+| `n_hvg_zero_b` | 0 | 0 | yes |
+| `rank_fa_a` | 8 | 8 | yes |
+| `rank_fa_b` | 9 | 9 | yes |
+| `frac_fa_at_ceiling` | 0.0 | 0.0 | yes |
+
+Under the other reading (all cells of a dataset in file order) the planner
+got `rank_fa_a` 9 and `rank_fa_b` 10 (A still < 10): **rule 0 fires under
+both readings**, so the outcome does not depend on the gap.
+
+## Decision rule outcome
+
+0. `count_match_max_abs` 0, `depth_match_max_rel` 0.0016 ≤ 0.05, no
+   zero-count HVGs → valid. FA median ranks 8 and 9 < 10 → **not
+   admissible → INCONCLUSIVE (stop)**. Rules 1–6 not reached.
+
+## Verdict
+
+**ACCEPT** the stopped run. Outcome: **inconclusive** (no admissible
+positional layer for the same-chemistry pair). T02 stays blocked.
+
+## Planner reading (not findings)
+
+- The same 1113 v3 cells reached FA rank 14 in T00c (genes shared with v2)
+  and 8 here (genes shared with 10k v3, after depth matching). The
+  positional layer's local dimensionality moves by ~6 with the gene list
+  and depth, enough to decide by itself whether the kill test can run.
+- The test design cannot now separate "chemistry reshapes wells" from
+  "operators do not reproduce across runs": the control that would decide
+  it did not get past the positional-layer gate.
+- Recommendation: pause the ladder and redesign before further patches.
+
+## Quarantined (not evidence)
+
+- "The pre-registered stop rule was triggered after FA tangent-rank
+  evaluation." — restates the outcome.
