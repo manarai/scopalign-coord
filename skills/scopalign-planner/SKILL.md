@@ -83,11 +83,11 @@ Print the task ladder with statuses, the last FINDINGS entry, and any branch
 - **Routine follow-ups** (revisions, reruns, same-design variants): commit
   the task and give the executor message directly; new designs or rule
   changes are shown to Tom before committing.
-- **No recomputation** (Tom, 2026-10-15; overrides review step 3 and the
-  "never accept unrecomputed numbers" rule): review = checker, branch
-  scope, reading the script against the task, figures, and the decision
-  rule applied to the reported numbers. Every REVIEW.md states "not
-  recomputed (Tom's instruction)".
+- **Recompute depth (lighter):** when the executor saved deterministic
+  intermediates (operators, draw indices, type means, fitted maps),
+  recompute the gated numbers from those arrays and spot-check one fit end
+  to end; do not redo every fit. Say in REVIEW.md what was recomputed and
+  what was only checked.
 - **Replies:** verdict, key numbers, next step. Details live in REVIEW.md.
 
 ## Rules for the planner
