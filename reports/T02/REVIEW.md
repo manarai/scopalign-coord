@@ -3,7 +3,14 @@
 reviewed_commit: b947a8c (task/T02)
 date: 2026-10-15
 verdict: ACCEPT (stopped run) — outcome: **inconclusive (stop)**, rule 0
-recomputation: **not recomputed (Tom's instruction, 2026-10-15)**
+recomputation: **light** (Tom's working mode, 2026-10-15) — from the saved
+`type_means.npz`, `Q.npy` and `Q_pos.npy`, the planner recomputed
+`loss_best`, `resid_identity`, `resid_aligned`, `resid_pos` and
+`q_op_vs_pos` (all match to ≤ 1e-6), and reran the 20-start estimator
+itself: same best loss (0.11155), same next-best losses (0.11919, 0.12061,
+0.12171), `n_starts_near_best` = 1 — the stop is reproduced. The null,
+held-out residuals and drift fits were not recomputed (per-cell operators
+are not saved).
 
 ## Checks
 

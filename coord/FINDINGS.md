@@ -341,7 +341,7 @@ planner's recomputed values, not the executor's reported ones.
 - Decision rule outcome: survives (rule 5 — spectral_ratio_refit 1.209, basin_ratio_refit 0.907, class_tv_ratio_refit 0.713, all ≤ 1.5; separations ≥ 3.37).
 - Commit: task/K2 @ 0af20a1
 
-## 2026-10-15 — T02 (ACCEPT; stopped; outcome inconclusive) — not recomputed (Tom's instruction)
+## 2026-10-15 — T02 (ACCEPT; stopped; outcome inconclusive) — light recompute (alignment numbers and stop reproduced; null/held-out not recomputed)
 
 - frame_ratio: 1.24972
 - heldout_ratio: 2.52649
