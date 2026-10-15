@@ -254,3 +254,26 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 1.24278e-07
 - Decision rule outcome: Part B fails (spectral_ratio_avg 4.391 > 3.0); Part A: H1 vs H2 within refit noise (k0_vs_refit 1.065 / 0.778).
 - Commit: task/K0c @ e01d6f3
+
+## 2026-10-15 — K0d (ACCEPT; outcome_avg fails)
+
+- basin_ratio_avg: 1.33017
+- basin_sep_h1_avg: 8.11543
+- basin_sep_h2_avg: 6.53974
+- class_tv_ratio_avg: 1.6645
+- fitnoise_basin_h1: 2.60867
+- fitnoise_basin_h2: 3.07086
+- fitnoise_spectral_h1: 7.59103
+- fitnoise_spectral_h2: 7.91489
+- k0_repro_max_rel: 4.2538e-06
+- k0_vs_refit_basin: 0.530178
+- k0_vs_refit_spectral: 0.9274
+- outcome_avg: fails
+- refit_w2_h1: 15.8233
+- refit_w2_h2: 18.1074
+- spectral_ratio_avg: 4.08945
+- spectral_sep_h1_avg: 30.9924
+- spectral_sep_h2_avg: 36.0283
+- symmetry_max: 1.50185e-07
+- Decision rule outcome: Part B fails (spectral_ratio_avg 4.089 > 3.0); Part A: H1 vs H2 within refit noise (k0_vs_refit 0.927 / 0.530).
+- Commit: task/K0d @ bc2a6ab

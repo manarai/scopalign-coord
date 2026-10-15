@@ -162,7 +162,7 @@ that K0 shows to be reproducible, can decide it.
 | K0   | Split-half control on pbmc_10k_v3 for PCA-30, FA-30 and FA-10: which layer gives reproducible operators? Selects the layer | ACCEPT (2026-10-15) — pca30 inconclusive (1.72/1.79), fa30 fails (3.02), fa10 fails (7.15); selected_layer none → Tom |
 | K0b  | PCA-30 only: fit-to-fit noise (5 seeds per half) and K0's split-half test on seed-averaged operators | ACCEPT (2026-10-15) — inconclusive (avg spectral 1.81; basin 1.49, class 1.47); H1 vs H2 ≤ refit noise (0.85/0.98) → Tom |
 | K0c  | FA-30 only: the K0b design (fit-to-fit noise, seed-averaged split-half test) | ACCEPT (2026-10-15) — avg fails (spectral 4.39); halves within refit noise (1.07/0.78); larger, less stable fit noise than PCA-30 |
-| K0d  | FA-10 only: the K0b design (fit-to-fit noise, seed-averaged split-half test), for completeness | pre-registered |
+| K0d  | FA-10 only: the K0b design (fit-to-fit noise, seed-averaged split-half test), for completeness | ACCEPT (2026-10-15) — avg fails (spectral 4.09); halves within refit noise (0.93/0.53); fit noise 7.6–7.9×, seed-specific solutions |
 | K1   | Same chemistry, two runs: pbmc_1k_v3 vs pbmc_10k_v3 subsample (count/depth matched), PCA-30, refit yardstick | pre-registered (issued after K0d review) |
 | K2   | Chemistry: pbmc_1k_v2 vs pbmc_1k_v3 (count/depth matched) | blocked by K1 |
 | T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by K2 |
