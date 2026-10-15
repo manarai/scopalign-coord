@@ -49,10 +49,15 @@ reproduce but fail across chemistries (K2), the axiom fails for chemistry.
    - **FA-10:** `FactorAnalysis(10, random_state=<seed>, max_iter=2000)`,
      full 10-d spectra (d is already near FA's observed local rank, so no
      restriction).
-   K0's selection rule fixes which one K1, K2 and later tasks use. scVI and
-   any nonlinear decoder stay excluded: the alignment map must carry back to
-   cell positions exactly, which requires a linear map.
-2. `d` is fixed across datasets within a task (30, or 10 if K0 selects FA-10).
+   K0 selected none (pca30 inconclusive; fa30, fa10 failed). **Layer in use
+   from 2026-10-15: PCA-30, by Tom's design choice** — supported by K0b
+   Part A (PCA-30's two halves differ no more than two drift fits of the
+   same half: 0.85 spectral, 0.98 basin), **not** a K0/K0b pass. K0c
+   applies the same check to FA-30; Tom may revisit the choice on its
+   result before K1 is issued. scVI and any nonlinear decoder stay
+   excluded: the alignment map must carry back to cell positions exactly,
+   which requires a linear map.
+2. `d` is fixed across datasets within a task (30 for PCA-30).
 3. **Operators** are scJDO2 latent symmetric Hessians, autodiff, from an
    energy drift fit with ESM at fixed seed and epochs.
 3a. **Tangent-restricted spectra are the primary operator statistic for
@@ -85,9 +90,23 @@ reproduce but fail across chemistries (K2), the axiom fails for chemistry.
    only if the previous one survives: **K0** two random halves of one run
    (estimator reproducibility); **K1** two runs, same chemistry, same donor,
    count- and depth-matched (run reproducibility); **K2** v2 vs v3,
-   count- and depth-matched (chemistry). All three use T01c's statistics
-   and decision rule; K0 runs them for all three candidate layers, K1 and K2
-   only for the layer K0 selects.
+   count- and depth-matched (chemistry). K0 used T01c's statistics and
+   rule for all three candidate layers; K1 and K2 use the layer in rule 1
+   and the **refit yardstick** (rule 12).
+12. **Refit yardstick for K1 and K2** (added 2026-10-15, before either is
+   run). K0b showed that two drift fits of the *same* cells, differing only
+   in seed, are 1.5–2.3× further apart than T01c's within-fit null, so a
+   within-fit null asks for more agreement than the estimator gives itself.
+   From K1 on, the decision ratios compare the between-dataset distance with
+   a **refit null**: two disjoint cell samples of one dataset, the first read
+   under the seed-20261014 drift fit and the second under another seed's fit
+   (five seeds per dataset). `ratio_refit = median pooled ÷ median refit
+   null`, for spectral W2, basin W1 and class TV. Thresholds unchanged:
+   survives if all three ≤ 1.5; fails if spectral or basin > 3.0. The
+   within-fit separation guard (≥ 2) stays. Within-fit ratios are reported
+   as secondary. **Not retroactive:** K0 and K0b keep their recorded
+   outcomes; for reference only, K0b's Part A values (0.85, 0.98) are what
+   this yardstick would have shown for PCA-30's halves.
 11. **Spec hygiene** (added 2026-10-15) — every task states: genes sorted
    alphabetically **before** `highly_variable_genes`, and the selected list
    kept in that order; for every random draw, the generator, its seed and
@@ -118,6 +137,11 @@ reproduce but fail across chemistries (K2), the axiom fails for chemistry.
 PCA-30, FA-30 and FA-10 (rule 1); tangent-restricted spectra for d = 30
 (rule 3a); K0 → K1 → K2 kill-test ladder (rule 10). T02 is blocked by K2.
 
+**2026-10-15, after K0b (Tom):** K0 and K0b were inconclusive for PCA-30.
+PCA-30 is the layer in use as Tom's design choice, not a test pass (rule 1).
+K1 and K2 are judged with the refit yardstick (rule 12). K0c gives FA-30
+the same fit-noise check before K1 is issued.
+
 **Status of T01–T01e:** none of them is a verdict on the axiom. All were
 inconclusive or stopped under a design whose positional layer (FA-30, full
 spectra) proved unstable; their between-chemistry ratios are recorded
@@ -137,7 +161,8 @@ that K0 shows to be reproducible, can decide it.
 | T01e | Same-chemistry control: pbmc_1k_v3 vs pbmc_10k_v3 (count- and depth-matched), T01d pipeline and rule | ACCEPT (2026-10-15) — stopped, INCONCLUSIVE (rule 0: FA ranks 8/9 < 10) |
 | K0   | Split-half control on pbmc_10k_v3 for PCA-30, FA-30 and FA-10: which layer gives reproducible operators? Selects the layer | ACCEPT (2026-10-15) — pca30 inconclusive (1.72/1.79), fa30 fails (3.02), fa10 fails (7.15); selected_layer none → Tom |
 | K0b  | PCA-30 only: fit-to-fit noise (5 seeds per half) and K0's split-half test on seed-averaged operators | ACCEPT (2026-10-15) — inconclusive (avg spectral 1.81; basin 1.49, class 1.47); H1 vs H2 ≤ refit noise (0.85/0.98) → Tom |
-| K1   | Same chemistry, two runs: pbmc_1k_v3 vs pbmc_10k_v3 subsample (count/depth matched) | blocked by K0b |
+| K0c  | FA-30 only: the K0b design (fit-to-fit noise, seed-averaged split-half test) | pre-registered |
+| K1   | Same chemistry, two runs: pbmc_1k_v3 vs pbmc_10k_v3 subsample (count/depth matched), PCA-30, refit yardstick | pre-registered (issued after K0c review) |
 | K2   | Chemistry: pbmc_1k_v2 vs pbmc_1k_v3 (count/depth matched) | blocked by K1 |
 | T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by K2 |
 | T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
