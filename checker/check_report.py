@@ -52,10 +52,13 @@ def parse_task(task_md: Path):
 
 def parse_known_failures(project_md: Path):
     text = project_md.read_text()
-    m = re.search(r"KNOWN_FAILURES\s*=\s*\[(.*?)\]", text, re.S)
-    if not m:
+    # The list terminator is on its own line; inner brackets occur in parametrized test IDs.
+    m = re.search(r"KNOWN_FAILURES\s*=\s*\[(.*?)\n\]", text, re.S)
+    if m:
+        return set(re.findall(r"['\"]([^'\"]+)['\"]", m.group(1)))
+    if re.search(r"KNOWN_FAILURES\s*=\s*\[\]", text):
         return set()
-    return set(re.findall(r"['\"]([^'\"]+)['\"]", m.group(1)))
+    return set()
 
 def lock_versions(p: Path):
     out = {}
