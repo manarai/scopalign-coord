@@ -1,0 +1,133 @@
+{
+  "branch": "task/K1",
+  "commit": "8bdf220c4b49d1ad857718a0163dd8b06db2f930",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "45a46fe780c3f807b33ff9175f9c3cffdf7c1163cd8defcb9bb11e5be12000f4"
+    },
+    {
+      "path": "latent_pca30_a.npy",
+      "sha256": "67e9a2687a66e414bb162735f06ef22eeed5ee2ddf7f57fb5bd4b5f07bb91afb"
+    },
+    {
+      "path": "latent_pca30_b.npy",
+      "sha256": "3f41cfdfc36e94bc6e877cb0aa86cba9f160868b29206e9fb877deb271adac86"
+    },
+    {
+      "path": "ops_a.npz",
+      "sha256": "7b03883ee77c46150afb618faf1fead491d01daaa6a8de4cf9c5d0253ffc519f"
+    },
+    {
+      "path": "ops_b.npz",
+      "sha256": "1f6ec03e00074f06f1b6c3d0f7af34e1708ed81fa0506e2f78b5ae498d11a53a"
+    },
+    {
+      "path": "draws.csv",
+      "sha256": "b87be7d2a1bf6a713dff829dd57cc96c96bf53146703dbf8346ecc89911392e8"
+    },
+    {
+      "path": "basin_table.csv",
+      "sha256": "d7bafdd330a5eb265ff2fd00c3d55a38de8323f63e4ab69a013f3688e44e2e2b"
+    },
+    {
+      "path": "fig_spectra.png",
+      "sha256": "77b513d47f8e9baaac0a84656ac8ada2985ba59e104f70355c6f246b968d4e7f"
+    },
+    {
+      "path": "fig_basin.png",
+      "sha256": "f4ff1de4e2e19d712c43543ceb5a55030cc2c3e47a34e566ce19dab41b467f8c"
+    },
+    {
+      "path": "scripts/k1_run.py",
+      "sha256": "33f181aa23d0f65680eea1043b271a73ed5ef8ff9814fc0ca3ea02951bf811e7"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Subset each matched matrix to reports/T01e/genes.txt before normalization, log1p and PCA.",
+      "why": "Binding item 1 of reports/K1/REVIEW.md resolves the planner normalization-order ambiguity; all stages were rerun."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T20:18:39.839770+00:00",
+  "gated": {
+    "basin_ratio_refit": 0.8718013824357383,
+    "basin_ratio_withinfit": 1.3337276160412979,
+    "basin_sep_a": 4.3038527049581266,
+    "basin_sep_b": 4.292587507947342,
+    "basin_w1_pooled": 0.019476136580670343,
+    "basin_w1_refit": 0.02234010747523213,
+    "class_tv_pooled": 0.1005395797625849,
+    "class_tv_ratio_refit": 1.0941906957865921,
+    "class_tv_ratio_withinfit": 1.5484848670019373,
+    "class_tv_refit": 0.09188487907065321,
+    "frac_rank_ge10": 0.921832884097035,
+    "n_cell_types_tested": 4,
+    "n_cells_a": 1113,
+    "n_cells_b": 1113,
+    "outcome": "inconclusive",
+    "rank_pca_a": 19.0,
+    "rank_pca_b": 19.0,
+    "spectral_ratio_refit": 1.5294658061679813,
+    "spectral_ratio_withinfit": 2.488849006494038,
+    "spectral_sep_a": 22.049399913537233,
+    "spectral_sep_b": 25.516634492514598,
+    "spectral_w2_pooled": 0.04652441850156601,
+    "spectral_w2_refit": 0.030418737257115396,
+    "symmetry_max": 2.3780158642239257e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "45a46fe780c3f807b33ff9175f9c3cffdf7c1163cd8defcb9bb11e5be12000f4",
+  "observations": [
+    "Input SHA-256: data/pbmc_10k_v3/A_matched.h5ad = 3106ea2e21e31c2cbc58219efd80c91204704a2a400bd6c9c9b8e2a5f1f317c3.",
+    "Input SHA-256: data/pbmc_10k_v3/B_matched.h5ad = 29b81d315c7c104d0ff17145f4d8d3d8d76bb329395fd622e8624c1da6b6f303.",
+    "Input SHA-256: reports/T01e/genes.txt = 4a30c174cd0918c02fde5c646600093cd6c21c6d142951fc1a2d826c70777643."
+  ],
+  "regeneration": {
+    "basin_ratio_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "basin_ratio_withinfit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "basin_sep_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "basin_sep_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "basin_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "basin_w1_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "basin_w1_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "class_tv_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "class_tv_ratio_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "class_tv_ratio_withinfit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "class_tv_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "draws.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "fig_basin.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "fig_spectra.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "frac_rank_ge10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage latent",
+    "latent_pca30_a.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "latent_pca30_b.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "n_cell_types_tested": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "n_cells_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage latent",
+    "n_cells_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage latent",
+    "ops_a.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "ops_b.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "outcome": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "rank_pca_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage latent",
+    "rank_pca_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage latent",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "scripts/k1_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage all",
+    "spectral_ratio_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "spectral_ratio_withinfit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "spectral_sep_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "spectral_sep_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "spectral_w2_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "spectral_w2_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage compare",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K1/scripts/k1_run.py --stage fits"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T13:58:00-06:00",
+  "status": "complete",
+  "task_id": "K1"
+}
