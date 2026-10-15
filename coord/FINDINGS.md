@@ -306,3 +306,37 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.37802e-07
 - Decision rule outcome: inconclusive (rule 6 — spectral_ratio_refit 1.529 > 1.5; basin 0.872 and class TV 1.094 ≤ 1.5).
 - Commit: task/K1 @ af89531
+
+## 2026-10-15 — K2 (ACCEPT; outcome survives)
+
+- basin_ratio_refit: 0.907431
+- basin_ratio_withinfit: 1.44644
+- basin_sep_a: 3.52039
+- basin_sep_b: 3.37286
+- basin_vs_k1: 1.04087
+- basin_w1_pooled: 0.0231399
+- basin_w1_refit: 0.0255005
+- class_tv_pooled: 0.0755023
+- class_tv_ratio_refit: 0.713011
+- class_tv_ratio_withinfit: 1.10437
+- class_tv_refit: 0.105892
+- class_tv_vs_k1: 0.651633
+- count_match_max_abs: 0
+- depth_match_max_rel: 0.00996867
+- frac_rank_ge10: 0.9613
+- n_cell_types_tested: 4
+- n_cells_a: 969
+- n_cells_b: 969
+- outcome: survives
+- rank_pca_a: 21
+- rank_pca_b: 20
+- spectral_ratio_refit: 1.20933
+- spectral_ratio_withinfit: 2.37648
+- spectral_sep_a: 8.73915
+- spectral_sep_b: 9.98935
+- spectral_vs_k1: 0.790688
+- spectral_w2_pooled: 0.0374546
+- spectral_w2_refit: 0.0309714
+- symmetry_max: 2.30366e-07
+- Decision rule outcome: survives (rule 5 — spectral_ratio_refit 1.209, basin_ratio_refit 0.907, class_tv_ratio_refit 0.713, all ≤ 1.5; separations ≥ 3.37).
+- Commit: task/K2 @ 0af20a1

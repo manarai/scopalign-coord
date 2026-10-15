@@ -1,0 +1,8 @@
+cell_type,n_v2_qc,n_v3thin,n_matched,median_depth_a,median_depth_b
+B cells,142,178,142,2890.0,2861.5
+DC,13,17,13,9118.0,9059.0
+ILC,72,61,61,2742.0,2768.0
+Megakaryocytes/platelets,7,13,7,773.0,751.0
+Monocytes,309,354,309,3511.0,3476.0
+T cells,430,473,430,3564.5,3571.5
+pDC,7,8,7,5517.0,6065.0
