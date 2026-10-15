@@ -1,0 +1,31 @@
+fine_label,n_a,n_b,used
+Age-associated B cells,0,6,False
+B cells,1,0,False
+CD16+ NK cells,53,53,True
+CD16- NK cells,3,5,False
+CD8a/a,1,0,False
+CRTAM+ gamma-delta T cells,1,0,False
+Classical monocytes,268,272,True
+Cycling T cells,0,1,False
+DC precursor,0,1,False
+DC1,1,5,False
+DC2,11,11,False
+Follicular helper T cells,1,1,False
+ILC,2,1,False
+ILC3,0,1,False
+MAIT cells,63,70,True
+Megakaryocytes/platelets,7,7,False
+Memory B cells,33,35,False
+NKT cells,1,0,False
+Naive B cells,108,100,True
+Non-classical monocytes,41,33,False
+Regulatory T cells,19,15,False
+Tcm/Naive cytotoxic T cells,39,42,False
+Tcm/Naive helper T cells,249,221,True
+Tem/Effector helper T cells,20,35,False
+Tem/Temra cytotoxic T cells,14,22,False
+Tem/Trm cytotoxic T cells,23,25,False
+Trm cytotoxic T cells,1,0,False
+Type 1 helper T cells,1,0,False
+Type 17 helper T cells,1,0,False
+pDC,7,7,False

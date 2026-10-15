@@ -361,3 +361,15 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.30366e-07
 - Decision rule outcome: inconclusive (stop) — rule 0, n_starts_near_best 1 < 2.
 - Commit: task/T02 @ b947a8c
+
+## 2026-10-15 — T02b (ACCEPT; stopped; inconclusive) — light recompute
+
+- k2_repro_max_abs: 0
+- latent_maxdiff: 0
+- n_cells_a: 969
+- n_cells_b: 969
+- n_groups: 5
+- outcome: stopped
+- symmetry_max: 2.30366e-07
+- Decision rule outcome: inconclusive (stop) — rule 0, n_groups 5 < 6.
+- Commit: task/T02b @ 4fd6380

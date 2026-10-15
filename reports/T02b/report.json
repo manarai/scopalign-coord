@@ -1,0 +1,81 @@
+{
+  "branch": "task/T02b",
+  "commit": "5a75e706b7d153560480d73c24fb00a41053554f",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "45a46fe780c3f807b33ff9175f9c3cffdf7c1163cd8defcb9bb11e5be12000f4"
+    },
+    {
+      "path": "group_table.csv",
+      "sha256": "6f72d1c5f5f0f94aa4e117b8ea29809a01742676833731939e9e74263e052498"
+    },
+    {
+      "path": "group_means.npz",
+      "sha256": "1ba85a190f7e855812723ddf0ed11fdacf8218cde07da5e1688313122ed81aaf"
+    },
+    {
+      "path": "loadings.npz",
+      "sha256": "29979da0ee264b1f1cb06438c2fbc460d06ee8988a3bb1a0391fc0b2bea4179c"
+    },
+    {
+      "path": "scripts/t02b_run.py",
+      "sha256": "26a3c287919999ad22a8a9726b1cb93fd2f5f1fac3f8a91287f145885a15c295"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Repeated the ten prescribed deterministic drift fits after correcting the group-label array serialization used by group_means.npz.",
+      "why": "The first fit-stage attempt wrote groups with object dtype, which prevented allow_pickle=False loading; the corrected rerun used the same inputs, configuration, seeds and outputs."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T21:22:08.999058+00:00",
+  "gated": {
+    "k2_repro_max_abs": 0.0,
+    "latent_maxdiff": 0.0,
+    "n_cells_a": 969,
+    "n_cells_b": 969,
+    "n_groups": 5,
+    "outcome": "stopped",
+    "symmetry_max": 2.3036565011125276e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "45a46fe780c3f807b33ff9175f9c3cffdf7c1163cd8defcb9bb11e5be12000f4",
+  "observations": [
+    "Input SHA-256: reports/K2/latent_pca30_a.npy = bb98f615aedad7ab1653931e9e713f7f6e3cb333af2e881baf0b18c95febb087.",
+    "Input SHA-256: reports/K2/latent_pca30_b.npy = 91a3f85176e46303e61dd65a1c1dd3d8e804d11de1c7b5e06b63f39c31cc572a.",
+    "Input SHA-256: reports/K2/ops_a.npz = 585d21c75fd6e6c550c2db60feaafbef49a0d5f42b0639ec9b7d6bd73e06d678.",
+    "Input SHA-256: reports/K2/ops_b.npz = 58c6e98dfac69a494359834e67a7562e190a456026509cf6e3dfdf1ee3bddaf8.",
+    "Input SHA-256: data/pbmc_v2_v3/k2_cells.csv = d59d4e47489f1f50e4839e7d9d25f8e827eaa45a99b710598f5e0396de132a07.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v2.h5ad = aecbc9823c907e9a42082095c9a952fe1fb5c3152fe0e2497fa5ddf5b615309e.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v3.h5ad = 3117863dce860e441150c1acb47596504b3e05bdeabba8512ef71fdfad211c67.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v3_thin.h5ad = f0385115a5c8bb4476e9f9f1594d042dba10057f438f6e9d7a64b919205b6efa.",
+    "Input SHA-256: reports/T01d/genes.txt = fa9f0e51a3ef0043b09613ef8ef0f207e0ead71272045539c6b362584b922d53."
+  ],
+  "regeneration": {
+    "group_means.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage all",
+    "group_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage all",
+    "k2_repro_max_abs": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage fits",
+    "latent_maxdiff": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage fits",
+    "loadings.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage all",
+    "n_cells_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage fits",
+    "n_cells_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage fits",
+    "n_groups": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage align",
+    "outcome": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage align",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage all",
+    "scripts/t02b_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage all",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T02b/scripts/t02b_run.py --stage fits"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T15:15:00-06:00",
+  "status": "stopped",
+  "stop_rule": "n_groups < 6 \u2192 inconclusive (stop) (not enough correspondences).",
+  "task_id": "T02b"
+}
