@@ -1,0 +1,105 @@
+{
+  "branch": "task/T01",
+  "commit": "6f2ce770155494b0bcc538c2a1a5dbe6d8eb60b1",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330"
+    },
+    {
+      "path": "ops_v2.npz",
+      "sha256": "cec26300069c12e1d1d9504911aecb7c0c0a7a2f0ca6a9bbfbe96db333348618"
+    },
+    {
+      "path": "ops_v3.npz",
+      "sha256": "636819558064397ebfc58a6038e883a9ad7018249205b37208b010d7df82f65a"
+    },
+    {
+      "path": "basin_table.csv",
+      "sha256": "a9b65cd333f8e8d65e39dee6986b51f3d99e621a8a5651b8cb6003b26d2b5442"
+    },
+    {
+      "path": "draws.csv",
+      "sha256": "dff01b7e7af9f854cedc7a71096ad8d93008f45f3d9c5de458c65c184022834e"
+    },
+    {
+      "path": "fig_spectra.png",
+      "sha256": "b58159a8520cac0eee7da62b92918e525ffe101bd3ee4d987095e0457f785cf0"
+    },
+    {
+      "path": "fig_basin.png",
+      "sha256": "f1bdecb7d7ceae50579f71739b6452fdb88392f1f3f324d5eb8001ebe943e05a"
+    },
+    {
+      "path": "scripts/t01_run.py",
+      "sha256": "766321c6cc3d7afba148edcf606edef244805fee94c39364b14376ed5e23f5c1"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T03:34:11.285756+00:00",
+  "gated": {
+    "basin_class_agreement": 1.0,
+    "basin_index_rho": -0.7999999999999999,
+    "basin_ratio": 5.9877162254565715,
+    "basin_sep_v2": 10.11451906671966,
+    "basin_sep_v3": 1.0356652667115624,
+    "basin_w1_null": 0.5658640591427684,
+    "basin_w1_pooled": 3.388233408331871,
+    "class_tv_null": 0.0005813953488372084,
+    "class_tv_pooled": 0.006032920567804281,
+    "class_tv_ratio": 10.376623376623378,
+    "n_cell_types_tested": 4,
+    "spectral_ratio": 19.930469850843405,
+    "spectral_sep_v2": 0.7326872333014536,
+    "spectral_sep_v3": 1.2370233041323335,
+    "spectral_w2_null": 61.871288776397705,
+    "spectral_w2_pooled": 1233.1238555908203,
+    "symmetry_v2": 1.1558594081861884e-07,
+    "symmetry_v3": 1.1179736247868277e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330",
+  "observations": [
+    "Input latent_fa_v2.npy SHA-256: 9198040c2af7d4ca8866fb3118ffae875932297346f711c242b64b40c9b82268.",
+    "Input latent_fa_v3.npy SHA-256: 6d7a86fee3e30cd4ada3f16d6bd492d1f8bfd909d11e971fcc2fe59c6e5cffd5."
+  ],
+  "regeneration": {
+    "basin_class_agreement": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "basin_index_rho": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "basin_ratio": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "basin_sep_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "basin_sep_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "basin_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage all",
+    "basin_w1_null": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "basin_w1_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "class_tv_null": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "class_tv_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "class_tv_ratio": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "draws.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage all",
+    "fig_basin.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage all",
+    "fig_spectra.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage all",
+    "n_cell_types_tested": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "ops_v2.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage all",
+    "ops_v3.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage all",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage all",
+    "scripts/t01_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage all",
+    "spectral_ratio": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "spectral_sep_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "spectral_sep_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "spectral_w2_null": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "spectral_w2_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "symmetry_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare",
+    "symmetry_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01/scripts/t01_run.py --stage compare"
+  },
+  "seed": 20261014,
+  "started": "2026-10-14T21:31:10-06:00",
+  "status": "complete",
+  "task_id": "T01"
+}
