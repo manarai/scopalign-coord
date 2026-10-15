@@ -167,6 +167,7 @@ that K0 shows to be reproducible, can decide it.
 | K2   | Chemistry: pbmc_1k_v2 vs pbmc_1k_v3 (count/depth matched), PCA-30, refit yardstick; ratios also vs K1 | ACCEPT (2026-10-15) — **survives**: spectral 1.21, basin 0.91, class 0.71 (refit); ≤ K1's ratios → T02 proposal to Tom |
 | T02  | Global orthogonal `A` on the K2 pair (direct Frobenius estimator on type-mean operators); frame agreement vs refit null; before/after UMAPs | ACCEPT (2026-10-15) — stopped, inconclusive (rule 0: optimum reached by 1 of 20 starts); frame 1.25, held-out 2.53 |
 | T02b | T02 with fine-label groups (≥ 6) and a gene-loading rotation as start/comparator | ACCEPT (2026-10-15) — stopped, inconclusive (5 groups < 6) |
+| T02c | Part 1: gene-anchored rotation tested by big-cluster centroid operators (top 10 PCs); Part 2: operator-fitted 10-d rotation vs gene one | issued (2026-10-15) |
 | T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
