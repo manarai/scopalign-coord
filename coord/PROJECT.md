@@ -127,7 +127,15 @@ KNOWN_FAILURES = []
 - Backup on every ACCEPT: planner's merge step copies the repo to the
   backup location below. Not optional.
 
-  BACKUP_LOCATION = <unset — Tom to choose before the first ACCEPT>
+  BACKUP_LOCATION = ~/Library/Mobile Documents/com~apple~CloudDocs/scopalign-backup
+
+  Backup is a single git bundle per ACCEPT (iCloud syncs one file reliably,
+  a live `.git` folder it does not):
+  ```
+  mkdir -p "$HOME/Library/Mobile Documents/com~apple~CloudDocs/scopalign-backup"
+  git bundle create "$HOME/Library/Mobile Documents/com~apple~CloudDocs/scopalign-backup/scopalign-coord-$(date +%Y%m%d)-<TASK_ID>.bundle" --all
+  ```
+  Restore with `git clone <bundle> scopalign-coord`.
 
 ## Vocabulary
 
