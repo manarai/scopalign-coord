@@ -17,7 +17,9 @@ wells they sit in.* If that holds, eigenvalue spectra and `basin_index`
 agree across batches before any alignment, and alignment is a single
 orthogonal change of basis that never touches eigenvalues.
 
-If the axiom fails on a pure technical replicate, the project stops (T01).
+If operators do not reproduce across two halves of one run (K0) or two runs
+of one chemistry (K1), the method stops before any chemistry claim. If they
+reproduce but fail across chemistries (K2), the axiom fails for chemistry.
 
 ## What scJDO2 actually provides (verified from source, Oct 14 2026)
 
@@ -28,21 +30,41 @@ If the axiom fails on a pure technical replicate, the project stops (T01).
   `op_basin_index = −lead_re` and `op_behaviour_basin ∈ {holder, fork, drift}`.
 - Gene-space Jacobians (Phase C) exist but are rank-limited to `d` and are
   **not used** by scOpAlign.
-- Known limitation recorded in scJDO2 SUMMARY §5.7: PCA latents saturate
-  the tangent rank at `d`. This is why the positional layer here is not PCA.
+- scJDO2 SUMMARY §5.7 records that PCA latents saturate the tangent rank
+  at `d`. **Not observed on this project's data:** PCA's median tangent rank
+  was 21 / 19 in both T00b and T00c with no cell at the ceiling, while FA's
+  moved between 6 and 15 with the gene list and depth (T00b, T00c, T01d,
+  T01e). Stable rank does not make PCA's operators better; no PCA operator
+  has been fitted yet. Rule 1 therefore lets K0 choose (2026-10-15).
 
 ## Fixed design decisions
 
-1. **Positional layer is a linear-decoder model.** Default: Factor Analysis
-   (`sklearn.decomposition.FactorAnalysis`, `d = 30`, fit **separately**
-   per dataset). LDVAE (scvi-tools, linear decoder) is the authorised
-   upgrade if T00b shows FA still saturates tangent rank. PCA is kept only
-   as the T00b comparator. scVI and any nonlinear decoder are excluded:
-   the alignment map must carry back to cell positions exactly, which
-   requires a linear decoder.
-2. `d` is fixed across datasets within a task.
+1. **Positional layer is chosen by K0** (amended 2026-10-15; was FA by
+   T00b/T00c). Three linear candidates, each fit **separately** per dataset
+   on `normalize_total(1e4)` + `log1p` of the task's HVGs, scores unscaled:
+   - **PCA-30:** `PCA(n_components=30, svd_solver="full", random_state=<seed>)`,
+     tangent-restricted spectra (rule 3a);
+   - **FA-30:** `FactorAnalysis(30, random_state=<seed>, max_iter=2000)`,
+     tangent-restricted spectra (rule 3a);
+   - **FA-10:** `FactorAnalysis(10, random_state=<seed>, max_iter=2000)`,
+     full 10-d spectra (d is already near FA's observed local rank, so no
+     restriction).
+   K0's selection rule fixes which one K1, K2 and later tasks use. scVI and
+   any nonlinear decoder stay excluded: the alignment map must carry back to
+   cell positions exactly, which requires a linear map.
+2. `d` is fixed across datasets within a task (30, or 10 if K0 selects FA-10).
 3. **Operators** are scJDO2 latent symmetric Hessians, autodiff, from an
    energy drift fit with ESM at fixed seed and epochs.
+3a. **Tangent-restricted spectra are the primary operator statistic for
+   d = 30 layers** (added 2026-10-15). For each cell: `V` = the eigenvectors of the `r = 10`
+   largest eigenvalues of the sample covariance of its `k = 40` nearest
+   other cells in latent; `J_r = Vᵀ J V` (10 × 10); `λ_r = eigvalsh(J_r)`.
+   `basin_index = −max λ_r`; class `fork` / `holder` / `drift` by the
+   `lead_eig` rule on `max λ_r` with `tol = 0.1 × median |λ_r|` over that
+   dataset. Full 30-d spectra are reported as secondary only. Reason: with
+   local rank ≈ 10–20 of 30, the off-tangent directions carry very steep,
+   uninformative curvature that dominated every full-spectrum W2 in
+   T01–T01d.
 4. **Alignment** is an orthogonal map `A` with `J_v3 ≈ A J_v2 Aᵀ` on
    matched neighbourhoods (Procrustes on eigenvector frames, or direct
    minimisation of the Frobenius mismatch; T02 pre-registers which).
@@ -52,13 +74,25 @@ If the axiom fails on a pure technical replicate, the project stops (T01).
 5. **Correction** lands in the latent embedding: `z ↦ A z`. Operators are
    never corrected; they are the evidence used to find `A`. Whatever
    positional difference remains after `A` is the candidate biology.
-6. Gene-space lift of the correction (through the FA loadings) is out of
+6. Gene-space lift of the correction (through the selected layer's loadings) is out of
    scope until after T03.
-7. **Primary outcome** at every stage is agreement of eigenvalue spectra
-   and `basin_index` **before** alignment. Eigenvector-frame agreement
-   after alignment is secondary.
+7. **Primary outcome** at every stage is agreement of tangent-restricted
+   eigenvalue spectra and `basin_index` **before** alignment.
+   Eigenvector-frame agreement after alignment is secondary.
 8. No RNA velocity, no velocyto, no scVelo anywhere.
 9. Any dataset or parameter not named in a task file is out of scope.
+10. **Kill test is a three-step ladder** (added 2026-10-15), each step issued
+   only if the previous one survives: **K0** two random halves of one run
+   (estimator reproducibility); **K1** two runs, same chemistry, same donor,
+   count- and depth-matched (run reproducibility); **K2** v2 vs v3,
+   count- and depth-matched (chemistry). All three use T01c's statistics
+   and decision rule; K0 runs them for all three candidate layers, K1 and K2
+   only for the layer K0 selects.
+11. **Spec hygiene** (added 2026-10-15) — every task states: genes sorted
+   alphabetically **before** `highly_variable_genes`, and the selected list
+   kept in that order; for every random draw, the generator, its seed and
+   the exact loop order (outer loop, inner loop, which cells consume draws);
+   a pre-registered early stop reported as `"status": "stopped"`.
 
 ## Known risks (pinned so task writers see them)
 
@@ -70,16 +104,25 @@ If the axiom fails on a pure technical replicate, the project stops (T01).
 - **Correspondence.** Procrustes needs matched pairs. Cell-type labels
   are the weak link; spectral-similarity matching via optimal transport
   is the reserve.
-- **Tangent rank.** A linear decoder may still saturate rank at `d`.
-  T00b measures this before any operator is compared.
+- **Tangent rank.** The restricted spectra need local rank ≥ `r = 10`;
+  every K task gates d = 30 layers on the fraction of cells meeting it.
+- **Estimator reproducibility.** Untested before K0. A difference between
+  datasets means nothing until two halves of one run agree.
 - **Local freedom.** Locally varying `A` can bend anything into anything.
   T06 must report residual removed beyond the global `A`; a large value is
   a warning, not a success.
 
 ## Task ladder
 
-**PAUSED 2026-10-15 (Tom).** No task is issued until the positional layer and
-kill-test design are revised. See the redesign summary of 2026-10-15.
+**Redesign adopted 2026-10-15 (Tom):** positional layer chosen by K0 among
+PCA-30, FA-30 and FA-10 (rule 1); tangent-restricted spectra for d = 30
+(rule 3a); K0 → K1 → K2 kill-test ladder (rule 10). T02 is blocked by K2.
+
+**Status of T01–T01e:** none of them is a verdict on the axiom. All were
+inconclusive or stopped under a design whose positional layer (FA-30, full
+spectra) proved unstable; their between-chemistry ratios are recorded
+history, not evidence for or against the axiom. Only K1 and K2, on a layer
+that K0 shows to be reproducible, can decide it.
 
 | ID   | Purpose | Status |
 |------|---------|--------|
@@ -92,7 +135,10 @@ kill-test design are revised. See the redesign summary of 2026-10-15.
 | T01y | *Exploratory:* T01x reissued with relative validity checks against T01c's reported values | ACCEPT (2026-10-15) — "shape differs" (spectral_ratio_s 15.6) |
 | T01d | Kill test at matched depth: v3 thinned to v2's per-type depth; T00c genes/FA and T01c test unchanged | ACCEPT (2026-10-15) — outcome INCONCLUSIVE (rule 3: basin_sep_v2 1.72); T02 stays blocked |
 | T01e | Same-chemistry control: pbmc_1k_v3 vs pbmc_10k_v3 (count- and depth-matched), T01d pipeline and rule | ACCEPT (2026-10-15) — stopped, INCONCLUSIVE (rule 0: FA ranks 8/9 < 10) |
-| T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by T01d |
+| K0   | Split-half control on pbmc_10k_v3 for PCA-30, FA-30 and FA-10: which layer gives reproducible operators? Selects the layer | pre-registered |
+| K1   | Same chemistry, two runs: pbmc_1k_v3 vs pbmc_10k_v3 subsample (count/depth matched) | blocked by K0 |
+| K2   | Chemistry: pbmc_1k_v2 vs pbmc_1k_v3 (count/depth matched) | blocked by K1 |
+| T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by K2 |
 | T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
