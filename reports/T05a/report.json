@@ -1,0 +1,121 @@
+{
+  "branch": "task/T05a",
+  "commit": "36176e12a164942eb0fd0b59906c575bb9dcdb66",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "b0789a3fcaf0f868311f4a7ea34fb4e65ca793aa826198811bf1dc8e2544c67d"
+    },
+    {
+      "path": "embeddings.npz",
+      "sha256": "ee7ec2edf4a2c2f68a2c6bb37504edeb6e50f60a2f302ba5aab78af45c7c66bb"
+    },
+    {
+      "path": "scores.csv",
+      "sha256": "be4da0fa0a339db107c884809015c2715e125bd84d6d754636f4a0c989c30dad"
+    },
+    {
+      "path": "scripts/t05a_run.py",
+      "sha256": "5271da7e9c3bc8bd1546db34eb755ce74c8f761e5043c6b1395b17b1d70481ce"
+    },
+    {
+      "path": "centroid_ops.npz",
+      "sha256": "95c18ffc32a38b2c4f785f04eec19900061b299e3bbc23e67e3275a97e1a3abf"
+    },
+    {
+      "path": "frames.csv",
+      "sha256": "d92a96bf717e615d82d427a78fcab7b53d0b2b70e637a24c8d1e464eca6d59a6"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "16f81d6895e30e44dc66860ee1dd1c349415867a20044816856fa93126e62333"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Installed harmonypy==0.0.10 in the project virtual environment.",
+      "why": "Authorised explicitly by tasks/T05a.md."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T22:58:05.819137+00:00",
+  "gated": {
+    "frame_outcome_centre": "agreement",
+    "frame_outcome_harmony": "agreement",
+    "frame_outcome_joint": "inconclusive",
+    "frame_outcome_ours": "inconclusive",
+    "frame_outcome_scvi": "agreement",
+    "frame_ratio_centre": 1.3637580152859687,
+    "frame_ratio_harmony": 1.3494432060832882,
+    "frame_ratio_joint": 1.5489038363196865,
+    "frame_ratio_ours": 1.5531289427706727,
+    "frame_ratio_scvi": 1.4160587638034496,
+    "mix_centre": 0.7045751633986929,
+    "mix_harmony": 1.0013071895424837,
+    "mix_joint": 0.1111455108359133,
+    "mix_ours": 0.8985208118335053,
+    "mix_scvi": 0.982765737874097,
+    "n_clusters": 3,
+    "ours_repro_max_abs": 0.0,
+    "sil_centre": 0.4374427193155783,
+    "sil_harmony": 0.44712660582440006,
+    "sil_joint": 0.4131355867568066,
+    "sil_ours": 0.4208145005990807,
+    "sil_scvi": 0.0820815684801922,
+    "symmetry_max": 2.3599952214681252e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "b0789a3fcaf0f868311f4a7ea34fb4e65ca793aa826198811bf1dc8e2544c67d",
+  "observations": [
+    "Input SHA-256: data/pbmc_v2_v3/k2_cells.csv = d59d4e47489f1f50e4839e7d9d25f8e827eaa45a99b710598f5e0396de132a07.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v2.h5ad = aecbc9823c907e9a42082095c9a952fe1fb5c3152fe0e2497fa5ddf5b615309e.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v3_thin.h5ad = f0385115a5c8bb4476e9f9f1594d042dba10057f438f6e9d7a64b919205b6efa.",
+    "Input SHA-256: reports/T01d/genes.txt = fa9f0e51a3ef0043b09613ef8ef0f207e0ead71272045539c6b362584b922d53.",
+    "Input SHA-256: reports/K2/latent_pca30_a.npy = bb98f615aedad7ab1653931e9e713f7f6e3cb333af2e881baf0b18c95febb087.",
+    "Input SHA-256: reports/K2/latent_pca30_b.npy = 91a3f85176e46303e61dd65a1c1dd3d8e804d11de1c7b5e06b63f39c31cc572a.",
+    "Input SHA-256: reports/T02b/loadings.npz = 29979da0ee264b1f1cb06438c2fbc460d06ee8988a3bb1a0391fc0b2bea4179c.",
+    "Input SHA-256: reports/T02c/report.json = 2d423db6067aa5fcb56489dc1bc836051f5596ce5fca6388df98c01ced0567ed."
+  ],
+  "regeneration": {
+    "centroid_ops.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage all",
+    "embeddings.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage all",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage all",
+    "frame_outcome_centre": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_outcome_harmony": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_outcome_joint": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_outcome_ours": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_outcome_scvi": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_ratio_centre": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_ratio_harmony": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_ratio_joint": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_ratio_ours": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frame_ratio_scvi": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "frames.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage all",
+    "mix_centre": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "mix_harmony": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "mix_joint": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "mix_ours": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "mix_scvi": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "n_clusters": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators",
+    "ours_repro_max_abs": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage all",
+    "scores.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage all",
+    "scripts/t05a_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage all",
+    "sil_centre": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "sil_harmony": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "sil_joint": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "sil_ours": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "sil_scvi": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage scores",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T05a/scripts/t05a_run.py --stage operators"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T16:17:00-06:00",
+  "status": "complete",
+  "task_id": "T05a"
+}
