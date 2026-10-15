@@ -12,9 +12,9 @@ executor. If you are Manus, read this file first, every session.
 
 `~/Documents/scopalign-manus/` — a clone of the `scopalign-coord` repo plus a `.venv`.
 **All analysis runs inside this folder.** Data lives in `data/` (gitignored;
-write there only what the task names), outputs in `reports/<TASK_ID>/`. The scJDO2 package is installed
-editable from `~/Documents/scJDO2`; you may import
-it but never modify that checkout. No other path on the machine is
+write there only what the task names), outputs in `reports/<TASK_ID>/`. scJDO2 is installed editable from
+`~/Documents/scJDO2`; scJDO v1 from the worktree named in PROJECT.md. You
+may import them but never modify either checkout. No other path on the machine is
 read or written. You may not edit
 anything under `coord/`, `tasks/`, `templates/`, `checker/` or `skills/`.
 

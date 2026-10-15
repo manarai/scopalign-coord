@@ -18,7 +18,7 @@ ln -s ~/Documents/scopalign-coord/skills/scopalign-planner ~/.claude/skills/scop
 pip install jsonschema
 ```
 
-scJDO2 is expected at `~/Documents/scJDO2`.
+scJDO2 is expected at `~/Documents/scJDO2`; scJDO v1 at `~/Documents/scJDO` (installed from a worktree at its preprint tag, see PROJECT.md).
 
 Executor side (a local clone; its `origin` is the planner folder):
 ```
@@ -30,9 +30,9 @@ python3.11 -m venv .venv
 
 ## Loop
 
-1. `/scopalign-planner new T01` → commits `tasks/T01.md`, prints the executor paste.
+1. `/scopalign-planner new T00` → commits the task, prints the executor paste. Order: T00 → T00b → T01 → T02 → T04 → T03 → T05 (→ T06 if needed).
 2. Paste into a **fresh** executor session. Executor pushes `task/T01` back to the planner folder, replies with the DONE line.
-3. `/scopalign-planner review T01` → checker, recompute, verdict, FINDINGS, merge.
+3. `/scopalign-planner review T01` → checker, recompute, verdict, FINDINGS, merge, backup copy.
 4. Repeat.
 
 ## Why the pieces exist
@@ -46,5 +46,5 @@ python3.11 -m venv .venv
 | fresh session per task | executor inheriting planner reasoning |
 | lockfile per report | "it changed but I don't know why" |
 | known-failure set pinned both directions | allowlist rot |
-| (later) push to a remote on ACCEPT | one-laptop risk — not enabled while local-first |
+| backup copy on every ACCEPT | one-laptop risk |
 | skill inside the repo | unversioned protocol |
