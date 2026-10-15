@@ -83,7 +83,9 @@ If the axiom fails on a pure technical replicate, the project stops (T01).
 | T00  | Environment, scJDO2/scJDO installs, data staging | ACCEPT (2026-10-14) |
 | T00b | Positional layer: PCA vs FA vs LDVAE tangent-rank on PBMC pair; pick FA unless it saturates | ACCEPT (2026-10-14) — FA by rule; held, see reports/T00b/REVIEW.md |
 | T01  | Kill test: eigenvalue spectra + basin_index agree across v2/v3 chemistry before alignment? | ACCEPT (2026-10-14) — outcome INCONCLUSIVE (rule 3: operators do not separate cell types); T02 stays blocked |
-| T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by T01 |
+| T00c | Positional layer redone on genes detected in both chemistries; adds a rank floor | pre-registered |
+| T01c | Kill test rerun on the T00c layer (T01 design unchanged) | blocked by T00c |
+| T02  | Global orthogonal `A`; eigenvector-frame agreement after alignment; pre-register estimator | blocked by T01c |
 | T04  | Simulator: known nonlinear batch + known biological difference; does `A` remove one and keep the other? | blocked by T02 |
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
