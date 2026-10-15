@@ -1,0 +1,143 @@
+{
+  "branch": "task/K2",
+  "commit": "e764d449e9594fb1fe128c700db666fae1c5e89c",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "45a46fe780c3f807b33ff9175f9c3cffdf7c1163cd8defcb9bb11e5be12000f4"
+    },
+    {
+      "path": "match_table.csv",
+      "sha256": "a1ab47e06986d1cc55942e70cc0fe6437607393774a2fc4d9fbd95192d303c0f"
+    },
+    {
+      "path": "latent_pca30_a.npy",
+      "sha256": "bb98f615aedad7ab1653931e9e713f7f6e3cb333af2e881baf0b18c95febb087"
+    },
+    {
+      "path": "latent_pca30_b.npy",
+      "sha256": "91a3f85176e46303e61dd65a1c1dd3d8e804d11de1c7b5e06b63f39c31cc572a"
+    },
+    {
+      "path": "ops_a.npz",
+      "sha256": "585d21c75fd6e6c550c2db60feaafbef49a0d5f42b0639ec9b7d6bd73e06d678"
+    },
+    {
+      "path": "ops_b.npz",
+      "sha256": "58c6e98dfac69a494359834e67a7562e190a456026509cf6e3dfdf1ee3bddaf8"
+    },
+    {
+      "path": "draws.csv",
+      "sha256": "507e803862335ec143b83f9d4897e74b1edb9a8eae113cdcfd31511c723b9072"
+    },
+    {
+      "path": "basin_table.csv",
+      "sha256": "9fdc387f016adeb72a9268e79bc7d2e442116b4042e42fba36336358cbc5e15b"
+    },
+    {
+      "path": "fig_spectra.png",
+      "sha256": "ba7f47dc2390468a9c4e21c03b9b64f88dbc2ea64b7634e1667edc1b9fa32752"
+    },
+    {
+      "path": "fig_basin.png",
+      "sha256": "a9d7889a68063c228145d188b43053d476a23e5f63b9a4e053ef4e9ba29f55d7"
+    },
+    {
+      "path": "scripts/k2_run.py",
+      "sha256": "78a47f5a7eb833fbc6a5261ab7c5f1db5c894dc17ded6ea00305274c9df33e2e"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T20:35:49.711215+00:00",
+  "gated": {
+    "basin_ratio_refit": 0.9074314532097236,
+    "basin_ratio_withinfit": 1.446441129195191,
+    "basin_sep_a": 3.520393920357259,
+    "basin_sep_b": 3.372858497018003,
+    "basin_vs_k1": 1.040869481847388,
+    "basin_w1_pooled": 0.02313992908168215,
+    "basin_w1_refit": 0.02550047058632659,
+    "class_tv_pooled": 0.0755023268575512,
+    "class_tv_ratio_refit": 0.7130112959039415,
+    "class_tv_ratio_withinfit": 1.104368528056173,
+    "class_tv_refit": 0.10589218893345982,
+    "class_tv_vs_k1": 0.6516334845923468,
+    "count_match_max_abs": 0,
+    "depth_match_max_rel": 0.009968669894616918,
+    "frac_rank_ge10": 0.9613003095975232,
+    "n_cell_types_tested": 4,
+    "n_cells_a": 969,
+    "n_cells_b": 969,
+    "outcome": "survives",
+    "rank_pca_a": 21.0,
+    "rank_pca_b": 20.0,
+    "spectral_ratio_refit": 1.2093295096883063,
+    "spectral_ratio_withinfit": 2.3764777952452705,
+    "spectral_sep_a": 8.73915422405955,
+    "spectral_sep_b": 9.989348440179871,
+    "spectral_vs_k1": 0.7906875098556375,
+    "spectral_w2_pooled": 0.03745464015359667,
+    "spectral_w2_refit": 0.030971410069411322,
+    "symmetry_max": 2.3036565011125276e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "45a46fe780c3f807b33ff9175f9c3cffdf7c1163cd8defcb9bb11e5be12000f4",
+  "observations": [
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v2.h5ad = aecbc9823c907e9a42082095c9a952fe1fb5c3152fe0e2497fa5ddf5b615309e.",
+    "Input SHA-256: data/pbmc_v2_v3/pbmc_v3_thin.h5ad = f0385115a5c8bb4476e9f9f1594d042dba10057f438f6e9d7a64b919205b6efa.",
+    "Input SHA-256: reports/T01d/genes.txt = fa9f0e51a3ef0043b09613ef8ef0f207e0ead71272045539c6b362584b922d53."
+  ],
+  "regeneration": {
+    "basin_ratio_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "basin_ratio_withinfit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "basin_sep_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "basin_sep_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "basin_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "basin_vs_k1": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "basin_w1_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "basin_w1_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "class_tv_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "class_tv_ratio_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "class_tv_ratio_withinfit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "class_tv_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "class_tv_vs_k1": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "count_match_max_abs": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage match",
+    "depth_match_max_rel": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage match",
+    "draws.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "fig_basin.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "fig_spectra.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "frac_rank_ge10": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage latent",
+    "latent_pca30_a.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "latent_pca30_b.npy": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "match_table.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "n_cell_types_tested": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "n_cells_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage match",
+    "n_cells_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage match",
+    "ops_a.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "ops_b.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "outcome": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "rank_pca_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage latent",
+    "rank_pca_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage latent",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "scripts/k2_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage all",
+    "spectral_ratio_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "spectral_ratio_withinfit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "spectral_sep_a": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "spectral_sep_b": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "spectral_vs_k1": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "spectral_w2_pooled": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "spectral_w2_refit": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage compare",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/K2/scripts/k2_run.py --stage fits"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T14:33:00-06:00",
+  "status": "complete",
+  "task_id": "K2"
+}
