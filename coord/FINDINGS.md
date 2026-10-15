@@ -65,3 +65,26 @@ planner's recomputed values, not the executor's reported ones.
 - frac_ldvae_at_ceiling: 0.0
 - Decision rule outcome: FA is the positional layer for T01c.
 - Commit: task/T00c @ 91a5449
+
+## 2026-10-14 — T01c (ACCEPT; outcome INCONCLUSIVE)
+
+- n_cell_types_tested: 4
+- symmetry_v2: 8.69e-08
+- symmetry_v3: 1.24e-07
+- spectral_w2_pooled: 506.25
+- spectral_w2_null: 9.436
+- spectral_ratio: 53.65
+- basin_w1_pooled: 5.163
+- basin_w1_null: 2.243
+- basin_ratio: 2.302
+- class_tv_pooled: 0.3618
+- class_tv_null: 0.05559
+- class_tv_ratio: 6.508
+- spectral_sep_v2: 2.958
+- spectral_sep_v3: 13.77
+- basin_sep_v2: 1.221
+- basin_sep_v3: 3.530
+- basin_index_rho (secondary): 0.20
+- basin_class_agreement (secondary): 0.25
+- Decision rule outcome: INCONCLUSIVE (rule 3 — basin_sep_v2 < 2).
+- Commit: task/T01c @ 13fb1bc

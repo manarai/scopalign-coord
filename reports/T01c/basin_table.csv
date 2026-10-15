@@ -1,0 +1,13 @@
+cell_type,n_v2,n_v3,median_bi_v2,median_bi_v3,class_v2,class_v3,agree
+B cells,142,178,-1.344551920890808,-1.5701963901519775,drift,fork,False
+DC,13,17,-2.0819153785705566,-0.09494465589523315,drift,drift,True
+ETP,1,0,-0.5617268085479736,,drift,,False
+ILC,72,61,-1.9076546430587769,0.039644334465265274,drift,drift,True
+Mast cells,1,0,-0.6136491894721985,,drift,,False
+Megakaryocyte precursor,0,1,,-0.07516372948884964,,drift,False
+Megakaryocytes/platelets,7,13,-0.6272901892662048,-0.1579228639602661,drift,drift,True
+Monocytes,309,354,-1.2338800430297852,-3.1063034534454346,drift,fork,False
+Myelocytes,10,0,-0.11850687116384506,,drift,,False
+Plasma cells,0,8,,0.006223296746611595,,drift,False
+T cells,430,473,-0.9063555598258972,0.4813035726547241,drift,holder,False
+pDC,7,8,-0.8400653600692749,-0.4018201231956482,drift,drift,True
