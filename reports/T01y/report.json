@@ -1,0 +1,71 @@
+{
+  "branch": "task/T01y",
+  "commit": "3727dbf15233a5b000753c07823138993dbd9518",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330"
+    },
+    {
+      "path": "draws_scaled.csv",
+      "sha256": "ae3c94da5d0844c16384e1852870a92b59e27acb82220ff39501367eaf4e5dd6"
+    },
+    {
+      "path": "fig_spectra_scaled.png",
+      "sha256": "e627527fd6b2a518d2188c1eb32d752e6d9d1b26ed11762dea5be79d30435909"
+    },
+    {
+      "path": "scripts/t01y_run.py",
+      "sha256": "d05d5efa8f05db968efc2f9feef77d9e4847832ab79aaefd295440e87dad397e"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-15T10:50:51.610020+00:00",
+  "gated": {
+    "basin_ratio_s": 5.418829527316372,
+    "basin_w1_null_s": 0.19483423705461753,
+    "basin_w1_pooled_s": 1.055773516683719,
+    "class_tv_ratio_s": 6.508187871784667,
+    "max_sep_change": 3.61386138440889e-06,
+    "scale_ratio": 6.305518172589004,
+    "scale_v2": 30.287413597106934,
+    "scale_v3": 4.803318738937378,
+    "spectral_ratio_s": 15.612854084194115,
+    "spectral_w2_null_s": 0.7543795913890203,
+    "spectral_w2_pooled_s": 11.778018484450754
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "004a430b16620da0d276d4519e8ced0f69099f6f8e43de9e2dd79c276c6c7330",
+  "observations": [
+    "Input ops_v2.npz SHA-256: ab5238dcc7d9827e162a3c15681158af54b438bf69470c587914a56d9caa394b.",
+    "Input ops_v3.npz SHA-256: 7b1fb01d33630dde14297fecf960039dd8158f4bfef0998cb517f21db336b5e9."
+  ],
+  "regeneration": {
+    "basin_ratio_s": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "basin_w1_null_s": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "basin_w1_pooled_s": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "class_tv_ratio_s": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "draws_scaled.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage all",
+    "fig_spectra_scaled.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage all",
+    "max_sep_change": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage all",
+    "scale_ratio": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "scale_v2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "scale_v3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "scripts/t01y_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage all",
+    "spectral_ratio_s": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "spectral_w2_null_s": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare",
+    "spectral_w2_pooled_s": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/T01y/scripts/t01y_run.py --stage compare"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T04:49:54-06:00",
+  "status": "complete",
+  "task_id": "T01y"
+}

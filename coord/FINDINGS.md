@@ -88,3 +88,19 @@ planner's recomputed values, not the executor's reported ones.
 - basin_class_agreement (secondary): 0.25
 - Decision rule outcome: INCONCLUSIVE (rule 3 — basin_sep_v2 < 2).
 - Commit: task/T01c @ 13fb1bc
+
+## 2026-10-15 — T01y (ACCEPT; EXPLORATORY — beside T01c, not an axiom test)
+
+- scale_v2: 30.2874
+- scale_v3: 4.80332
+- scale_ratio: 6.3055
+- spectral_w2_pooled_s: 11.778
+- spectral_w2_null_s: 0.75438
+- spectral_ratio_s: 15.613
+- basin_w1_pooled_s: 1.0558
+- basin_w1_null_s: 0.19483
+- basin_ratio_s: 5.4188
+- class_tv_ratio_s: 6.508188
+- max_sep_change: 3.61e-06
+- Reading-rule outcome: "shape differs" (rule 3).
+- Commit: task/T01y @ 9366943
