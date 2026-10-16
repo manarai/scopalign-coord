@@ -26,7 +26,7 @@ long runs on the Mac:
 ```
 cd <your folder>
 nohup caffeinate -i .venv/bin/python reports/<TASK_ID>/scripts/<script>.py --stage all \
-  > reports/<TASK_ID>/run.log 2>&1 &
+  < /dev/null > reports/<TASK_ID>/run.log 2>&1 &
 echo $! > reports/<TASK_ID>/run.pid
 ```
 
