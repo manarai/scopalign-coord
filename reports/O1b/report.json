@@ -1,0 +1,121 @@
+{
+  "artifacts": [
+    {
+      "path": "fit_symmetry.csv",
+      "sha256": "b3c548ee273dcefd476c478642a6685e73741874b957a269dca5aae8bf05f3ae"
+    }
+  ],
+  "branch": "task/O1b",
+  "commit": "e923be24c912b935592b3e293b7a6ff36d8d9cd8",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "793e260c4b9ec6170550b18b3ef81600acd3b0b2a2a0a74de2ac90fdcbf0b225"
+    },
+    {
+      "path": "testR.csv",
+      "sha256": "490a61c2e59f98bfe81e2580ee8d8caf121fe20d525cfcc48052433ef0aac2fc"
+    },
+    {
+      "path": "testF.csv",
+      "sha256": "4f75fc7cdb0c5269a18f37553d62e648f5195563d7c0bd56b6105c2e9797a1d2"
+    },
+    {
+      "path": "Q_hat_F.npy",
+      "sha256": "57c6d228bf0bd434cac8737be50a53e0ad59a980ab02eb69ae3da53e86802e30"
+    },
+    {
+      "path": "fig_recovery.png",
+      "sha256": "997c191d0535069901e42942593311ac391fa06a5608605760a5811c6faf3bae"
+    },
+    {
+      "path": "views.csv",
+      "sha256": "11330b4c0409072a8d5ea0c1746665b22c9e87f7f4555419c96cffb8184b23e0"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "8b8c3d096f612e0afd1f9709336ec1082379aca847e5276ae5fac9e5c92c0a48"
+    },
+    {
+      "path": "scripts/o1b_run.py",
+      "sha256": "5c0ff2f2ddf270647324c970fd2ce8ed9fd26089d958ef94d76c81494af725bc"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "parallel starts for speed; identical results",
+      "why": "Each stated deterministic orthogonal start has independent fixed inputs and is evaluated unchanged in its own worker process."
+    },
+    {
+      "what": "redirected detached-run standard input from /dev/null",
+      "why": "Required on macOS so multiprocessing workers initialize with valid system streams; this does not change any computation."
+    },
+    {
+      "what": "indexed cached operator maps by seed before applying cell masks in view_frame_ratio",
+      "why": "Corrects the views-only type mismatch while using the already saved seed-20261014 operator arrays; no fit or optimisation is recomputed."
+    },
+    {
+      "what": "moved fit_symmetry.csv from deliverables to artifacts",
+      "why": "The checker requires deliverables to match tasks/O1b.md exactly; the file is retained as a checksumed supporting artifact."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-16T23:39:23.189671+00:00",
+  "gated": {
+    "e5_outcome": "fails",
+    "err_F_E5": 0.5816936498935628,
+    "err_R_E5_1000": 0.3273565112900208,
+    "err_R_E5_2000": 0.1887943152442103,
+    "err_R_E5_2759": 0.1787748072937665,
+    "err_R_E5_500": 0.7269831122773004,
+    "err_random": 0.9958459477201073,
+    "latent_check_max": 0.0,
+    "min_n_e5": 0,
+    "n_starts_near_best_F": 1,
+    "o1_repro_max_abs": 0.0,
+    "symmetry_max": 2.641956058369033e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "793e260c4b9ec6170550b18b3ef81600acd3b0b2a2a0a74de2ac90fdcbf0b225",
+  "observations": [
+    "Input SHA-256: data/pbmc_10k_v3/pbmc_10k_v3.h5ad = f449ff0a02c3749be88a51e83200e69757acb3547bd7ea9d1319aad7c1e8aa4b.",
+    "Input SHA-256: data/pbmc_10k_v3/k0_halves.csv = 41fdb7ba192b953938ac62191ce09fdccb3b2733f6c5340e251fd439dba0fd16.",
+    "Input SHA-256: reports/K0/genes.txt = 9c6a8589b6268b367ecdb412b7cd479c299eb77f3834888c16f02b3be0a5ba99.",
+    "Input SHA-256: reports/K0/latent_pca30_h1.npy = 195226b0296ae29274161e5d1fcf5c73751a8220be5f7593ef89b4610010a7e5.",
+    "Input SHA-256: reports/K0/latent_pca30_h2.npy = 44a02acd94c8cbbc3a19372a735d9220543fede8837a9e42c278e70560334e92.",
+    "No reports/O1 saved case arrays were present in this worktree; o1_repro_max_abs is 0 as pre-registered."
+  ],
+  "regeneration": {
+    "Q_hat_F.npy": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all",
+    "e5_outcome": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage report",
+    "err_F_E5": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testF",
+    "err_R_E5_1000": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testR",
+    "err_R_E5_2000": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testR",
+    "err_R_E5_2759": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testR",
+    "err_R_E5_500": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testR",
+    "err_random": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testR",
+    "fig_recovery.png": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all",
+    "fit_symmetry.csv": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all",
+    "latent_check_max": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testF",
+    "min_n_e5": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage report",
+    "n_starts_near_best_F": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testF",
+    "o1_repro_max_abs": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testR",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all",
+    "scripts/o1b_run.py": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage testR",
+    "testF.csv": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all",
+    "testR.csv": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all",
+    "views.csv": "cd \"$HOME/Documents/scopalign-manus-O1b\" && .venv/bin/python reports/O1b/scripts/o1b_run.py --stage all"
+  },
+  "seed": 20261014,
+  "started": "2026-10-16T02:49:31.452736+00:00",
+  "status": "complete",
+  "task_id": "O1b"
+}
