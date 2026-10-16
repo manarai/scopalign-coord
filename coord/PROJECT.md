@@ -193,6 +193,9 @@ that K0 shows to be reproducible, can decide it.
 | T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
 | O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | issued (2026-10-15) |
 | O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | pre-registered (issue only if O1 selects none) |
+| O1c–O1e | E7 joint diagonalisation + commutator; E6 shared energy with learnable Q; E8 eigen-subspace + fused GW (written only if reached) | not written |
+| O2   | Selected operator estimator on real technical batches: run-to-run (K1 pair), chemistry (K2 pair); Q from operators → latent; UMAP + mix/sil/frame | pre-registered (issue after O1-series selection) |
+| T05b | Benchmark rerun with the operator-estimated rotation as "ours" | planned |
 | T06  | Locally varying orthogonal `A` (only if T02 residual is uneven) | conditional |
 
 ## Folders (all under ~/Documents)
