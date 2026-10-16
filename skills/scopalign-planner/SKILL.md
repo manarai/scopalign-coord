@@ -38,7 +38,8 @@ Repo: `scopalign-coord/` (planner side). Executor side: `~/Documents/scopalign-m
 
 ### `/scopalign-planner review <TASK_ID>`
 
-1. `git checkout task/<TASK_ID>` (the executor pushed it into this repo)
+1. `git checkout task/<TASK_ID>` (local executor pushed it into this repo); for a
+   cloud executor first `git fetch origin task/<TASK_ID>:task/<TASK_ID>` (GitHub)
 2. Run the checker with `--prev` pointing at the last ACCEPTed report:
    `python checker/check_report.py tasks/<TASK_ID>.md reports/<TASK_ID>/report.json --prev reports/<PREV>/report.json`
    Checker FAIL → verdict is REVISE, list the failures, stop.
