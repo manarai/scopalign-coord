@@ -1,0 +1,103 @@
+{
+  "branch": "task/O1f",
+  "commit": "ef4a4492eb48c2aaef8ec8309ace88d167147d07",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "793e260c4b9ec6170550b18b3ef81600acd3b0b2a2a0a74de2ac90fdcbf0b225"
+    },
+    {
+      "path": "testR.csv",
+      "sha256": "925b681e3cdac028c87ce4ff416e72db17991c1a0d2b18fc5e2f8f2502a4e6b9"
+    },
+    {
+      "path": "testF.csv",
+      "sha256": "fd52324e985988fb1114b55703880a77edf95874473858fe23973f64e7df5ae9"
+    },
+    {
+      "path": "Q_hat_F.npy",
+      "sha256": "cf802f21203715cc0cb18b380bc0c9ae6f9894a17aa93acf56f1b017522a8228"
+    },
+    {
+      "path": "views.csv",
+      "sha256": "149280484787b62d46258a76fe1d6ead6f51724c5eb7afa39ebdf20dfb7f26bf"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "7f45966dfd41c9fc57bc6cda555f1a00f045e3e87377ccdfd976402fbfbc25c6"
+    },
+    {
+      "path": "fig_recovery.png",
+      "sha256": "123b89be9a7f0272950c65c451cf3c68ac996c6e3e2efcd8471e29b574f3cf73"
+    },
+    {
+      "path": "scripts/o1f_run.py",
+      "sha256": "8c180290d8ec42fad6fa135082eeedba36e297b809e3fa2de9d130f3910ae70f"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-16T06:58:15.979805+00:00",
+  "gated": {
+    "e9_outcome": "fails",
+    "err_F_E9": 0.5268420358202899,
+    "err_R_E9_1000": 0.7023199728688112,
+    "err_R_E9_2000": 1.3634883776119893,
+    "err_R_E9_2759": 1.3628596828986046,
+    "err_R_E9_500": 0.9814974449346486,
+    "frac_reached_truth": 1.0,
+    "min_n_e9": 0,
+    "n_alt_minimum": 12
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "793e260c4b9ec6170550b18b3ef81600acd3b0b2a2a0a74de2ac90fdcbf0b225",
+  "observations": [
+    "Input SHA-256: reports/O1/cases/case_1000_0.npz = e8876ca598a9acd44e872e8f99d0445316f5a09e589c6e2fd6da4aed84985290.",
+    "Input SHA-256: reports/O1/cases/case_1000_1.npz = a2343ac4a4877171d5e901552f3963b60ae1c23285b28fbfc5005cbe77a57e55.",
+    "Input SHA-256: reports/O1/cases/case_1000_2.npz = 60ab2b22407bca507f080b9698d3c2253e5e5c8793cf4653b1ab8d0c6d927326.",
+    "Input SHA-256: reports/O1/cases/case_2000_0.npz = c7ef822db76fc8f1427056d06e333a4cdd4f119c66d2835293441f8afecb7ddd.",
+    "Input SHA-256: reports/O1/cases/case_2000_1.npz = fe7cc0eefd6d990a6b7502ce24ba04a28a6e8bab0c0e604ee762a09b64adf0cd.",
+    "Input SHA-256: reports/O1/cases/case_2000_2.npz = 629cadecb47b2966fe1bace326a8af661222cf9fe1bee51307510db2965a62c5.",
+    "Input SHA-256: reports/O1/cases/case_2759_0.npz = 4a48a2eda0d0aea911a178446310e61b13dfb7734b5eb43ac0875227a5c4fbe8.",
+    "Input SHA-256: reports/O1/cases/case_2759_1.npz = e6f3af06c78f3b1a2a77175d70f4a09a16c3a596993d966aa87c5e8d1a22ab43.",
+    "Input SHA-256: reports/O1/cases/case_2759_2.npz = 7144129eb65e236a88a7166ef5ef1cb508471fdc2d028eb289e0f72ae4c92390.",
+    "Input SHA-256: reports/O1/cases/case_500_0.npz = bfbab09034041efddecfdde884a915c508546395cdfb6d85c07873a00102ee8b.",
+    "Input SHA-256: reports/O1/cases/case_500_1.npz = 3dec98145b1f2c8aa0a63c1406fa0d778af88bcba32f2662c08964bc445d323a.",
+    "Input SHA-256: reports/O1/cases/case_500_2.npz = 6954926c241c6e9dc0613e86c3bfc6c7b46b2e6e98500132c36418f8ad8522f3.",
+    "Input SHA-256: reports/O1/testF.npz = d6f8e23d96db13f694f3909c5d139199f722b95256aa7aee6cb1a95b110adf43.",
+    "Input SHA-256: data/pbmc_10k_v3/pbmc_10k_v3.h5ad = f449ff0a02c3749be88a51e83200e69757acb3547bd7ea9d1319aad7c1e8aa4b.",
+    "Input SHA-256: data/pbmc_10k_v3/k0_halves.csv = 41fdb7ba192b953938ac62191ce09fdccb3b2733f6c5340e251fd439dba0fd16.",
+    "Input SHA-256: reports/K0/latent_pca30_h1.npy = 195226b0296ae29274161e5d1fcf5c73751a8220be5f7593ef89b4610010a7e5.",
+    "Input SHA-256: reports/K0/latent_pca30_h2.npy = 44a02acd94c8cbbc3a19372a735d9220543fede8837a9e42c278e70560334e92.",
+    "Input SHA-256: reports/O1/testR.csv = 24cf4699c94d7ce907363cd1710df6fb301b244a79fa36b015eb008d87a71e09."
+  ],
+  "regeneration": {
+    "Q_hat_F.npy": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage all",
+    "e9_outcome": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage report",
+    "err_F_E9": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage testF",
+    "err_R_E9_1000": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage testR",
+    "err_R_E9_2000": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage testR",
+    "err_R_E9_2759": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage testR",
+    "err_R_E9_500": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage testR",
+    "fig_recovery.png": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage all",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage all",
+    "frac_reached_truth": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage testR",
+    "min_n_e9": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage report",
+    "n_alt_minimum": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage testR",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage all",
+    "scripts/o1f_run.py": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage all",
+    "testF.csv": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage all",
+    "testR.csv": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage all",
+    "views.csv": "cd \"$HOME/Documents/scopalign-manus-O1f\" && .venv/bin/python reports/O1f/scripts/o1f_run.py --stage all"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T23:56:00-06:00",
+  "status": "complete",
+  "task_id": "O1f"
+}
