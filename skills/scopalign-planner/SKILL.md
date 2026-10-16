@@ -89,6 +89,11 @@ Print the task ladder with statuses, the last FINDINGS entry, and any branch
   to end; do not redo every fit. Say in REVIEW.md what was recomputed and
   what was only checked.
 - **Replies:** verdict, key numbers, next step. Details live in REVIEW.md.
+- **Every alignment result** (Tom, 2026-10-15): show UMAP before/after
+  panels with mixing, silhouette and operator frame agreement. If the
+  executor did not produce them, the planner plots them at review from
+  saved arrays (illustration only). If a method is close to passing,
+  propose a targeted follow-up test to fix it.
 
 ## Rules for the planner
 

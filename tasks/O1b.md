@@ -61,6 +61,18 @@ tests, cell counts, replicates and pass rule as O1.
 - **Error measures, reference:** as O1 (`err = ‖Q̂ − Q_target‖_F / sqrt(60)`;
   `err_R` = median over the 3 replicates; `err_random` as O1).
 
+- **Views (illustration; not part of the rule):** Test F only. Three
+  stacked embeddings of H1 and H2 (all cells): (a) separate frames, no
+  rotation `[z_H1 ; z_H2]`; (b) E5's estimate `[z_H1 · Q̂ᵀ ; z_H2]`;
+  (c) the known answer `[z_H1 · Q_loadᵀ ; z_H2]`. For each:
+  `sc.pp.neighbors(n_neighbors=15, use_rep=..., random_state=20261014)`,
+  `sc.tl.umap(min_dist=0.5, random_state=20261014)`; T02c's `mix` (here:
+  fraction of 30 nearest other cells from the other half, ÷ 0.5) and `sil`
+  (K0 tested types) on the 30-d embedding; T02c's full-30-d operator
+  frame residual between H1 (rotated) and H2 centroid operators of the
+  seed-20261014 fits, divided by T02c's refit null (`default_rng(20261022)`).
+  These are reported, not gated.
+
 ### Out of scope
 - Pairing cells, labels, gene loadings or positions in the estimate
   (`Q_load` is the Test F target only).
@@ -105,7 +117,10 @@ correspondence-free estimate; the remaining options rely on summaries
 
 1. `o1b_run.py --stage testR` — 120 drift fits (kept locally), E5 on the 12
    cases; `testR.csv` (n, replicate, err, best_start, final_L, D, H).
-2. `o1b_run.py --stage testF` — 10 fits, E5; `testF.csv`, `Q_hat_F.npy`.
+2. `o1b_run.py --stage testF` — 10 fits, E5; `testF.csv`, `Q_hat_F.npy`;
+   views: `views.csv` (view, mix, sil, frame_ratio) and `fig_umap.png`
+   (3 rows = views × 2 columns = coloured by half / cell type; titles with
+   mix, sil, frame_ratio).
 3. `o1b_run.py --stage report` — `fig_recovery.png` (err_R vs n with O1's
    five estimators if available, lines at 0.10 and `err_random`),
    `report.json`, checksums, lockfile.
@@ -120,6 +135,8 @@ correspondence-free estimate; the remaining options rely on summaries
 - `testF.csv`
 - `Q_hat_F.npy`
 - `fig_recovery.png`
+- `views.csv`
+- `fig_umap.png`
 - `scripts/o1b_run.py`
 
 ## Checker expectations
