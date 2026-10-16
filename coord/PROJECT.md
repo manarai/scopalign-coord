@@ -194,6 +194,7 @@ that K0 shows to be reproducible, can decide it.
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
 | T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
+| C0   | Cloud bootstrap: rebuild env + data in a Manus sandbox; content fingerprints must match the Mac | issued (2026-10-15) |
 | O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | issued (2026-10-15) |
 | O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | pre-registered (parallel allowed) |
 | O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
@@ -237,12 +238,18 @@ KNOWN_FAILURES = [
 
 ## Environment
 
-- Executor runs on Tom's Mac in the project `.venv`. Data never leaves the
-  machine.
+- Executor runs on Tom's Mac in the project `.venv`, **or** (amended
+  2026-10-15, Tom) in a **Manus cloud sandbox** once C0 has shown the cloud
+  rebuild matches the Mac. The datasets are public 10x PBMC data and may be
+  processed in the cloud; nothing private leaves the Mac. A task runs
+  entirely on one platform; cloud and Mac numbers are not mixed in one
+  comparison unless C0 shows the drift fit reproduces across platforms.
 - Every report commits `requirements.lock`; checker flags diffs against the
   previous accepted task.
-- Git is local only: the executor folder is a clone of this repo and pushes
-  task branches back here. No GitHub remote.
+- Git: the local executor folder is a clone of this repo and pushes task
+  branches back here. Cloud executors clone the private GitHub copy
+  `manarai/scopalign-coord` and push task branches there; the planner pushes
+  `main` there when issuing and fetches cloud branches for review.
 - Backup on every ACCEPT: planner's merge step copies the repo to the
   backup location below. Not optional.
 

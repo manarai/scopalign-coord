@@ -24,7 +24,7 @@
   "properties": {
     "task_id": {
       "type": "string",
-      "pattern": "^(T[0-9]{2}[a-z]?|[KO][0-9]+[a-z]?)$"
+      "pattern": "^(T[0-9]{2}[a-z]?|[KOC][0-9]+[a-z]?)$"
     },
     "executor": {
       "type": "string",

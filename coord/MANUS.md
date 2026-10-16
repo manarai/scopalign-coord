@@ -18,6 +18,23 @@ may import them but never modify either checkout. No other path on the machine i
 read or written. You may not edit
 anything under `coord/`, `tasks/`, `templates/`, `checker/` or `skills/`.
 
+## Running in a Manus cloud sandbox
+
+If your task runs in a cloud sandbox (no access to the Mac), work in a
+clone of the private GitHub repository, never on `~/Documents/...` paths:
+
+```
+git clone https://github.com/manarai/scopalign-coord.git ~/scopalign-cloud
+cd ~/scopalign-cloud && git checkout -b task/<TASK_ID> origin/main
+```
+
+Before C0 is accepted, only C0 may run in the cloud. After C0 is accepted,
+set up each new sandbox the same way C0 did (venv from the lockfile,
+scJDO2 from GitHub at the pinned commit, data rebuilt by the committed
+scripts, fingerprints checked with `checker/fingerprint.py`), then run the
+task. Every path in a task file that starts with `~/Documents/scopalign-manus/`
+means the root of your clone. Push with `git push origin task/<TASK_ID>`.
+
 ## Running several tasks at once (parallel agents)
 
 When the planner issues tasks for parallel runs, each agent works in its
