@@ -1,7 +1,7 @@
 # O1b — Operator-estimated rotation, E5: field equivariance (no correspondences)
 
-status: pre-registered (written 2026-10-15 before O1's result; issue only if O1 selects "none", PROJECT.md rule 14)
-blocked_by: O1 review (selected_estimator = "none")
+status: pre-registered (written 2026-10-15 before O1's result; issued for parallel run, PROJECT.md rule 14 as amended)
+blocked_by: none
 seed: 20261014
 planner_commit: 2255ea5
 kind: planned (operator-central alignment, PROJECT.md rules 13–14)
@@ -30,8 +30,9 @@ tests, cell counts, replicates and pass rule as O1.
   `ortho_group.rvs(30, random_state=20261031 + r)`, n ∈ (500, 1000, 2000,
   2759), r ∈ (0, 1, 2); Test F = K0 halves with re-derived PCA, target
   `Q_load`). Five drift fits per copy (seeds 20261014, 20261016–19),
-  refit here (deterministic; must reproduce O1's operators if O1 saved
-  them — see `o1_repro_max_abs`).
+  refit here (deterministic; must reproduce O1's operators if O1's saved
+  case arrays already exist when this runs — see `o1_repro_max_abs`;
+  otherwise 0).
 - **Fields as torch functions:** for each fitted adapter `d`, the energy
   network `d._model` (a SiLU MLP, `E: ℝ³⁰ → ℝ`), cast to float64. For a
   point `x`: `u_s(x) = −β ∇E_s(x)`, `J_s(x) = −β ∇²E_s(x)` (β = 1),

@@ -18,6 +18,27 @@ may import them but never modify either checkout. No other path on the machine i
 read or written. You may not edit
 anything under `coord/`, `tasks/`, `templates/`, `checker/` or `skills/`.
 
+## Running several tasks at once (parallel agents)
+
+When the planner issues tasks for parallel runs, each agent works in its
+**own git worktree** next to the main executor folder, never in the shared
+one:
+
+```
+cd ~/Documents/scopalign-manus
+git fetch origin
+git worktree add ../scopalign-manus-<TASK_ID> -b task/<TASK_ID> origin/main
+cd ../scopalign-manus-<TASK_ID>
+ln -s ../scopalign-manus/.venv .venv
+ln -s ../scopalign-manus/data data
+```
+
+The shared `.venv` and `data/` are read-only for parallel agents (no
+installs, no writes to `data/` unless the task names a path). Write only
+under `reports/<TASK_ID>/` in your worktree. Commit and
+`git push origin task/<TASK_ID>` from your worktree as usual. Steps 1–2
+below are replaced by the commands above.
+
 ## Per-task procedure
 
 1. **Start fresh.** One task per session. Never resume a previous session.

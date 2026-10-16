@@ -126,10 +126,13 @@ reproduce but fail across chemistries (K2), the axiom fails for chemistry.
    `err_F ≤ 0.25`): **O1** (matching family E0–E4) → **O1b** (E5 field
    equivariance) → **O1c** (E7 joint diagonalisation + commutator) →
    **O1d** (E6 shared energy with learnable Q) → **O1e** (E8 eigen-subspace
-   matching with fused Gromov–Wasserstein pairing). Each later step is
-   issued only if all earlier ones select none. The first estimator that
-   works goes to **O2** (real v2/v3 pair, or larger data if it needs more
-   cells than the pair has).
+   matching with fused Gromov–Wasserstein pairing). **Amended 2026-10-15
+   (Tom), before any result:** the steps may run **in parallel** (separate
+   executor worktrees, at most three at once). Selection is unchanged in
+   effect: the first estimator **in the fixed order** O1 (E0…E4), O1b (E5),
+   O1c (E7), O1d (E6), O1e (E8) that works is the one used, whatever order
+   the results arrive in. It goes to **O2** (real pairs, or larger data if
+   it needs more cells than a pair has).
 
 ## Known risks (pinned so task writers see them)
 
@@ -192,8 +195,10 @@ that K0 shows to be reproducible, can decide it.
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
 | T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
 | O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | issued (2026-10-15) |
-| O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | pre-registered (issue only if O1 selects none) |
-| O1c–O1e | E7 joint diagonalisation + commutator; E6 shared energy with learnable Q; E8 eigen-subspace + fused GW (written only if reached) | not written |
+| O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | pre-registered (parallel allowed) |
+| O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
+| O1d  | E6 one shared energy with a learnable rotation (ESM) | pre-registered (parallel allowed) |
+| O1e  | E8 fused Gromov–Wasserstein initial matching + E3 ICP | pre-registered (parallel allowed) |
 | O2   | Selected operator estimator on real technical batches: run-to-run (K1 pair), chemistry (K2 pair); Q from operators → latent; UMAP + mix/sil/frame | pre-registered (issue after O1-series selection) |
 | T05b | Benchmark rerun with the operator-estimated rotation as "ours" | planned |
 | T06  | Locally varying orthogonal `A` (only if T02 residual is uneven) | conditional |
