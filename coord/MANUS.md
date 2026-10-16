@@ -18,6 +18,25 @@ may import them but never modify either checkout. No other path on the machine i
 read or written. You may not edit
 anything under `coord/`, `tasks/`, `templates/`, `checker/` or `skills/`.
 
+## Long runs (anything over ~10 minutes)
+
+A process started in the foreground dies when your Manus task ends. For
+long runs on the Mac:
+
+```
+cd <your folder>
+nohup caffeinate -i .venv/bin/python reports/<TASK_ID>/scripts/<script>.py --stage all \
+  > reports/<TASK_ID>/run.log 2>&1 &
+echo $! > reports/<TASK_ID>/run.pid
+```
+
+Scripts must be resumable: write each finished unit (case, fit, stage) to
+disk and skip it when it already exists. After starting, report
+`STARTED <TASK_ID> pid=<pid>` and stop. A later message ("finish
+<TASK_ID>") checks that the process has exited cleanly
+(`tail reports/<TASK_ID>/run.log`), then runs the checker, commits and
+pushes. `run.log` and `run.pid` are not deliverables; leave them untracked.
+
 ## Running in a Manus cloud sandbox
 
 If your task runs in a cloud sandbox (no access to the Mac), work in a
