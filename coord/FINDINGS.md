@@ -481,3 +481,17 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.64196e-07
 - Decision rule outcome: no estimator works at any n or on Test F → selected_estimator none.
 - Commit: task/O1 @ a6cd92e
+
+## 2026-10-16 — O1f (ACCEPT; E9 fails) — light recompute (exact)
+
+- e9_outcome: fails
+- err_F_E9: 0.526842
+- err_R_E9_1000: 0.70232
+- err_R_E9_2000: 1.36349
+- err_R_E9_2759: 1.36286
+- err_R_E9_500: 0.981497
+- frac_reached_truth: 1
+- min_n_e9: 0
+- n_alt_minimum: 12
+- Decision rule outcome: fails (no err_R ≤ 0.10; err_F 0.527 > 0.25); n_alt_minimum 12.
+- Commit: task/O1f @ f8c5dfb
