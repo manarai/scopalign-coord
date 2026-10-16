@@ -1,0 +1,181 @@
+{
+  "artifacts": [
+    {
+      "path": "cases/case_1000_0.npz",
+      "sha256": "e8876ca598a9acd44e872e8f99d0445316f5a09e589c6e2fd6da4aed84985290"
+    },
+    {
+      "path": "cases/case_1000_1.npz",
+      "sha256": "a2343ac4a4877171d5e901552f3963b60ae1c23285b28fbfc5005cbe77a57e55"
+    },
+    {
+      "path": "cases/case_1000_2.npz",
+      "sha256": "60ab2b22407bca507f080b9698d3c2253e5e5c8793cf4653b1ab8d0c6d927326"
+    },
+    {
+      "path": "cases/case_2000_0.npz",
+      "sha256": "c7ef822db76fc8f1427056d06e333a4cdd4f119c66d2835293441f8afecb7ddd"
+    },
+    {
+      "path": "cases/case_2000_1.npz",
+      "sha256": "fe7cc0eefd6d990a6b7502ce24ba04a28a6e8bab0c0e604ee762a09b64adf0cd"
+    },
+    {
+      "path": "cases/case_2000_2.npz",
+      "sha256": "629cadecb47b2966fe1bace326a8af661222cf9fe1bee51307510db2965a62c5"
+    },
+    {
+      "path": "cases/case_2759_0.npz",
+      "sha256": "4a48a2eda0d0aea911a178446310e61b13dfb7734b5eb43ac0875227a5c4fbe8"
+    },
+    {
+      "path": "cases/case_2759_1.npz",
+      "sha256": "e6f3af06c78f3b1a2a77175d70f4a09a16c3a596993d966aa87c5e8d1a22ab43"
+    },
+    {
+      "path": "cases/case_2759_2.npz",
+      "sha256": "7144129eb65e236a88a7166ef5ef1cb508471fdc2d028eb289e0f72ae4c92390"
+    },
+    {
+      "path": "cases/case_500_0.npz",
+      "sha256": "bfbab09034041efddecfdde884a915c508546395cdfb6d85c07873a00102ee8b"
+    },
+    {
+      "path": "cases/case_500_1.npz",
+      "sha256": "3dec98145b1f2c8aa0a63c1406fa0d778af88bcba32f2662c08964bc445d323a"
+    },
+    {
+      "path": "cases/case_500_2.npz",
+      "sha256": "6954926c241c6e9dc0613e86c3bfc6c7b46b2e6e98500132c36418f8ad8522f3"
+    }
+  ],
+  "branch": "task/O1",
+  "commit": "02f4bfd594b8b3df82cbff4302b70333d3109550",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "793e260c4b9ec6170550b18b3ef81600acd3b0b2a2a0a74de2ac90fdcbf0b225"
+    },
+    {
+      "path": "testR.csv",
+      "sha256": "24cf4699c94d7ce907363cd1710df6fb301b244a79fa36b015eb008d87a71e09"
+    },
+    {
+      "path": "testF.csv",
+      "sha256": "ecc27d2c2053d48eb8c316326badd5c8aac8cd8f76481eb2d8c1c2fe64e523d0"
+    },
+    {
+      "path": "testF.npz",
+      "sha256": "d6f8e23d96db13f694f3909c5d139199f722b95256aa7aee6cb1a95b110adf43"
+    },
+    {
+      "path": "fig_recovery.png",
+      "sha256": "a3d60fe845ca04d9dc35d94c6d09b7d21b9364d45302b50c5920cfa85e262b50"
+    },
+    {
+      "path": "scripts/o1_run.py",
+      "sha256": "c85ca26262fc099ba203923d6d9f16e30b1574505df22fb639caf7a75d3d87e7"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Resumed a previously interrupted O1 run from the first missing Test R case (case_2759_1), preserving the ten existing case arrays.",
+      "why": "The prior run stopped after persisting 10 of 12 deterministic case arrays; the task owner directed continuation without regenerating saved cases."
+    },
+    {
+      "what": "Restarted the O1 pipeline as a detached caffeinate-protected process using --stage all.",
+      "why": "The foreground continuation ended before the second missing case and downstream stages completed; the task owner directed a resumable detached restart."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-16T05:46:10.551732+00:00",
+  "gated": {
+    "err_F_E0": 0.9198820927393758,
+    "err_F_E1": 0.9172697081882677,
+    "err_F_E2": 0.8687019858936155,
+    "err_F_E3": 0.6937182214793378,
+    "err_F_E4": 0.7738143926308907,
+    "err_R_E0_1000": 0.9808942464390666,
+    "err_R_E0_2000": 0.6939583004601105,
+    "err_R_E0_2759": 0.8727218430698545,
+    "err_R_E0_500": 0.9822081099633734,
+    "err_R_E1_1000": 0.9009047207663732,
+    "err_R_E1_2000": 0.7660655942477054,
+    "err_R_E1_2759": 0.6326619841999824,
+    "err_R_E1_500": 0.9870649808078388,
+    "err_R_E2_1000": 0.9364535945566144,
+    "err_R_E2_2000": 0.9112063189374766,
+    "err_R_E2_2759": 0.8493723399703441,
+    "err_R_E2_500": 1.0210156427272463,
+    "err_R_E3_1000": 0.8607228806273498,
+    "err_R_E3_2000": 0.8152585483677038,
+    "err_R_E3_2759": 0.7029226230827308,
+    "err_R_E3_500": 0.9874371038597872,
+    "err_R_E4_1000": 0.9621337044053117,
+    "err_R_E4_2000": 0.8717343843203527,
+    "err_R_E4_2759": 0.8134740100766432,
+    "err_R_E4_500": 0.9846767603075404,
+    "err_random": 0.9958459477201073,
+    "latent_check_max": 0.0,
+    "min_n_selected": 0,
+    "selected_estimator": "none",
+    "symmetry_max": 2.641956058369033e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "793e260c4b9ec6170550b18b3ef81600acd3b0b2a2a0a74de2ac90fdcbf0b225",
+  "observations": [
+    "Input SHA-256: data/pbmc_10k_v3/pbmc_10k_v3.h5ad = f449ff0a02c3749be88a51e83200e69757acb3547bd7ea9d1319aad7c1e8aa4b.",
+    "Input SHA-256: data/pbmc_10k_v3/k0_halves.csv = 41fdb7ba192b953938ac62191ce09fdccb3b2733f6c5340e251fd439dba0fd16.",
+    "Input SHA-256: reports/K0/genes.txt = 9c6a8589b6268b367ecdb412b7cd479c299eb77f3834888c16f02b3be0a5ba99.",
+    "Input SHA-256: reports/K0/latent_pca30_h1.npy = 195226b0296ae29274161e5d1fcf5c73751a8220be5f7593ef89b4610010a7e5.",
+    "Input SHA-256: reports/K0/latent_pca30_h2.npy = 44a02acd94c8cbbc3a19372a735d9220543fede8837a9e42c278e70560334e92."
+  ],
+  "regeneration": {
+    "err_F_E0": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testF",
+    "err_F_E1": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testF",
+    "err_F_E2": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testF",
+    "err_F_E3": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testF",
+    "err_F_E4": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testF",
+    "err_R_E0_1000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E0_2000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E0_2759": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E0_500": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E1_1000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E1_2000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E1_2759": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E1_500": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E2_1000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E2_2000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E2_2759": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E2_500": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E3_1000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E3_2000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E3_2759": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E3_500": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E4_1000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E4_2000": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E4_2759": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_R_E4_500": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "err_random": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testR",
+    "fig_recovery.png": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage all",
+    "latent_check_max": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testF",
+    "min_n_selected": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage report",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage all",
+    "scripts/o1_run.py": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage all",
+    "selected_estimator": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage report",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage testF",
+    "testF.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage all",
+    "testF.npz": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage all",
+    "testR.csv": "cd \"$HOME/Documents/scopalign-manus\" && .venv/bin/python reports/O1/scripts/o1_run.py --stage all"
+  },
+  "seed": 20261014,
+  "started": "2026-10-15T17:21:00-06:00",
+  "status": "complete",
+  "task_id": "O1"
+}

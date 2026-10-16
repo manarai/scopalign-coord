@@ -195,7 +195,7 @@ that K0 shows to be reproducible, can decide it.
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
 | T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
 | C0   | Cloud bootstrap: rebuild env + data in a Manus sandbox; content fingerprints must match the Mac | issued (2026-10-15) |
-| O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | issued (2026-10-15) |
+| O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | ACCEPT (2026-10-16) — none works (errors 0.63–1.0); diagnostic: L(Q*) ≪ L(random) → search failure, not missing information |
 | O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | pre-registered (parallel allowed) |
 | O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
 | O1d  | E6 one shared energy with a learnable rotation (ESM) | pre-registered (parallel allowed) |

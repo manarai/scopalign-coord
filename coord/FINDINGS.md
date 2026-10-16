@@ -446,3 +446,38 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.36e-07
 - Pre-registered readings: ours not competitive (mix, sil); ours adds no operator information; Harmony mixes, keeps types and reaches agreement → the gene-anchored rotation offers nothing extra on this pair.
 - Commit: task/T05a @ 762fbb9
+
+## 2026-10-16 — O1 (ACCEPT; selected none) — light recompute (exact)
+
+- err_F_E0: 0.919882
+- err_F_E1: 0.91727
+- err_F_E2: 0.868702
+- err_F_E3: 0.693718
+- err_F_E4: 0.773814
+- err_R_E0_1000: 0.980894
+- err_R_E0_2000: 0.693958
+- err_R_E0_2759: 0.872722
+- err_R_E0_500: 0.982208
+- err_R_E1_1000: 0.900905
+- err_R_E1_2000: 0.766066
+- err_R_E1_2759: 0.632662
+- err_R_E1_500: 0.987065
+- err_R_E2_1000: 0.936454
+- err_R_E2_2000: 0.911206
+- err_R_E2_2759: 0.849372
+- err_R_E2_500: 1.02102
+- err_R_E3_1000: 0.860723
+- err_R_E3_2000: 0.815259
+- err_R_E3_2759: 0.702923
+- err_R_E3_500: 0.987437
+- err_R_E4_1000: 0.962134
+- err_R_E4_2000: 0.871734
+- err_R_E4_2759: 0.813474
+- err_R_E4_500: 0.984677
+- err_random: 0.995846
+- latent_check_max: 0
+- min_n_selected: 0
+- selected_estimator: none
+- symmetry_max: 2.64196e-07
+- Decision rule outcome: no estimator works at any n or on Test F → selected_estimator none.
+- Commit: task/O1 @ a6cd92e
