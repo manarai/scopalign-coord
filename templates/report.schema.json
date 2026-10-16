@@ -142,6 +142,27 @@
     "stop_rule": {
       "type": "string",
       "description": "For status 'stopped': the pre-registered decision-rule line that ended the run early."
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "Optional extra files (not deliverables) the task asks to record, e.g. large gitignored arrays: path relative to the report folder and sha256.",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
     }
   }
 }

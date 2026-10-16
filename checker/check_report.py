@@ -117,6 +117,14 @@ def main():
         if d not in task_deliv:
             fails.append(f"report lists deliverable not in task: {d}")
 
+    # 4b optional artifacts (extra recorded files): checksum checked when present
+    for art in report.get("artifacts", []):
+        ap = report_dir / art["path"]
+        if not ap.exists():
+            warns.append(f"artifact not on disk (cannot verify): {art['path']}")
+        elif sha256(ap) != art["sha256"]:
+            fails.append(f"artifact checksum mismatch: {art['path']}")
+
     # 5/6 lockfile
     lock = report_dir / "requirements.lock"
     if not lock.exists():
