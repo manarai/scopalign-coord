@@ -113,6 +113,24 @@ reproduce but fail across chemistries (K2), the axiom fails for chemistry.
    the exact loop order (outer loop, inner loop, which cells consume draws);
    a pre-registered early stop reported as `"status": "stopped"`.
 
+13. **Operator-central alignment** (Tom, 2026-10-15; restates the original
+   plan). The rotation `Q` is **estimated from operators and their drift
+   field only**, then applied to the latent space (`z_A ↦ Q z_A`). Gene
+   loadings and cell positions are never used to estimate `Q`; `Q_load`
+   appears only as the known answer in tests. Rationale: a correction
+   derived from the local dynamics should be more faithful to the biology
+   than one derived from positions or expression.
+14. **Estimator search order and stopping rule** (Tom, 2026-10-15): test
+   estimators in order of predicted success until one works, on the same
+   known-answer tests and pass rule as O1 (works at n if `err_R ≤ 0.10`;
+   `err_F ≤ 0.25`): **O1** (matching family E0–E4) → **O1b** (E5 field
+   equivariance) → **O1c** (E7 joint diagonalisation + commutator) →
+   **O1d** (E6 shared energy with learnable Q) → **O1e** (E8 eigen-subspace
+   matching with fused Gromov–Wasserstein pairing). Each later step is
+   issued only if all earlier ones select none. The first estimator that
+   works goes to **O2** (real v2/v3 pair, or larger data if it needs more
+   cells than the pair has).
+
 ## Known risks (pinned so task writers see them)
 
 - **Identifiability.** Count-level batch distortion is nonlinear and bends
@@ -174,6 +192,7 @@ that K0 shows to be reproducible, can decide it.
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
 | T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
 | O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | issued (2026-10-15) |
+| O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | pre-registered (issue only if O1 selects none) |
 | T06  | Locally varying orthogonal `A` (only if T02 residual is uneven) | conditional |
 
 ## Folders (all under ~/Documents)
