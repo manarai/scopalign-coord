@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>scOPAlign poster</title>
+<style>
+@page{size:48in 36in;margin:0}
+html,body{margin:0;padding:0}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:#0b5c66}a:hover{color:#073f46}
+.sec{display:flex;flex-direction:column;gap:26px}
+.h2{margin:0;font-family:Georgia,serif;font-weight:700;font-size:58px;line-height:1.1;color:#13233a}
+.num{font-family:Menlo,monospace;font-weight:500;font-size:38px;color:#0b5c66;margin-right:18px}
+.p{margin:0;font-size:34px;line-height:1.45;color:#26324a}
+.small{margin:0;font-size:28px;line-height:1.4;color:#4a556b}
+.key{background:#e6f1f2;border-radius:16px;padding:28px 32px;font-size:36px;line-height:1.4;color:#13233a}
+.ph{border:4px dashed #9aa5b8;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:#4a556b;font-size:30px;padding:24px;box-sizing:border-box}
+.tbl{border-collapse:collapse;width:100%;font-size:32px;color:#13233a}
+.tbl th{text-align:left;font-weight:600;border-bottom:4px solid #13233a;padding:12px 10px}
+.tbl td{border-bottom:2px solid #d5dbe5;padding:12px 10px}
+ul.p{padding-left:40px;display:flex;flex-direction:column;gap:12px}
+.eq{display:flex;flex-direction:column;gap:10px;padding:22px 28px;border-radius:14px;background:#f3f5f9}
+.m{font-family:Georgia,serif;font-size:42px;color:#13233a;line-height:1.3}
+.m i{font-style:italic}
+.lab{font-family:Menlo,monospace;font-size:26px;color:#0b5c66;letter-spacing:1px}
+.pt{font-size:32px;font-weight:600;color:#13233a;text-align:center}
+.pc{font-size:26px;line-height:1.35;color:#4a556b;text-align:center}
+</style>
+</head>
+<body>
+<div style="width:4608px;height:3456px;box-sizing:border-box;background:#ffffff;font-family:'Helvetica Neue',Helvetica,sans-serif;display:flex;flex-direction:column">
+
+<header style="background:#13233a;color:#ffffff;padding:76px 96px 68px;display:flex;justify-content:space-between;align-items:flex-end;gap:96px">
+<div style="display:flex;flex-direction:column;gap:26px;max-width:3600px">
+<div style="font-family:Menlo,monospace;font-size:36px;letter-spacing:4px;color:#8fd3d9">scOPAlign · SINGLE-CELL OPERATOR ALIGNMENT · WORK IN PROGRESS</div>
+<h1 style="margin:0;font-family:Georgia,serif;font-weight:700;font-size:128px;line-height:1.05">scOPAlign: aligning single-cell batches by their dynamics</h1>
+<div style="font-size:54px;line-height:1.3;color:#dfe7f2">Testing whether batch correction at the level of cell-state operators preserves biology</div>
+<div style="font-size:40px;color:#b9c6d9">[STUDENT NAMES] · [MENTOR NAME] · [DEPARTMENT, INSTITUTION]</div>
+</div>
+<div class="ph" style="width:330px;height:330px;border-color:#8fd3d9;color:#dfe7f2;flex-shrink:0">[QR code to project repository]</div>
+</header>
+
+<main style="flex:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:64px;padding:72px 96px 48px;min-height:0">
+
+<section style="display:flex;flex-direction:column;gap:64px">
+<div class="sec">
+<h2 class="h2"><span class="num">01</span>The problem</h2>
+<p class="p">Single-cell experiments run in batches (days, kits, chemistries). A batch shifts every cell's measurements, so one cell type lands in different places.</p>
+<p class="p">Common tools (Harmony, scVI) move cells until batches overlap. Because they cannot tell a batch shift from a biological one, they can also erase real biology.</p>
+</div>
+<div class="sec">
+<h2 class="h2"><span class="num">02</span>Hypothesis</h2>
+<div class="key"><strong>Correcting batches at the operator level, then passing that correction to the cells, preserves biology better than moving cells directly.</strong></div>
+<p class="p">Each cell state sits in a "well" of a learned landscape. The <em>operator</em> describes the well's shape.</p>
+<figure style="margin:0;display:flex;flex-direction:column;gap:20px;border:3px solid #d5dbe5;border-radius:16px;padding:28px 20px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:210px">
+<div class="pt">Batch A</div>
+<svg role="img" aria-label="Batch A: three cell-state wells drawn as contour rings with drift arrows pointing inward" width="210" height="210" viewBox="0 0 200 200">
+<defs><marker id="hA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#13233a"></path></marker></defs>
+<g fill="none" stroke="#0b5c66" stroke-width="3">
+<g transform="rotate(20 65 65)"><ellipse cx="65" cy="65" rx="34" ry="22"></ellipse><ellipse cx="65" cy="65" rx="21" ry="13"></ellipse><ellipse cx="65" cy="65" rx="8" ry="5"></ellipse></g>
+<g transform="rotate(-25 145 85)"><ellipse cx="145" cy="85" rx="30" ry="20"></ellipse><ellipse cx="145" cy="85" rx="18" ry="12"></ellipse><ellipse cx="145" cy="85" rx="7" ry="5"></ellipse></g>
+</g>
+<g fill="none" stroke="#a14e0b" stroke-width="3"><ellipse cx="95" cy="148" rx="28" ry="24"></ellipse><ellipse cx="95" cy="148" rx="17" ry="14"></ellipse><ellipse cx="95" cy="148" rx="6" ry="5"></ellipse></g>
+<g stroke="#13233a" stroke-width="2.5" marker-end="url(#hA)"><line x1="18" y1="40" x2="34" y2="50"></line><line x1="190" y1="60" x2="176" y2="70"></line><line x1="40" y1="175" x2="62" y2="162"></line></g>
+<g stroke="#4a556b" stroke-width="2.5" fill="none"><path d="M8 196H40M8 196V164"></path></g>
+</svg>
+<div class="pc">wells = cell states;<br>arrows = drift</div>
+</div>
+
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:120px">
+<svg aria-hidden="true" width="56" height="30" viewBox="0 0 56 30"><path d="M2 15H48M38 5L50 15L38 25" fill="none" stroke="#13233a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<div class="pc" style="font-size:24px">batch</div>
+</div>
+
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:210px">
+<div class="pt">Batch B</div>
+<svg role="img" aria-label="Batch B: the same two wells in a rotated frame, and one well reshaped by biology" width="210" height="210" viewBox="0 0 200 200">
+<g transform="rotate(45 100 100)" fill="none" stroke-width="3">
+<g stroke="#0b5c66">
+<g transform="rotate(20 65 65)"><ellipse cx="65" cy="65" rx="34" ry="22"></ellipse><ellipse cx="65" cy="65" rx="21" ry="13"></ellipse><ellipse cx="65" cy="65" rx="8" ry="5"></ellipse></g>
+<g transform="rotate(-25 145 85)"><ellipse cx="145" cy="85" rx="30" ry="20"></ellipse><ellipse cx="145" cy="85" rx="18" ry="12"></ellipse><ellipse cx="145" cy="85" rx="7" ry="5"></ellipse></g>
+</g>
+<g stroke="#a14e0b"><ellipse cx="95" cy="148" rx="46" ry="12"></ellipse><ellipse cx="95" cy="148" rx="28" ry="7"></ellipse><ellipse cx="95" cy="148" rx="10" ry="3"></ellipse></g>
+</g>
+<g transform="rotate(-45 12 192)" stroke="#4a556b" stroke-width="2.5" fill="none"><path d="M12 192H44M12 192V160"></path></g>
+</svg>
+<div class="pc">rotated frame;<br><span style="color:#a14e0b;font-weight:600">one well reshaped</span></div>
+</div>
+
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:120px">
+<svg aria-hidden="true" width="56" height="30" viewBox="0 0 56 30"><path d="M2 15H48M38 5L50 15L38 25" fill="none" stroke="#13233a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<div class="pc" style="font-size:24px;font-family:Georgia,serif;font-style:italic">Q̂</div>
+</div>
+
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px;width:210px">
+<div class="pt">scOPAlign</div>
+<svg role="img" aria-label="After scOPAlign: matching wells overlap; the reshaped well stays unmatched" width="210" height="210" viewBox="0 0 200 200">
+<g fill="none" stroke="#9aa5b8" stroke-width="3" stroke-dasharray="6 5">
+<g transform="rotate(20 65 65)"><ellipse cx="65" cy="65" rx="34" ry="22"></ellipse></g>
+<g transform="rotate(-25 145 85)"><ellipse cx="145" cy="85" rx="30" ry="20"></ellipse></g>
+<ellipse cx="95" cy="148" rx="28" ry="24"></ellipse>
+</g>
+<g fill="none" stroke="#0b5c66" stroke-width="3">
+<g transform="rotate(20 65 65)"><ellipse cx="65" cy="65" rx="21" ry="13"></ellipse><ellipse cx="65" cy="65" rx="8" ry="5"></ellipse></g>
+<g transform="rotate(-25 145 85)"><ellipse cx="145" cy="85" rx="18" ry="12"></ellipse><ellipse cx="145" cy="85" rx="7" ry="5"></ellipse></g>
+</g>
+<g fill="none" stroke="#a14e0b" stroke-width="3"><ellipse cx="95" cy="148" rx="46" ry="12"></ellipse><ellipse cx="95" cy="148" rx="28" ry="7"></ellipse></g>
+<g stroke="#4a556b" stroke-width="2.5" fill="none"><path d="M8 196H40M8 196V164"></path></g>
+</svg>
+<div class="pc">shared wells overlap;<br><span style="color:#a14e0b;font-weight:600">mismatch = biology?</span></div>
+</div>
+
+</div>
+<figcaption class="small">A technical batch re-draws the same wells in a rotated frame. scOPAlign finds the rotation <span style="font-family:Georgia,serif;font-style:italic">Q̂</span> from the operators and applies it to the cells. A well that biology reshaped cannot be matched by a rotation, so it is kept rather than forced together.</figcaption>
+</figure>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:64px">
+<div class="sec">
+<h2 class="h2"><span class="num">03</span>The model</h2>
+<div class="eq">
+<div class="lab">1 · DRIFT ON AN ENERGY LANDSCAPE (scJDO2)</div>
+<div class="m"><i>u</i>(<i>z</i>) = −∇<i>E</i>(<i>z</i>)</div>
+<p class="small">Cells at position <i>z</i> drift downhill on a landscape <i>E</i> learned from the data.</p>
+</div>
+<div class="eq">
+<div class="lab">2 · THE OPERATOR</div>
+<div class="m"><i>J</i>(<i>z</i>) = −∇²<i>E</i>(<i>z</i>)</div>
+<p class="small">The curvature of the well around each cell: its shape and stiffness.</p>
+</div>
+<div class="eq">
+<div class="lab">3 · A TECHNICAL BATCH IS A ROTATION</div>
+<div class="m"><i>z</i><sub>B</sub> = <i>Q z</i><sub>A</sub>, <i>Q</i><sup>T</sup><i>Q</i> = <i>I</i></div>
+<div class="m" style="font-size:38px">⇒ <i>J</i><sub>B</sub>(<i>Qz</i>) = <i>Q J</i><sub>A</sub>(<i>z</i>) <i>Q</i><sup>T</sup></div>
+<p class="small">If only the frame changed, the operators match after rotating.</p>
+</div>
+<div class="eq">
+<div class="lab">4 · ESTIMATE Q FROM OPERATORS ONLY</div>
+<div class="m" style="font-size:36px"><i>Q̂</i> = arg min<sub><i>Q</i></sub> Σ<sub><i>i</i></sub> ‖<i>u</i><sub>B</sub>(<i>Qz<sub>i</sub></i>) − <i>Q u</i><sub>A</sub>(<i>z<sub>i</sub></i>)‖² + ‖<i>J</i><sub>B</sub>(<i>Qz<sub>i</sub></i>) − <i>Q J</i><sub>A</sub>(<i>z<sub>i</sub></i>)<i>Q</i><sup>T</sup>‖²</div>
+<p class="small">No cell pairing and no labels. Then every cell moves: <i>z</i> ↦ <i>Q̂z</i>.</p>
+</div>
+<div class="eq">
+<div class="lab">5 · WHAT IS LEFT OVER</div>
+<div class="m" style="font-size:38px">frame ratio = ‖<i>J</i><sub>B</sub> − <i>Q̂J</i><sub>A</sub><i>Q̂</i><sup>T</sup>‖ ÷ refit noise</div>
+<p class="small">≈ 1: as similar as refitting the same data. Clearly above 1 in one well: candidate biology.</p>
+</div>
+</div>
+<div class="sec">
+<h2 class="h2"><span class="num">04</span>Data &amp; design</h2>
+<ul class="p">
+<li>Public 10x Genomics PBMC data, <strong>one donor</strong>: purely technical batches (v2 vs v3 chemistry; random halves of one run).</li>
+<li>Coordinates: 30-d PCA. Cell types: CellTypist.</li>
+<li>Every test <strong>pre-registered</strong>: thresholds fixed before running.</li>
+</ul>
+<p class="small"><strong>Mixing</strong>: share of neighbours from the other batch (1 = fully mixed). <strong>Silhouette</strong>: how well cell types stay apart.</p>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:64px">
+<div class="sec">
+<h2 class="h2"><span class="num">05</span>Result 1 · Operators are reproducible</h2>
+<p class="p">Refitting, or fitting on matched cells from another batch, changes operators by about as much as refitting noise (ratio ≈ 0.8–1.5).</p>
+<img src="figures/fig1_K2_spectra.svg" alt="Operator eigenvalue distributions for v2 and v3 cells, by cell type" style="width:100%;height:auto;display:block">
+<p class="small">Fig. 1 · Operator eigenvalues in v2 and v3 cells, by cell type (K2).</p>
+</div>
+<div class="sec">
+<h2 class="h2"><span class="num">06</span>Result 2 · Aligned batches share operators</h2>
+<p class="p">Rotating v2 into v3's frame with the reference rotation (from gene loadings), operators agree within refit noise: frame ratio <strong>1.09</strong> (repeat: 1.20). Mixing rose <strong>0.11 → 0.90</strong>.</p>
+<img src="figures/fig2_T02c_umap.svg" alt="UMAP of v2 and v3 cells before and after rotation, coloured by batch and by cell type" style="width:100%;height:auto;display:block">
+<p class="small">Fig. 2 · UMAP before and after the reference rotation, by batch and by cell type (T02c).</p>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:64px">
+<div class="sec">
+<h2 class="h2"><span class="num">07</span>Result 3 · Alignment from operators alone</h2>
+<p class="p">The core of scOPAlign: estimate <span style="font-family:Georgia,serif;font-style:italic">Q̂</span> from drift and operators only (equation 4).</p>
+<img src="figures/fig3_O1b_umap.svg" alt="UMAP of two halves: no rotation, operator-estimated rotation, known answer" style="width:100%;height:auto;display:block">
+<p class="small">Fig. 3 · No rotation · scOPAlign estimate · known answer (O1b).</p>
+<ul class="p">
+<li>Cells align: mixing <strong>0.81</strong>, frame ratio <strong>1.22</strong>.</li>
+<li>The exact known rotation is not yet recovered (error ≈ 0.6; target ≤ 0.10).</li>
+<li>Curvature alone finds the axes but not their signs; adding drift fixes the signs.</li>
+<li>Operators fix the high-variance directions well and low-variance ones poorly. Next fix: restrict <span style="font-family:Georgia,serif;font-style:italic">Q</span> to the informative directions.</li>
+</ul>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:56px">
+<div class="sec">
+<h2 class="h2"><span class="num">08</span>How it compares</h2>
+<table class="tbl">
+<thead><tr><th>Method</th><th>Mix ↑</th><th>Sil ↑</th><th>Frame ↓</th></tr></thead>
+<tbody>
+<tr><td>Harmony</td><td>1.00</td><td>0.447</td><td>1.35</td></tr>
+<tr><td>Reference rotation*</td><td>0.90</td><td>0.421</td><td>1.55</td></tr>
+</tbody>
+</table>
+<p class="small">On this purely technical pair Harmony mixes better. *The gene-loading rotation of Result 2, which scOPAlign aims to recover from operators alone (Result 3). The real test needs biology to preserve (10).</p>
+</div>
+<div class="sec">
+<h2 class="h2"><span class="num">09</span>Road to the test</h2>
+<div style="display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;gap:24px;align-items:center;background:#e6f1f2;border-radius:16px;padding:22px 26px">
+<svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#0b5c66" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"></circle><path d="M7 12.5l3.2 3.2L17 9"></path></svg>
+<div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:34px;font-weight:600;color:#13233a">Operators are reproducible</div><div class="small">Done</div></div>
+</div>
+<div style="display:flex;gap:24px;align-items:center;background:#e6f1f2;border-radius:16px;padding:22px 26px">
+<svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#0b5c66" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"></circle><path d="M7 12.5l3.2 3.2L17 9"></path></svg>
+<div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:34px;font-weight:600;color:#13233a">Aligned batches share operators</div><div class="small">Done, one technical pair</div></div>
+</div>
+<div style="display:flex;gap:24px;align-items:center;background:#fdf0e3;border-radius:16px;padding:22px 26px">
+<svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#a14e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20z" fill="#a14e0b"></path></svg>
+<div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:34px;font-weight:600;color:#13233a">Rotation from operators alone</div><div class="small">Partial: aligns cells, not yet exact</div></div>
+</div>
+<div style="display:flex;gap:24px;align-items:center;border:4px dashed #9aa5b8;border-radius:16px;padding:18px 22px">
+<svg aria-hidden="true" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#4a556b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"></circle></svg>
+<div style="display:flex;flex-direction:column;gap:2px"><div style="font-size:34px;font-weight:600;color:#13233a">Preserves biology better</div><div class="small">Not yet tested: the hypothesis itself</div></div>
+</div>
+</div>
+</div>
+<div class="sec">
+<h2 class="h2"><span class="num">10</span>Next: the real test</h2>
+<p class="p">A simulation where we <strong>know</strong> the batch effect and the biology: one cell state is reshaped in one batch only. Which method keeps that difference: Harmony, scVI, gene-level rotation, or scOPAlign?</p>
+</div>
+<div class="sec">
+<h2 class="h2"><span class="num">11</span>Conclusions</h2>
+<ul class="p">
+<li>Cell-state operators are stable enough to align batches with.</li>
+<li>Operator-only alignment works for cells but is not yet exact.</li>
+<li>Limits: one donor, technical batches, 30-d PCA. No claim yet that biology is preserved better.</li>
+</ul>
+</div>
+</section>
+
+</main>
+
+<footer style="border-top:4px solid #13233a;margin:0 96px;padding:28px 0 44px;display:flex;justify-content:space-between;gap:64px;font-size:28px;color:#4a556b">
+<div>Data: 10x Genomics public PBMC datasets · Drift model: scJDO2 · Cell types: CellTypist · Pre-registered analyses; code: [REPO LINK]</div>
+<div>[ACKNOWLEDGEMENTS / FUNDING]</div>
+</footer>
+
+</div>
+</body>
+</html>
