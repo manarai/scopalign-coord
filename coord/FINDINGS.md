@@ -495,3 +495,20 @@ planner's recomputed values, not the executor's reported ones.
 - n_alt_minimum: 12
 - Decision rule outcome: fails (no err_R ≤ 0.10; err_F 0.527 > 0.25); n_alt_minimum 12.
 - Commit: task/O1f @ f8c5dfb
+
+## 2026-10-16 — O1b (ACCEPT; E5 fails) — light recompute (exact)
+
+- e5_outcome: fails
+- err_F_E5: 0.581694
+- err_R_E5_1000: 0.327357
+- err_R_E5_2000: 0.188794
+- err_R_E5_2759: 0.178775
+- err_R_E5_500: 0.726983
+- err_random: 0.995846
+- latent_check_max: 0
+- min_n_e5: 0
+- n_starts_near_best_F: 1
+- o1_repro_max_abs: 0
+- symmetry_max: 2.64196e-07
+- Decision rule outcome: fails (no err_R ≤ 0.10; err_F 0.582 > 0.25). Note: Test R starts included Q* (planner seed overlap).
+- Commit: task/O1b @ 0df3c07
