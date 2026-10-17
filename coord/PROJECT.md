@@ -130,10 +130,16 @@ reproduce but fail across chemistries (K2), the axiom fails for chemistry.
    (Tom), before any result:** the steps may run **in parallel** (separate
    executor worktrees, at most three at once). Selection is unchanged in
    effect: the first estimator **in the fixed order** O1 (E0…E4), O1f (E9; inserted 2026-10-16 after O1's
-   diagnostic, before any O1b–O1e result), O1b (E5),
+   diagnostic, before any O1b–O1e result), O1b (E5), O1g (E5b; inserted 2026-10-16 after O1b, before any
+   O1c–O1e result),
    O1c (E7), O1d (E6), O1e (E8) that works is the one used, whatever order
    the results arrive in. It goes to **O2** (real pairs, or larger data if
    it needs more cells than a pair has).
+   **Test F criterion from O1g onward** (Tom, 2026-10-16): Test F is
+   judged functionally — `mix ≥ 0.80`, operator frame ratio ≤ 1.5 and
+   silhouette ≥ 0.9 × no-rotation — instead of distance to `Q_load`
+   (reported only). Test R (distance ≤ 0.10 to the exact `Q*`) is
+   unchanged. Not retroactive: O1–O1f keep their recorded outcomes.
 
 ## Known risks (pinned so task writers see them)
 
@@ -199,6 +205,7 @@ that K0 shows to be reproducible, can decide it.
 | O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | ACCEPT (2026-10-16) — none works (errors 0.63–1.0); diagnostic: L(Q*) ≪ L(random) → search failure, not missing information |
 | O1f  | Targeted fix: seed-averaged group operators + global rotation search (reuses O1 arrays) | ACCEPT (2026-10-16) — fails; estimates ≈ Q*·diag(±1): curvature alone cannot fix axis signs → flow needed (O1b) |
 | O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | ACCEPT (2026-10-16) — fails (err_R 0.18 at 2759, from a start at the truth; err_F 0.58); Test F view mix 0.81, frame 1.22 |
+| O1g  | E5 with 20-seed fields and clean starts; Test F functional | issued (2026-10-16) |
 | O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
 | O1d  | E6 one shared energy with a learnable rotation (ESM) | pre-registered (parallel allowed) |
 | O1e  | E8 fused Gromov–Wasserstein initial matching + E3 ICP | pre-registered (parallel allowed) |
