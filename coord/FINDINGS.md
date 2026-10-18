@@ -531,3 +531,18 @@ planner's recomputed values, not the executor's reported ones.
 - min_n_e5b: 0
 - Decision rule outcome: fails (Test R: no err_R ≤ 0.10); Test F passes functionally (mix 0.802, frame 1.24, sil kept). 20-seed fields did not reduce Test R error → objective flat, not fit noise.
 - Commit: task/O1g @ ea199bc
+
+## 2026-10-18 — O1h (ACCEPT; reading partial) — light recompute (exact)
+
+- repro_err_abs: 0
+- repro_L_abs: 0
+- axes_sorted: false (low-variance tail only; top 12 in order)
+- err_top3: 0.053239
+- err_top5: 0.124865
+- err_top10: 0.212948
+- err_top5_random: 1.00052
+- n_starts_top5_ok: 0
+- disp_hat: 0.251207
+- disp_random: 1.00322
+- Decision rule outcome: partial (0.10 < err_top5 ≤ 0.25). E5b recovers the top-3 axes (72 % of variance) to 0.05; error grows smoothly with k.
+- Commit: task/O1h @ fc5bf89
