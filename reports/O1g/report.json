@@ -1,0 +1,124 @@
+{
+  "artifacts": [
+    {
+      "path": "fit_symmetry.csv",
+      "sha256": "09d66b40b32bef79b74294202b2ab48f699a7bd5597b3cad6798c8663cdc2dd9"
+    },
+    {
+      "path": "reused_o1b_fits.csv",
+      "sha256": "8be6ce004f09adf5ccbc64fb432e12715ba888147721757e73cb3694c413a1d4"
+    },
+    {
+      "path": "testR_meta.json",
+      "sha256": "76810fcc38e6bb22d66d533aaf2fb05b400e4e7f7f271e8f2af31481c8e2024d"
+    },
+    {
+      "path": "Q_load_F.npy",
+      "sha256": "530316261b8f3b54123db8ab334056b3d766c21f54d20ff2579677f9cc754497"
+    }
+  ],
+  "branch": "task/O1g",
+  "commit": "8169283a0cd0c153317a2c48c1f2f89ed2338475",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385"
+    },
+    {
+      "path": "testR.csv",
+      "sha256": "ca61378f573a95bae62c1d4212034bb310793c9f05c2219033221e048a7b05f9"
+    },
+    {
+      "path": "testF.csv",
+      "sha256": "f2d4f3922bf7fe64de2f22ad7834b5ffeef724ff76857ff3fe2430418472b4b3"
+    },
+    {
+      "path": "Q_hat_F.npy",
+      "sha256": "6244cbac4b5f53f83ef759e8662149475c27b0eb1664d23ee1f021d8237b44cc"
+    },
+    {
+      "path": "views.csv",
+      "sha256": "ba7c9ccb48b28af76ffa2e9eb3f97d954bf3a4fd2b0f324e39f0e758fef44e7a"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "8314e45bcc38a92a77aedeb5429c02102d7eee4b091ea4e4da5a3860d640be9a"
+    },
+    {
+      "path": "fig_recovery.png",
+      "sha256": "9e31706137575b18267199dd8fd4f5bc1f4dab89ffe443339b2e266868aab405"
+    },
+    {
+      "path": "scripts/o1g_run.py",
+      "sha256": "6ea9f476bd165a66a6eadcd5ec633975daf433d1d59002f483673b0c6656815a"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "limited concurrent E5 start workers to three",
+      "why": "The 20-model ensemble exhausted the local Mac memory after the completed fit stage; all 20 fixed starts, seeds, and float64 optimizer settings remain unchanged."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-18T08:27:53.215523+00:00",
+  "gated": {
+    "e5b_outcome": "fails",
+    "err_F": 0.6301425843451314,
+    "err_R_E5b_2000": 0.6629445935488368,
+    "err_R_E5b_2759": 0.6037296396289642,
+    "frac_hat_below_star": 0.5,
+    "frame_ratio_F": 1.2425624732566642,
+    "latent_check_max": 0.0,
+    "min_n_e5b": 0,
+    "mix_F": 0.8024827836172526,
+    "mix_F_noA": 0.3119427328742298,
+    "sil_F": 0.3871074754557825,
+    "sil_F_noA": 0.38083416223526,
+    "start_overlap": 0,
+    "symmetry_max": 2.1759884560879073e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385",
+  "observations": [
+    "Input SHA-256: data/pbmc_10k_v3/pbmc_10k_v3.h5ad = f449ff0a02c3749be88a51e83200e69757acb3547bd7ea9d1319aad7c1e8aa4b.",
+    "Input SHA-256: data/pbmc_10k_v3/k0_halves.csv = 41fdb7ba192b953938ac62191ce09fdccb3b2733f6c5340e251fd439dba0fd16.",
+    "Input SHA-256: reports/K0/genes.txt = 9c6a8589b6268b367ecdb412b7cd479c299eb77f3834888c16f02b3be0a5ba99.",
+    "Input SHA-256: reports/K0/latent_pca30_h1.npy = 195226b0296ae29274161e5d1fcf5c73751a8220be5f7593ef89b4610010a7e5.",
+    "Input SHA-256: reports/K0/latent_pca30_h2.npy = 44a02acd94c8cbbc3a19372a735d9220543fede8837a9e42c278e70560334e92.",
+    "The reused_o1b_fits.csv artifact records the source path and SHA-256 for every reused O1b fit."
+  ],
+  "regeneration": {
+    "Q_hat_F.npy": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage all",
+    "e5b_outcome": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage report",
+    "err_F": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testF",
+    "err_R_E5b_2000": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testR",
+    "err_R_E5b_2759": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testR",
+    "fig_recovery.png": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage all",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage all",
+    "frac_hat_below_star": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testR",
+    "frame_ratio_F": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testF",
+    "latent_check_max": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testF",
+    "min_n_e5b": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage report",
+    "mix_F": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testF",
+    "mix_F_noA": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testF",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage all",
+    "scripts/o1g_run.py": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage all",
+    "sil_F": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testF",
+    "sil_F_noA": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testF",
+    "start_overlap": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage testR",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage fits",
+    "testF.csv": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage all",
+    "testR.csv": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage all",
+    "views.csv": "cd \"$HOME/Documents/scopalign-manus-O1g\" && .venv/bin/python reports/O1g/scripts/o1g_run.py --stage all"
+  },
+  "seed": 20261014,
+  "started": "2026-10-17T00:33:05.996706+00:00",
+  "status": "complete",
+  "task_id": "O1g"
+}
