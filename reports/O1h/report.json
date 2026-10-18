@@ -1,0 +1,87 @@
+{
+  "artifacts": [
+    {
+      "path": "Q_hats.npz",
+      "sha256": "1e8219931397e7cf03d7bf408b181a8d2d02d9a74f60772419ee16453fd597fd"
+    }
+  ],
+  "branch": "task/O1h",
+  "commit": "47cd48ee6df1a35e618d74d119ae5f734d7ac01e",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385"
+    },
+    {
+      "path": "starts.csv",
+      "sha256": "52b2ac8f77f8b7657b123f7e7bb73675f3013657cdb2cab6fe63ac2bdd468318"
+    },
+    {
+      "path": "topk.csv",
+      "sha256": "92b474c035576ba261b9865085e61f8b721d25f9cf733a7d743508e3ce5eb839"
+    },
+    {
+      "path": "fits_used.csv",
+      "sha256": "e709a77b64f894fa06b92683073744c360bde4af10e46303542b41fbafa9a385"
+    },
+    {
+      "path": "fig_topk.png",
+      "sha256": "75a5c67d20fba784795e923cc645ec26cdea0cef38b4b8c20230c00b2364469e"
+    },
+    {
+      "path": "scripts/o1h_run.py",
+      "sha256": "0e909cbc808d9128220ddb914314e65b91e1837335ebce5b10f4d1fb7ef02c98"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-18T17:12:39.313935+00:00",
+  "gated": {
+    "axes_sorted": false,
+    "disp_hat": 0.2512069654010294,
+    "disp_random": 1.0032240213138468,
+    "err_top10": 0.2129483204474493,
+    "err_top3": 0.05323903934081633,
+    "err_top5": 0.12486519486571802,
+    "err_top5_random": 1.000523003287107,
+    "n_starts_top5_ok": 0,
+    "reading": "partial",
+    "repro_L_abs": 0.0,
+    "repro_err_abs": 0.0
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385",
+  "observations": [
+    "Authorized O1g import source SHA-256: 6ea9f476bd165a66a6eadcd5ec633975daf433d1d59002f483673b0c6656815a.",
+    "fits_used.csv records the absolute path and SHA-256 of every cached drift fit loaded for this one case."
+  ],
+  "regeneration": {
+    "axes_sorted": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage estimate",
+    "disp_hat": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage measure",
+    "disp_random": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage measure",
+    "err_top10": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage measure",
+    "err_top3": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage measure",
+    "err_top5": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage measure",
+    "err_top5_random": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage measure",
+    "fig_topk.png": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage report",
+    "fits_used.csv": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage report",
+    "n_starts_top5_ok": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage measure",
+    "reading": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage report",
+    "repro_L_abs": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage estimate",
+    "repro_err_abs": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage estimate",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage report",
+    "scripts/o1h_run.py": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage report",
+    "starts.csv": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage report",
+    "topk.csv": "cd \"$HOME/Documents/scopalign-manus-O1h\" && .venv/bin/python reports/O1h/scripts/o1h_run.py --stage report"
+  },
+  "seed": 20261014,
+  "started": "2026-10-18T17:12:37.621473+00:00",
+  "status": "complete",
+  "task_id": "O1h"
+}
