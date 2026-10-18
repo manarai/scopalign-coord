@@ -512,3 +512,22 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.64196e-07
 - Decision rule outcome: fails (no err_R ≤ 0.10; err_F 0.582 > 0.25). Note: Test R starts included Q* (planner seed overlap).
 - Commit: task/O1b @ 0df3c07
+
+## 2026-10-18 — O1g (ACCEPT; E5b fails) — light recompute (exact)
+
+- e5b_outcome: fails
+- err_R_E5b_2000: 0.662945
+- err_R_E5b_2759: 0.60373
+- frac_hat_below_star: 0.5
+- start_overlap: 0
+- mix_F: 0.802483
+- mix_F_noA: 0.311943
+- sil_F: 0.387107
+- sil_F_noA: 0.380834
+- frame_ratio_F: 1.24256
+- err_F: 0.630143
+- symmetry_max: 2.17599e-07
+- latent_check_max: 0
+- min_n_e5b: 0
+- Decision rule outcome: fails (Test R: no err_R ≤ 0.10); Test F passes functionally (mix 0.802, frame 1.24, sil kept). 20-seed fields did not reduce Test R error → objective flat, not fit noise.
+- Commit: task/O1g @ ea199bc

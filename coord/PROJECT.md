@@ -205,7 +205,7 @@ that K0 shows to be reproducible, can decide it.
 | O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | ACCEPT (2026-10-16) — none works (errors 0.63–1.0); diagnostic: L(Q*) ≪ L(random) → search failure, not missing information |
 | O1f  | Targeted fix: seed-averaged group operators + global rotation search (reuses O1 arrays) | ACCEPT (2026-10-16) — fails; estimates ≈ Q*·diag(±1): curvature alone cannot fix axis signs → flow needed (O1b) |
 | O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | ACCEPT (2026-10-16) — fails (err_R 0.18 at 2759, from a start at the truth; err_F 0.58); Test F view mix 0.81, frame 1.22 |
-| O1g  | E5 with 20-seed fields and clean starts; Test F functional | issued (2026-10-16) |
+| O1g  | E5 with 20-seed fields and clean starts; Test F functional | ACCEPT (2026-10-18) — fails (err_R 0.60 at 2759, 0.66 at 2000); Test F passes functionally (mix 0.80, frame 1.24); more fits did not help → flat objective |
 | O1h  | Diagnostic: E5b top-k axis error on one cached Test R case (n 2759, r 0); saves all start rotations | issued (2026-10-17; after O1g exits) |
 | O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
 | O1d  | E6 one shared energy with a learnable rotation (ESM) | pre-registered (parallel allowed) |
