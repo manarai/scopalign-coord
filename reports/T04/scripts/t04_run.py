@@ -529,7 +529,9 @@ def optimize_start(item):
 
 
 def estimate_e5(problem):
-    workers = min(3, max(1, (os.cpu_count() or 1) - 1))
+    # One worker remains within the task's at-most-three-worker constraint and
+    # avoids the abrupt multiprocess worker termination observed on this host.
+    workers = 1
     with ProcessPoolExecutor(max_workers=workers, initializer=init_start_worker, initargs=(problem,)) as pool:
         result = list(pool.map(optimize_start, starts()))
     return min(result, key=lambda row: (row["L_hat"], row["start"])), result
@@ -563,7 +565,7 @@ def estimate_stage():
         score_scopalign(scenario, best["Q"])
     np.savez_compressed(OUT / "Q_hats.npz", **q_values)
     pd.DataFrame(start_rows).sort_values(["scenario", "start"]).to_csv(OUT / "estimate_starts.csv", index=False)
-    print(json.dumps({"n_starts": int(len(start_rows)), "start_workers": int(min(3, max(1, (os.cpu_count() or 1) - 1)))}, sort_keys=True), flush=True)
+    print(json.dumps({"n_starts": int(len(start_rows)), "start_workers": 1}, sort_keys=True), flush=True)
 
 
 def individual_operator(model, z):
@@ -777,7 +779,12 @@ def report_stage():
         "gated": gated, "deliverables": [{"path": path, "sha256": sha(OUT / path)} for path in files],
         "artifacts": [{"path": "Q_hats.npz", "sha256": sha(OUT / "Q_hats.npz")}, {"path": "run_meta.json", "sha256": sha(OUT / "run_meta.json")},
                       {"path": "fit_symmetry.csv", "sha256": sha(OUT / "fit_symmetry.csv")}, {"path": "estimate_starts.csv", "sha256": sha(OUT / "estimate_starts.csv")}],
-        "regeneration": regeneration, "deviations": [], "deviations_requested": [],
+        "regeneration": regeneration,
+        "deviations": [{
+            "what": "Restricted the E5 clean-start pool to one worker.",
+            "why": "The initial permitted three-worker cloud run terminated abruptly with BrokenProcessPool before producing any start result. A single worker remains within the specified at-most-three-worker limit; it retains all 20 fixed starts, their seeds, float64 objective, and optimizer settings."
+        }],
+        "deviations_requested": [],
         "observations": [f"Input SHA-256: {path.relative_to(ROOT)} = {sha(path)}." for path in (SOURCE, HALVES, GENES_PATH)],
         "known_failures": KNOWN, "lockfile_sha256": sha(requirements_path()),
     }
