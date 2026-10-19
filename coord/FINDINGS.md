@@ -546,3 +546,20 @@ planner's recomputed values, not the executor's reported ones.
 - disp_random: 1.00322
 - Decision rule outcome: partial (0.10 < err_top5 ≤ 0.25). E5b recovers the top-3 axes (72 % of variance) to 0.05; error grows smoothly with k.
 - Commit: task/O1h @ fc5bf89
+
+## 2026-10-18 — O1i (ACCEPT; E5r fails) — light recompute (exact)
+
+- e5r_outcome: fails
+- err_R_top3_2759: 0.972689
+- err_R_top5_2759: 0.933871
+- err_R_top8_2759: 0.951385
+- sub5_max: 0.978176
+- frac_robust: 1
+- mix_F: 0.264891
+- mix_F_noA: 0.311943
+- sil_F: 0.374937
+- sil_F_noA: 0.380834
+- frame_ratio_F: 2.32555
+- symmetry_max: 2.13457e-07
+- Decision rule outcome: fails (Test R top-5 0.93 > 0.10; Test F mix 0.26). Operator-statistic subspaces do not transfer between copies (flat spectra); position-covariance subspace does (sub 0.07 / 0.11 at k 3 / 5; planner diagnostic).
+- Commit: task/O1i @ f3d5384
