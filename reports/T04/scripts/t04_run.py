@@ -508,6 +508,28 @@ def starts():
         yield index, np.asarray(ortho_group.rvs(D, random_state=20263000 + index), dtype=np.float64)
 
 
+def estimate_checkpoint(scenario, start):
+    return CACHE / "estimate" / f"{scenario}_start{int(start)}.npz"
+
+
+def load_start_checkpoint(path):
+    with np.load(path, allow_pickle=False) as values:
+        return {
+            "start": int(values["start"]), "L_hat": float(values["L_hat"]),
+            "D": float(values["D"]), "H": float(values["H"]),
+            "Q": np.asarray(values["Q"], dtype=np.float64),
+        }
+
+
+def save_start_checkpoint(scenario, result):
+    target = estimate_checkpoint(scenario, result["start"])
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_suffix(".tmp.npz")
+    np.savez_compressed(temporary, start=np.int64(result["start"]), L_hat=np.float64(result["L_hat"]),
+                        D=np.float64(result["D"]), H=np.float64(result["H"]), Q=np.asarray(result["Q"], dtype=np.float64))
+    os.replace(temporary, target)
+
+
 def init_start_worker(problem):
     global WORKER_PROBLEM
     torch.set_num_threads(1)
@@ -516,7 +538,10 @@ def init_start_worker(problem):
 
 def optimize_start(item):
     torch.set_num_threads(1)
-    start, q0_array = item
+    scenario, start, q0_array = item
+    checkpoint = estimate_checkpoint(scenario, start)
+    if checkpoint.exists():
+        return load_start_checkpoint(checkpoint)
     q0 = torch.as_tensor(q0_array, dtype=torch.float64)
     skew = torch.zeros((D, D), dtype=torch.float64, requires_grad=True)
     optimizer = torch.optim.LBFGS([skew], lr=1.0, max_iter=500, tolerance_grad=1e-10,
@@ -524,16 +549,29 @@ def optimize_start(item):
     optimizer.step(E5Closure(WORKER_PROBLEM, q0, skew))
     q = (q0 @ torch.matrix_exp(skew - skew.T)).detach()
     value, flow, curvature = WORKER_PROBLEM.loss(q, track=False)
-    return {"start": int(start), "L_hat": float(value.detach()), "D": float(flow.detach()),
-            "H": float(curvature.detach()), "Q": q.cpu().numpy()}
+    result = {"start": int(start), "L_hat": float(value.detach()), "D": float(flow.detach()),
+              "H": float(curvature.detach()), "Q": q.cpu().numpy().astype(np.float64)}
+    save_start_checkpoint(scenario, result)
+    return result
 
 
-def estimate_e5(problem):
+def estimate_e5(problem, scenario):
     # One worker remains within the task's at-most-three-worker constraint and
     # avoids the abrupt multiprocess worker termination observed on this host.
     workers = 1
-    with ProcessPoolExecutor(max_workers=workers, initializer=init_start_worker, initargs=(problem,)) as pool:
-        result = list(pool.map(optimize_start, starts()))
+    cached = []
+    pending = []
+    for start, q0 in starts():
+        checkpoint = estimate_checkpoint(scenario, start)
+        if checkpoint.exists():
+            cached.append(load_start_checkpoint(checkpoint))
+        else:
+            pending.append((scenario, start, q0))
+    completed = []
+    if pending:
+        with ProcessPoolExecutor(max_workers=workers, initializer=init_start_worker, initargs=(problem,)) as pool:
+            completed = list(pool.map(optimize_start, pending))
+    result = cached + completed
     return min(result, key=lambda row: (row["L_hat"], row["start"])), result
 
 
@@ -558,7 +596,7 @@ def estimate_stage():
     for scenario in SCENARIOS:
         embedding = load_embedding(scenario)
         problem = E5Problem(models_for(scenario, "A"), models_for(scenario, "B"), embedding["z_a"], embedding["z_b"], SCENARIO_REPLICATE[scenario])
-        best, results = estimate_e5(problem)
+        best, results = estimate_e5(problem, scenario)
         q_values[f"Q_{scenario}"] = best["Q"].astype(np.float64)
         for row in results:
             start_rows.append({"scenario": scenario, "start": row["start"], "L_hat": row["L_hat"], "D": row["D"], "H": row["H"], "selected": bool(row["start"] == best["start"])})
@@ -780,10 +818,16 @@ def report_stage():
         "artifacts": [{"path": "Q_hats.npz", "sha256": sha(OUT / "Q_hats.npz")}, {"path": "run_meta.json", "sha256": sha(OUT / "run_meta.json")},
                       {"path": "fit_symmetry.csv", "sha256": sha(OUT / "fit_symmetry.csv")}, {"path": "estimate_starts.csv", "sha256": sha(OUT / "estimate_starts.csv")}],
         "regeneration": regeneration,
-        "deviations": [{
-            "what": "Restricted the E5 clean-start pool to one worker.",
-            "why": "The initial permitted three-worker cloud run terminated abruptly with BrokenProcessPool before producing any start result. A single worker remains within the specified at-most-three-worker limit; it retains all 20 fixed starts, their seeds, float64 objective, and optimizer settings."
-        }],
+        "deviations": [
+            {
+                "what": "Checkpointed each completed E5 clean start under cache/estimate/ and reused it on restart.",
+                "why": "This supports interruption recovery without changing any start, seed, float64 objective, LBFGS setting, or finished result."
+            },
+            {
+                "what": "Restricted the E5 clean-start pool to one worker.",
+                "why": "The initial permitted three-worker cloud run terminated abruptly with BrokenProcessPool before producing any start result. A single worker remains within the specified at-most-three-worker limit; it retains all 20 fixed starts, their seeds, float64 objective, and optimizer settings."
+            }
+        ],
         "deviations_requested": [],
         "observations": [f"Input SHA-256: {path.relative_to(ROOT)} = {sha(path)}." for path in (SOURCE, HALVES, GENES_PATH)],
         "known_failures": KNOWN, "lockfile_sha256": sha(requirements_path()),
