@@ -1,0 +1,82 @@
+{
+  "artifacts": [
+    {
+      "path": "cloud_k2_drift.npz",
+      "sha256": "ff01e62377cdd44f88b873d10463861f0a48e05964e7779a490175dee4909df2"
+    }
+  ],
+  "branch": "task/C0",
+  "commit": "d77c039217d8aff68b9c3c69015a4c2e49316e6d",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56"
+    },
+    {
+      "path": "fingerprints.txt",
+      "sha256": "4933dadbe42ac742ab217639a311167f41ad0c9a4d32f2fa1cda67e1ff6cb614"
+    },
+    {
+      "path": "scripts/c0_check.py",
+      "sha256": "efb494d6fa6911bebae8e6ceb3452dea6a9b9fe7b7bcc9db0a450bbe980173cb"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Installed CPython 3.11.16 with uv.",
+      "why": "The base Ubuntu image supplied Python 3.12 only and its repositories did not provide python3.11; C0 requires a Python 3.11 venv."
+    },
+    {
+      "what": "Installed the exact non-scJDO lock entries with --no-deps.",
+      "why": "The pinned lock contains an internal resolver conflict: dynamo-release==1.5.3 declares anndata<0.11 while the same lock pins anndata==0.12.19; --no-deps retained every pinned lock version."
+    },
+    {
+      "what": "Used torch==2.14.1+cpu instead of the CUDA-linked PyPI torch==2.14.1 Linux wheel.",
+      "why": "The pinned PyPI Linux wheel could not import without libcudart.so.13 in this CPU-only cloud sandbox; the matching CPU build retains base version 2.14.1."
+    },
+    {
+      "what": "Ran reports/T00/scripts/t00_stage.py without --stage arguments.",
+      "why": "The committed T00 script exposes only its default prepare command, which performs both its requested raw downloads and h5ad builds."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-19T04:22:09.821201+00:00",
+  "gated": {
+    "drift_repro_max_abs": 2.0896412971926903e-06,
+    "latent_check_max": 0.0014609694480895996,
+    "n_fingerprints_match": 8,
+    "n_raw_sha_match": 3,
+    "platform": "Linux-6.18.38+-x86_64-with-glibc2.39",
+    "scjdo2_sha": "59cbbf3eb73405bec19448f3dd28945926a1e176",
+    "torch_version": "2.14.1+cpu"
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56",
+  "observations": [
+    "All raw and content fingerprint comparisons are written to the generated outputs.",
+    "cloud_k2_drift.npz is a non-deliverable local diagnostic produced by the cross-platform drift check."
+  ],
+  "regeneration": {
+    "drift_repro_max_abs": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "fingerprints.txt": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "latent_check_max": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "n_fingerprints_match": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "n_raw_sha_match": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "platform": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "report.json": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "requirements.lock": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "scjdo2_sha": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "scripts/c0_check.py": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py",
+    "torch_version": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/C0/scripts/c0_check.py"
+  },
+  "seed": 20261014,
+  "started": "2026-10-19T04:21:52.370120+00:00",
+  "status": "complete",
+  "task_id": "C0"
+}
