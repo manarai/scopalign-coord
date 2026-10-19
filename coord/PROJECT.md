@@ -215,7 +215,7 @@ that K0 shows to be reproducible, can decide it.
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
 | T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
-| C0   | Cloud bootstrap: rebuild env + data in a Manus sandbox; content fingerprints must match the Mac | issued (2026-10-15) |
+| C0   | Cloud bootstrap: rebuild env + data in a Manus sandbox; content fingerprints must match the Mac | ACCEPT (2026-10-18) — 8/8 fingerprints, drift repro 2e-6; latent tolerance corrected to relative (planner error; PCA float32 round-off 5e-5) |
 | O1   | Operator-estimated rotation on known answers (known Q*, known gene frame); five estimators (baseline, operator ICP, + drift, + seed averaging, + gap weighting); selects estimator and minimum cell count | ACCEPT (2026-10-16) — none works (errors 0.63–1.0); diagnostic: L(Q*) ≪ L(random) → search failure, not missing information |
 | O1f  | Targeted fix: seed-averaged group operators + global rotation search (reuses O1 arrays) | ACCEPT (2026-10-16) — fails; estimates ≈ Q*·diag(±1): curvature alone cannot fix axis signs → flow needed (O1b) |
 | O1b  | E5 field equivariance (no correspondences); O1's known-answer tests and pass rule | ACCEPT (2026-10-16) — fails (err_R 0.18 at 2759, from a start at the truth; err_F 0.58); Test F view mix 0.81, frame 1.22 |

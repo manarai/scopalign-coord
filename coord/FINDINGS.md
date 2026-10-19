@@ -563,3 +563,14 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.13457e-07
 - Decision rule outcome: fails (Test R top-5 0.93 > 0.10; Test F mix 0.26). Operator-statistic subspaces do not transfer between copies (flat spectra); position-covariance subspace does (sub 0.07 / 0.11 at k 3 / 5; planner diagnostic).
 - Commit: task/O1i @ f3d5384
+
+## 2026-10-18 — C0 (ACCEPT after planner tolerance correction)
+
+- n_raw_sha_match: 3
+- n_fingerprints_match: 8
+- latent_check_max: 0.00146097 (relative to max|z| ≈ 31: 4.7e-5; corrected cross-platform criterion ≤ 1e-4 relative)
+- drift_repro_max_abs: 2.08964e-06
+- scjdo2_sha: 59cbbf3eb73405bec19448f3dd28945926a1e176
+- platform: Linux-6.18.38+-x86_64-with-glibc2.39; torch 2.14.1+cpu
+- Decision: ACCEPT (registered rule gave REVISE on the 1e-4 absolute latent tolerance — planner spec error, corrected to relative with Tom's approval). Cloud sandbox may run T04.
+- Commit: task/C0 @ 296fc13
