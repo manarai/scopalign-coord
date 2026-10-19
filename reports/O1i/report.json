@@ -1,0 +1,108 @@
+{
+  "artifacts": [
+    {
+      "path": "Q_hats.npz",
+      "sha256": "9c9f53cba83a8869c5d638b4082f32e35936c55ff767d01b89bcb43645abcf64"
+    },
+    {
+      "path": "screen.csv",
+      "sha256": "8a028bc174242068a034717fbf8e1eecd7f61dfffbcbfbf707c3e0384b3bef73"
+    },
+    {
+      "path": "fits_used.csv",
+      "sha256": "ee10a05c3d36aa6193a67618560158cda631e926b17ca93c3b7e3295df751197"
+    }
+  ],
+  "branch": "task/O1i",
+  "commit": "8e9a173c9251b53b4b3699c8b66196efe80fab59",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385"
+    },
+    {
+      "path": "testR.csv",
+      "sha256": "dde4f101046555a6dfdfbc9d94cfd02b5df87eb516753b6f1f2b551f20c08501"
+    },
+    {
+      "path": "testF.csv",
+      "sha256": "c5e67c8fe329af54fd25fe830a508cb45fb262de8b3ecbc77ed61e7706ad9b0a"
+    },
+    {
+      "path": "Q_hat_F.npy",
+      "sha256": "103aaa29e9427467d24a180503325de233772620f41fa06f9e8d43b4609fd4f9"
+    },
+    {
+      "path": "views.csv",
+      "sha256": "650e63d920c45b5df0b3db29108b7bec910fad77ac2e9a328dcb5942a199afb0"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "4c2efb47d6fec286326a986857b3877dc531100d98de8be72a87dff19ad95fd7"
+    },
+    {
+      "path": "fig_topk.png",
+      "sha256": "c25f2d141bf8b237d3c268c7c6e090f309e3d7c1243e2a1ee8c6aa857efcbff7"
+    },
+    {
+      "path": "scripts/o1i_run.py",
+      "sha256": "c6570a7ba3a7d0cb324ded296a9be246e778f963b8f87dfa3ec72198e6ab1228"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-19T00:20:47.338934+00:00",
+  "gated": {
+    "e5r_outcome": "fails",
+    "err_R_top3_2759": 0.9726887100151592,
+    "err_R_top5_2759": 0.9338709783385108,
+    "err_R_top8_2759": 0.9513845096030056,
+    "frac_robust": 1.0,
+    "frame_ratio_F": 2.325547221548106,
+    "mix_F": 0.264890660867464,
+    "mix_F_noA": 0.3119427328742298,
+    "sil_F": 0.3749368543305884,
+    "sil_F_noA": 0.38083416223526,
+    "sub5_max": 0.9781761642445812,
+    "symmetry_max": 2.1345701384234417e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385",
+  "observations": [
+    "Authorized O1g import source SHA-256: 6ea9f476bd165a66a6eadcd5ec633975daf433d1d59002f483673b0c6656815a.",
+    "O1h top-k comparison source SHA-256: 92b474c035576ba261b9865085e61f8b721d25f9cf733a7d743508e3ce5eb839.",
+    "fits_used.csv records the absolute path and SHA-256 of every cached drift fit loaded by O1i."
+  ],
+  "regeneration": {
+    "Q_hat_F.npy": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage all",
+    "e5r_outcome": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage report",
+    "err_R_top3_2759": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testR",
+    "err_R_top5_2759": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testR",
+    "err_R_top8_2759": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testR",
+    "fig_topk.png": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage all",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage all",
+    "frac_robust": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testR",
+    "frame_ratio_F": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testF",
+    "mix_F": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testF",
+    "mix_F_noA": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testF",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage all",
+    "scripts/o1i_run.py": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage all",
+    "sil_F": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testF",
+    "sil_F_noA": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testF",
+    "sub5_max": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testR",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage testR",
+    "testF.csv": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage all",
+    "testR.csv": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage all",
+    "views.csv": "cd \"$HOME/Documents/scopalign-manus-O1i\" && .venv/bin/python reports/O1i/scripts/o1i_run.py --stage all"
+  },
+  "seed": 20261014,
+  "started": "2026-10-19T00:08:05.866214+00:00",
+  "status": "complete",
+  "task_id": "O1i"
+}
