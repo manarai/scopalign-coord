@@ -120,6 +120,18 @@ reproduce but fail across chemistries (K2), the axiom fails for chemistry.
    appears only as the known answer in tests. Rationale: a correction
    derived from the local dynamics should be more faithful to the biology
    than one derived from positions or expression.
+13a. **Axes from positions, orientation from operators** (Tom, 2026-10-18;
+   after O1i showed operator statistics have flat spectra and do not define
+   a transferable subspace, while each copy's position covariance does).
+   An estimator may use **each copy's own cell covariance** (its principal
+   axes and their variance order, computed within that copy only) to
+   choose *which* directions are aligned. Everything those axes leave open
+   — the rotation within a block of axes of similar variance, and every
+   axis sign — must come from operators and drift only. Still excluded from
+   the estimate: cross-copy pairing, labels, gene loadings and any other
+   use of positions. Claims are stated accordingly: "positions locate the
+   axes; operators orient them". Applies from O1j on; rule 13 otherwise
+   unchanged.
 14. **Estimator search order and stopping rule** (Tom, 2026-10-15): test
    estimators in order of predicted success until one works, on the same
    known-answer tests and pass rule as O1 (works at n if `err_R ≤ 0.10`;
@@ -132,6 +144,7 @@ reproduce but fail across chemistries (K2), the axiom fails for chemistry.
    effect: the first estimator **in the fixed order** O1 (E0…E4), O1f (E9; inserted 2026-10-16 after O1's
    diagnostic, before any O1b–O1e result), O1b (E5), O1g (E5b; inserted 2026-10-16 after O1b, before any
    O1c–O1e result), O1i (E5r; inserted 2026-10-18 after O1g/O1h, before any
+   O1c–O1e result), O1j (E5p; inserted 2026-10-18 after O1i, before any
    O1c–O1e result),
    O1c (E7), O1d (E6), O1e (E8) that works is the one used, whatever order
    the results arrive in. It goes to **O2** (real pairs, or larger data if
@@ -209,6 +222,7 @@ that K0 shows to be reproducible, can decide it.
 | O1g  | E5 with 20-seed fields and clean starts; Test F functional | ACCEPT (2026-10-18) — fails (err_R 0.60 at 2759, 0.66 at 2000); Test F passes functionally (mix 0.80, frame 1.24); more fits did not help → flat objective |
 | O1h  | Diagnostic: E5b top-k axis error on one cached Test R case (n 2759, r 0); saves all start rotations | ACCEPT (2026-10-18) — partial: top-3 axes err 0.05, top-5 0.12, top-10 0.21, all 30 0.60 → information fades with variance |
 | O1i  | E5r: rotation restricted to the operator-defined top-k subspace (k = 5 gated; 3, 8 reported), complement left unchanged; screened sign starts | ACCEPT (2026-10-18) — fails (top-5 err 0.93; Test F mix 0.26): operator-defined subspace does not transfer (flat spectra); position-covariance subspace would |
+| O1j  | E5p: axes from each copy's position covariance (rule 13a); top-5 block rotation + remaining axis signs from operators | issued (2026-10-18) |
 | O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
 | O1d  | E6 one shared energy with a learnable rotation (ESM) | pre-registered (parallel allowed) |
 | O1e  | E8 fused Gromov–Wasserstein initial matching + E3 ICP | pre-registered (parallel allowed) |
