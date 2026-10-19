@@ -1,0 +1,10 @@
+===== one =====
+{"h1_max_abs": 0.0010056495666503906, "h1_rmse": 4.315725527703762e-05, "h2_max_abs": 0.0012558698654174805, "h2_rmse": 8.706947119208053e-05, "latent_check_max": 0.0012558698654174805, "openblas_coretype": null, "openblas_num_threads": "1"}
+===== six =====
+{"h1_max_abs": 0.001007080078125, "h1_rmse": 4.535025072982535e-05, "h2_max_abs": 0.0014609694480895996, "h2_rmse": 9.943155600922182e-05, "latent_check_max": 0.0014609694480895996, "openblas_coretype": null, "openblas_num_threads": "6"}
+===== haswell_one =====
+{"h1_max_abs": 0.000965118408203125, "h1_rmse": 4.914007513434626e-05, "h2_max_abs": 0.001247406005859375, "h2_rmse": 8.672332478454337e-05, "latent_check_max": 0.001247406005859375, "openblas_coretype": "Haswell", "openblas_num_threads": "1"}
+===== nehalem_one =====
+{"h1_max_abs": 0.0009980201721191406, "h1_rmse": 4.745519981952384e-05, "h2_max_abs": 0.001609206199645996, "h2_rmse": 0.00010961016232613474, "latent_check_max": 0.001609206199645996, "openblas_coretype": "Nehalem", "openblas_num_threads": "1"}
+===== generic_one =====
+{"h1_max_abs": 0.0010056495666503906, "h1_rmse": 4.315725527703762e-05, "h2_max_abs": 0.0012558698654174805, "h2_rmse": 8.706947119208053e-05, "latent_check_max": 0.0012558698654174805, "openblas_coretype": "generic", "openblas_num_threads": "1"}
