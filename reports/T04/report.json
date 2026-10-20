@@ -1,0 +1,165 @@
+{
+  "artifacts": [
+    {
+      "path": "Q_hats.npz",
+      "sha256": "b73686cb8f4ced3d0b7c7bc170daec2d96640d368b37cc8afadaafd1e9b4ea00"
+    },
+    {
+      "path": "run_meta.json",
+      "sha256": "bc80d2530ae268ab2419bcca51f825773039be82393bf1a202bfd9c180bee2b0"
+    },
+    {
+      "path": "fit_symmetry.csv",
+      "sha256": "3701ea6a3a649aff78620b43a7f15cdcf5de8057e1bbdf385b4dd17d4883dfb7"
+    },
+    {
+      "path": "estimate_starts.csv",
+      "sha256": "c329041878bbcedd43729de054095027aed1e061fc40b9c47cc132f89b067c2d"
+    },
+    {
+      "path": "estimate_benchmark.json",
+      "sha256": "bea06f440ea972aded1ce5510a42ae7631feab77150903134a37bad84843d63c"
+    }
+  ],
+  "branch": "task/T04",
+  "commit": "d4933d31556b3dcf012963cadc060f8a8e45b638",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56"
+    },
+    {
+      "path": "data_meta.json",
+      "sha256": "6ee0f2477de0fc2dd09bfaecb0fc391a23f08c7f349c1c9b2dfc40fb0a42de9c"
+    },
+    {
+      "path": "scores.csv",
+      "sha256": "d50d2efc89670438b4d6ba12fc670932b457b8e9138f80f7dfc7579a6ec8ceb0"
+    },
+    {
+      "path": "flags.csv",
+      "sha256": "1d6de7575c65558a83d70f636ad3b3ea860fddf7fbd00821fcaed697c0780cdc"
+    },
+    {
+      "path": "fig_umap_S1.png",
+      "sha256": "5be3dba762d58a3a582ae5278eb69a90463119ff9d579fe57eea92f28f0bba66"
+    },
+    {
+      "path": "fig_umap_S0.png",
+      "sha256": "0a4702c0350c2bd4bc083ddc700e333c1febe6383e7c23335b7b76302ebb1169"
+    },
+    {
+      "path": "fig_flags.png",
+      "sha256": "3c5dc1b89147dd8439597c3383f3c0c928a20a85ff220b889ba066bf8fdb2d90"
+    },
+    {
+      "path": "scripts/t04_run.py",
+      "sha256": "fd8ad2bfe52e614ef8acb1835cc861b0978db688e37bbe6d8ee360a2e99b9cf9"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Checkpointed each completed E5 clean start under cache/estimate/ and reused it on restart.",
+      "why": "This supports interruption recovery without changing any start, seed, float64 objective, LBFGS setting, or finished result."
+    },
+    {
+      "what": "Used 3 spawn start worker(s) with 2 torch thread(s) per worker.",
+      "why": "Spawn avoids the earlier PyTorch fork-worker termination while retaining all 20 fixed starts, seeds, float64 objective, and LBFGS settings. The isolated S0/start-0 benchmark agreement was max |L_hat difference| = 3.878e-12."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-20T04:22:43.318722+00:00",
+  "gated": {
+    "bio_false_gene_rot": 0.0403659147627641,
+    "bio_false_harmony": -0.0212447426093198,
+    "bio_false_joint": 0.3182942648121578,
+    "bio_false_none": 0.2377264820948171,
+    "bio_false_scopalign": 0.2397441959310696,
+    "bio_false_scvi": 0.0908087606690781,
+    "bio_keep_oracle": 0.9394685849124231,
+    "flag_other_max_gene_rot": 2.1878044867464115,
+    "flag_other_max_none": 4.952849335484961,
+    "flag_other_max_scopalign": 2.318697449321501,
+    "flag_resp_gene_rot": 2.1895744306429896,
+    "flag_resp_none": 5.0159409040544505,
+    "flag_resp_scopalign": 1.5033934071317874,
+    "flag_s0_max_gene_rot": 2.422292709781088,
+    "flag_s0_max_none": 4.976854698895898,
+    "flag_s0_max_scopalign": 4.058472949666631,
+    "mix_bg_gene_rot": 0.8310304952588627,
+    "mix_bg_harmony": 0.8255525820200218,
+    "mix_bg_joint": 0.2725939141639409,
+    "mix_bg_none": 0.3419764099514323,
+    "mix_bg_scopalign": 0.0737172498100241,
+    "mix_bg_scvi": 0.9252849638219842,
+    "n_bio_genes": 22,
+    "n_responders": 947,
+    "retention_gene_rot": 0.9066991229502483,
+    "retention_harmony": 0.632290654796428,
+    "retention_joint": 1.0170319052858483,
+    "retention_none": 0.8413685302408932,
+    "retention_scopalign": 0.680739183028901,
+    "retention_scvi": 0.6268963856736373,
+    "symmetry_max": 1.9437332809957297e-07,
+    "t04_outcome": "not_supported"
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56",
+  "observations": [
+    "Input SHA-256: data/pbmc_10k_v3/pbmc_10k_v3.h5ad = 5ee64ccadefe8d888a913a89424cde3e5ec74062edcc91c1b34bc3b48b8b370d.",
+    "Input SHA-256: data/pbmc_10k_v3/k0_halves.csv = 41fdb7ba192b953938ac62191ce09fdccb3b2733f6c5340e251fd439dba0fd16.",
+    "Input SHA-256: reports/K0/genes.txt = 9c6a8589b6268b367ecdb412b7cd479c299eb77f3834888c16f02b3be0a5ba99."
+  ],
+  "regeneration": {
+    "bio_false_gene_rot": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "bio_false_harmony": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "bio_false_joint": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "bio_false_none": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "bio_false_scopalign": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage estimate",
+    "bio_false_scvi": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "bio_keep_oracle": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "data_meta.json": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage all",
+    "fig_flags.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage all",
+    "fig_umap_S0.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage all",
+    "fig_umap_S1.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage all",
+    "flag_other_max_gene_rot": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flag_other_max_none": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flag_other_max_scopalign": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flag_resp_gene_rot": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flag_resp_none": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flag_resp_scopalign": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flag_s0_max_gene_rot": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flag_s0_max_none": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flag_s0_max_scopalign": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage flag",
+    "flags.csv": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage all",
+    "mix_bg_gene_rot": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "mix_bg_harmony": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "mix_bg_joint": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "mix_bg_none": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "mix_bg_scopalign": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage estimate",
+    "mix_bg_scvi": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "n_bio_genes": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage data",
+    "n_responders": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage data",
+    "requirements.lock": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage all",
+    "retention_gene_rot": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "retention_harmony": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "retention_joint": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "retention_none": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "retention_scopalign": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage estimate",
+    "retention_scvi": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage embed",
+    "scores.csv": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage all",
+    "scripts/t04_run.py": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage all",
+    "symmetry_max": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage fits",
+    "t04_outcome": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04/scripts/t04_run.py --stage report"
+  },
+  "seed": 20261014,
+  "started": "2026-10-19T06:15:15.097714+00:00",
+  "status": "complete",
+  "task_id": "T04"
+}
