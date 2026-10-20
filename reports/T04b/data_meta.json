@@ -1,0 +1,228 @@
+{
+  "batch_draw_order": [
+    "epsilon_standard_normal",
+    "T04_global_sigma0.5_f0_B",
+    "T04_global_sigma0.5_f4_B",
+    "A_once",
+    "remaining_conditions_in_data_draw_order"
+  ],
+  "batch_seed": 20261101,
+  "batch_types": [
+    "global",
+    "celltype"
+  ],
+  "bio_genes": [
+    "ISG15",
+    "IFI6",
+    "IFIT1",
+    "IFIT2",
+    "IFIT3",
+    "MX1",
+    "MX2",
+    "OAS1",
+    "OAS2",
+    "OAS3",
+    "OASL",
+    "RSAD2",
+    "IFI44",
+    "IFI44L",
+    "HERC5",
+    "STAT1",
+    "IRF7",
+    "XAF1",
+    "LY6E",
+    "EPSTI1",
+    "IFITM3",
+    "PLSCR1"
+  ],
+  "biology_f_values": [
+    0,
+    1,
+    2,
+    4,
+    8
+  ],
+  "biology_seed": 20261102,
+  "celltype_eta_type_order": [
+    "B cells",
+    "Cycling cells",
+    "DC",
+    "HSC/MPP",
+    "ILC",
+    "Macrophages",
+    "Mast cells",
+    "Megakaryocyte precursor",
+    "Megakaryocytes/platelets",
+    "Monocytes",
+    "Plasma cells",
+    "T cells",
+    "pDC"
+  ],
+  "celltype_factor_seed": 20261103,
+  "data_draw_order": [
+    {
+      "batch_type": "global",
+      "f": 0,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "global",
+      "f": 1,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "global",
+      "f": 2,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "global",
+      "f": 4,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "global",
+      "f": 8,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "global",
+      "f": 1,
+      "sigma": 0.5
+    },
+    {
+      "batch_type": "global",
+      "f": 2,
+      "sigma": 0.5
+    },
+    {
+      "batch_type": "global",
+      "f": 8,
+      "sigma": 0.5
+    },
+    {
+      "batch_type": "global",
+      "f": 0,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "global",
+      "f": 1,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "global",
+      "f": 2,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "global",
+      "f": 4,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "global",
+      "f": 8,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "celltype",
+      "f": 0,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "celltype",
+      "f": 1,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "celltype",
+      "f": 2,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "celltype",
+      "f": 4,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "celltype",
+      "f": 8,
+      "sigma": 0.25
+    },
+    {
+      "batch_type": "celltype",
+      "f": 0,
+      "sigma": 0.5
+    },
+    {
+      "batch_type": "celltype",
+      "f": 1,
+      "sigma": 0.5
+    },
+    {
+      "batch_type": "celltype",
+      "f": 2,
+      "sigma": 0.5
+    },
+    {
+      "batch_type": "celltype",
+      "f": 4,
+      "sigma": 0.5
+    },
+    {
+      "batch_type": "celltype",
+      "f": 8,
+      "sigma": 0.5
+    },
+    {
+      "batch_type": "celltype",
+      "f": 0,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "celltype",
+      "f": 1,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "celltype",
+      "f": 2,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "celltype",
+      "f": 4,
+      "sigma": 1.0
+    },
+    {
+      "batch_type": "celltype",
+      "f": 8,
+      "sigma": 1.0
+    }
+  ],
+  "depth_factor": 0.7,
+  "genes_sha256": "9c6a8589b6268b367ecdb412b7cd479c299eb77f3834888c16f02b3be0a5ba99",
+  "halves_fingerprint": "41fdb7ba192b953938ac62191ce09fdccb3b2733f6c5340e251fd439dba0fd16",
+  "halves_sha256": "41fdb7ba192b953938ac62191ce09fdccb3b2733f6c5340e251fd439dba0fd16",
+  "n_bio_genes": 22,
+  "n_cells_a": 5518,
+  "n_cells_b": 5518,
+  "n_conditions": 30,
+  "n_genes": 2000,
+  "n_monocytes_a": 1895,
+  "n_monocytes_b": 1895,
+  "n_oracles": 6,
+  "n_responders": 947,
+  "reference_arrays_match_t04": true,
+  "responder_seed": 20261100,
+  "sigma_values": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "source_fingerprint": "fd80192876343811a32822d8e560f0eff453e91dad936890374313e3405c4e3d",
+  "source_sha256": "5ee64ccadefe8d888a913a89424cde3e5ec74062edcc91c1b34bc3b48b8b370d",
+  "t04_scores_sha256": "d50d2efc89670438b4d6ba12fc670932b457b8e9138f80f7dfc7579a6ec8ceb0",
+  "t04_script_sha256": "fd8ad2bfe52e614ef8acb1835cc861b0978db688e37bbe6d8ee360a2e99b9cf9"
+}
