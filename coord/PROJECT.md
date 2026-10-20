@@ -212,6 +212,8 @@ that K0 shows to be reproducible, can decide it.
 | T02c | Part 1: gene-anchored rotation tested by big-cluster centroid operators (top 10 PCs); Part 2: operator-fitted 10-d rotation vs gene one | ACCEPT (2026-10-15) — **frame agreement** (1.09); Part 2: operators validate, don't estimate; mix 0.11 → 0.90 |
 | T02d | T02c Part 1 with basin-floor operators (30 lowest-energy cells per cluster); written before T02c's result | ACCEPT (2026-10-15) — frame agreement (1.20; centroid 1.09) |
 | T04  | Hypothesis test: PBMC halves + known gene-level batch + known interferon response in half of B's monocytes; 6 methods scored on batch removal, biology retention, operator flag | ACCEPT (2026-10-20) — not_supported: E5 rotation fails under a gene-level batch (mix 0.07, retention 0.68); operator flag works for no method; rigid gene rotation alone keeps biology (0.91 vs Harmony/scVI 0.63) |
+| T04c | Diagnostic: within-batch operator contrast (B responders vs non-responders; S0 control) from T04's cached fits | issued (2026-10-20; Manus cloud, same sandbox) |
+| T04b | Sweep: biology effect size × batch strength; rigid correction vs Harmony vs scVI | planned (after T04c) |
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
 | T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
