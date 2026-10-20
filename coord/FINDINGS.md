@@ -584,3 +584,16 @@ planner's recomputed values, not the executor's reported ones.
 - flag_resp / flag_other_max / flag_s0_max: none 5.02/4.95/4.98; gene_rot 2.19/2.19/2.42; scopalign 1.50/2.32/4.06
 - Decision rule outcome: not_supported (scopalign retention 0.68 < 0.8; mixing 0.07). Only the rigid gene-loading rotation removes batch and keeps biology (0.91 vs 0.63 Harmony/scVI). Operator flag works for no method: responders = non-responders, S0 also flagged.
 - Commit: task/T04 @ b9e7c74 (Manus cloud)
+
+## 2026-10-20 — T04c (ACCEPT; outcome weak) — light recompute (exact)
+
+- inputs_match: 1
+- contrast_ratio_S1: 1.83434
+- contrast_ratio_S0: 0.884347
+- seed_agreement_S1: 0.4
+- type_ratio_S1: 15.5303
+- pos_ratio_S1: 18.2543
+- pos_ratio_S0: 0.933233
+- symmetry_max: 1.94373e-07
+- Decision rule outcome: weak (1.5 < 1.83 < 2.0; 2 of 5 seeds ≥ 2). Inside one batch, operators see the interferon response at ~2× noise (control 0.9); positions see it at ~18×. Response moves cells more than it reshapes the landscape.
+- Commit: task/T04c @ 8bb57c5 (Manus cloud)
