@@ -1,0 +1,29 @@
+{
+  "l_hat_max_abs_difference": 3.877786980410747e-12,
+  "runs": {
+    "1": {
+      "D": 0.8736755866987644,
+      "H": 0.4269586880660784,
+      "L_hat": 1.300634274764843,
+      "evaluation_seconds_mean": 2.956829866181622,
+      "n_evaluations": 254,
+      "scenario": "S0",
+      "start": 0,
+      "start_seconds": 754.3353999129904,
+      "threads": 1
+    },
+    "2": {
+      "D": 0.8736755867820101,
+      "H": 0.42695868798671055,
+      "L_hat": 1.3006342747687207,
+      "evaluation_seconds_mean": 2.65765078574829,
+      "n_evaluations": 254,
+      "scenario": "S0",
+      "start": 0,
+      "start_seconds": 678.5150457819982,
+      "threads": 2
+    }
+  },
+  "scenario": "S0",
+  "start": 0
+}

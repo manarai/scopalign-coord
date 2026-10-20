@@ -3,3 +3,7 @@ __pycache__/
 gates.json
 run.log
 run.pid
+
+benchmark_t*.log
+spawn_probe.log
+spawn_probe.pid
