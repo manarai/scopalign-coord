@@ -574,3 +574,13 @@ planner's recomputed values, not the executor's reported ones.
 - platform: Linux-6.18.38+-x86_64-with-glibc2.39; torch 2.14.1+cpu
 - Decision: ACCEPT (registered rule gave REVISE on the 1e-4 absolute latent tolerance — planner spec error, corrected to relative with Tom's approval). Cloud sandbox may run T04.
 - Commit: task/C0 @ 296fc13
+
+## 2026-10-20 — T04 (ACCEPT; outcome not_supported) — light recompute (exact)
+
+- n_bio_genes: 22; n_responders: 947; bio_keep_oracle: 0.939469; symmetry_max: 1.94373e-07
+- mix_bg (S1): none 0.342, joint 0.273, harmony 0.826, scvi 0.925, gene_rot 0.831, scopalign 0.0737
+- retention (S1): none 0.841, joint 1.017, harmony 0.632, scvi 0.627, gene_rot 0.907, scopalign 0.681
+- bio_false (S0): none 0.238, joint 0.318, harmony −0.021, scvi 0.091, gene_rot 0.040, scopalign 0.240
+- flag_resp / flag_other_max / flag_s0_max: none 5.02/4.95/4.98; gene_rot 2.19/2.19/2.42; scopalign 1.50/2.32/4.06
+- Decision rule outcome: not_supported (scopalign retention 0.68 < 0.8; mixing 0.07). Only the rigid gene-loading rotation removes batch and keeps biology (0.91 vs 0.63 Harmony/scVI). Operator flag works for no method: responders = non-responders, S0 also flagged.
+- Commit: task/T04 @ b9e7c74 (Manus cloud)
