@@ -635,6 +635,28 @@ def benchmark_stage(threads):
     print(json.dumps(record, sort_keys=True), flush=True)
 
 
+def spawn_probe_stage():
+    """Run the first three uncompleted S0 starts using the production pool."""
+    scenario = "S0"
+    embedding = load_embedding(scenario)
+    problem = E5Problem(models_for(scenario, "A"), models_for(scenario, "B"),
+                        embedding["z_a"], embedding["z_b"], SCENARIO_REPLICATE[scenario])
+    pending = [(scenario, start, q0, True) for start, q0 in starts()
+               if not estimate_checkpoint(scenario, start).exists()][:3]
+    if not pending:
+        print(json.dumps({"scenario": scenario, "probe_starts": 0, "status": "already_complete"}, sort_keys=True), flush=True)
+        return
+    workers = configured_start_workers()
+    if workers != 3:
+        raise RuntimeError("The spawn probe requires exactly three configured workers")
+    threads = configured_threads_per_worker(workers)
+    with ProcessPoolExecutor(max_workers=workers, mp_context=multiprocessing.get_context("spawn"),
+                             initializer=init_start_worker, initargs=(problem, threads)) as pool:
+        results = list(pool.map(optimize_start, pending))
+    print(json.dumps({"scenario": scenario, "probe_starts": len(results), "workers": workers,
+                      "threads_per_worker": threads, "starts": [int(row["start"]) for row in results]}, sort_keys=True), flush=True)
+
+
 def score_scopalign(scenario, q):
     embedding = load_embedding(scenario)
     rep = np.vstack([embedding["z_a"].astype(np.float64) @ q.T, embedding["z_b"].astype(np.float64)])
@@ -911,7 +933,7 @@ def report_stage():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", required=True, choices=("data", "embed", "fits", "estimate", "benchmark", "flag", "report", "all"))
+    parser.add_argument("--stage", required=True, choices=("data", "embed", "fits", "estimate", "benchmark", "spawn_probe", "flag", "report", "all"))
     parser.add_argument("--benchmark-threads", type=int)
     args = parser.parse_args()
     stage = args.stage
@@ -919,6 +941,9 @@ def main():
         if args.benchmark_threads is None:
             raise RuntimeError("--benchmark-threads is required for --stage benchmark")
         benchmark_stage(args.benchmark_threads)
+        return
+    if stage == "spawn_probe":
+        spawn_probe_stage()
         return
     stages = ("data", "embed", "fits", "estimate", "flag", "report") if stage == "all" else (stage,)
     for item in stages:
