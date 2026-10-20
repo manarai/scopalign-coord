@@ -1,0 +1,44 @@
+{
+  "blas": [
+    {
+      "filepath": "/home/ubuntu/scopalign-cloud/.venv/lib/python3.11/site-packages/scikit_learn.libs/libgomp-e985bcbb.so.1.0.0",
+      "internal_api": "openmp",
+      "num_threads": 6,
+      "prefix": "libgomp",
+      "user_api": "openmp",
+      "version": null
+    },
+    {
+      "architecture": "SkylakeX",
+      "filepath": "/home/ubuntu/scopalign-cloud/.venv/lib/python3.11/site-packages/scipy.libs/libscipy_openblas-b75cc656.so",
+      "internal_api": "openblas",
+      "num_threads": 6,
+      "prefix": "libscipy_openblas",
+      "threading_layer": "pthreads",
+      "user_api": "blas",
+      "version": "0.3.29.dev"
+    },
+    {
+      "architecture": "SkylakeX",
+      "filepath": "/home/ubuntu/scopalign-cloud/.venv/lib/python3.11/site-packages/numpy.libs/libscipy_openblas64_-32a4b2a6.so",
+      "internal_api": "openblas",
+      "num_threads": 6,
+      "prefix": "libscipy_openblas",
+      "threading_layer": "pthreads",
+      "user_api": "blas",
+      "version": "0.3.31.188.0"
+    },
+    {
+      "filepath": "/home/ubuntu/scopalign-cloud/.venv/lib/python3.11/site-packages/torch/lib/libgomp.so.1",
+      "internal_api": "openmp",
+      "num_threads": 3,
+      "prefix": "libgomp",
+      "user_api": "openmp",
+      "version": null
+    }
+  ],
+  "platform": "Linux-6.18.38+-x86_64-with-glibc2.39",
+  "started": "2026-10-20T08:56:03.136003+00:00",
+  "t04_fit_symmetry_sha256": "3701ea6a3a649aff78620b43a7f15cdcf5de8057e1bbdf385b4dd17d4883dfb7",
+  "t04_script_sha256": "fd8ad2bfe52e614ef8acb1835cc861b0978db688e37bbe6d8ee360a2e99b9cf9"
+}

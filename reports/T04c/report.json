@@ -1,0 +1,89 @@
+{
+  "artifacts": [
+    {
+      "path": "input_manifest.json",
+      "sha256": "60ba9dc46ebddac1066fb782349bf3479d7572d8420c84c74a304b3f8b370d90"
+    },
+    {
+      "path": "input_symmetry.csv",
+      "sha256": "17f5cff2faf2f31b0b80dd256a3541558bed08cbdd34d67f4862b5a50422a5f1"
+    },
+    {
+      "path": "check.json",
+      "sha256": "ef3a86bf4c7f0da814f1eb15a96d0806ce57fb51f60a65a8ec76e070bf2443f9"
+    },
+    {
+      "path": "contrast_details.json",
+      "sha256": "5a5165edb2f29c1f909181c08617513832173acb74284f013fbace0d81179c8d"
+    },
+    {
+      "path": "run_meta.json",
+      "sha256": "7ebeef52e357d413a1cfa0ee8f007b8d0e7576f08190803ffd7f5231da187aa8"
+    }
+  ],
+  "branch": "task/T04c",
+  "commit": "bc02496291bf850d16373e14363eff1276b4db96",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56"
+    },
+    {
+      "path": "contrasts.csv",
+      "sha256": "b8ce4ff84cfa0508c788375531a426320101d41b8146c76ca70aa11c7cb8250f"
+    },
+    {
+      "path": "fig_contrast.png",
+      "sha256": "4f24d606c06dbd263f3639188cb326330b945ab443345c3a5848c7abf6bdef40"
+    },
+    {
+      "path": "scripts/t04c_run.py",
+      "sha256": "28a6d03e9e6a1b2aa69cff7797fe677d043fd4da92ea94d33394f1b276197af5"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-10-20T08:58:25.397899+00:00",
+  "gated": {
+    "contrast_ratio_S0": 0.8843472933096175,
+    "contrast_ratio_S1": 1.8343397679348274,
+    "inputs_match": 1,
+    "pos_ratio_S0": 0.9332328778009908,
+    "pos_ratio_S1": 18.25431498911107,
+    "seed_agreement_S1": 0.4,
+    "symmetry_max": 1.9437332809957297e-07,
+    "t04c_outcome": "weak",
+    "type_ratio_S1": 15.530284454585534
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56",
+  "observations": [
+    "Read-only T04 fit-symmetry SHA-256: 3701ea6a3a649aff78620b43a7f15cdcf5de8057e1bbdf385b4dd17d4883dfb7.",
+    "Read-only T04 runner SHA-256: fd8ad2bfe52e614ef8acb1835cc861b0978db688e37bbe6d8ee360a2e99b9cf9."
+  ],
+  "regeneration": {
+    "contrast_ratio_S0": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage contrast",
+    "contrast_ratio_S1": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage contrast",
+    "contrasts.csv": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage all",
+    "fig_contrast.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage all",
+    "inputs_match": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage check",
+    "pos_ratio_S0": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage contrast",
+    "pos_ratio_S1": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage contrast",
+    "requirements.lock": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage all",
+    "scripts/t04c_run.py": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage all",
+    "seed_agreement_S1": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage contrast",
+    "symmetry_max": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage check",
+    "t04c_outcome": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage report",
+    "type_ratio_S1": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04c/scripts/t04c_run.py --stage contrast"
+  },
+  "seed": 20261014,
+  "started": "2026-10-20T08:56:03.136003+00:00",
+  "status": "complete",
+  "task_id": "T04c"
+}
