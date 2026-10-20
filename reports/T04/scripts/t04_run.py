@@ -3,10 +3,12 @@
 import argparse
 import hashlib
 import json
+import multiprocessing
 import os
 import platform
 import subprocess
 import sys
+import time
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import asdict
 from datetime import datetime, timezone
@@ -53,6 +55,7 @@ KNOWN = [
     "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility",
 ]
 WORKER_PROBLEM = None
+WORKER_THREADS = 1
 
 
 def sha(path):
@@ -491,14 +494,17 @@ class E5Problem:
 
 
 class E5Closure:
-    def __init__(self, problem, q0, skew):
+    def __init__(self, problem, q0, skew, evaluation_seconds=None):
         self.problem, self.q0, self.skew = problem, q0, skew
-
+        self.evaluation_seconds = evaluation_seconds
     def __call__(self):
+        started = time.perf_counter()
         self.skew.grad = None
         q = self.q0 @ torch.matrix_exp(self.skew - self.skew.T)
         value, _, _ = self.problem.loss(q, track=True)
         value.backward()
+        if self.evaluation_seconds is not None:
+            self.evaluation_seconds.append(time.perf_counter() - started)
         return value
 
 
@@ -530,35 +536,58 @@ def save_start_checkpoint(scenario, result):
     os.replace(temporary, target)
 
 
-def init_start_worker(problem):
-    global WORKER_PROBLEM
-    torch.set_num_threads(1)
+def core_count():
+    return max(1, os.cpu_count() or 1)
+
+
+def configured_start_workers():
+    workers = int(os.environ.get("T04_START_WORKERS", "3"))
+    if workers not in (1, 2, 3):
+        raise RuntimeError("T04_START_WORKERS must be 1, 2, or 3")
+    return workers
+
+
+def configured_threads_per_worker(workers):
+    return core_count() if workers == 1 else max(1, core_count() // workers)
+
+
+def init_start_worker(problem, threads):
+    global WORKER_PROBLEM, WORKER_THREADS
+    WORKER_THREADS = int(threads)
+    torch.set_num_threads(WORKER_THREADS)
     WORKER_PROBLEM = problem
 
 
 def optimize_start(item):
-    torch.set_num_threads(1)
-    scenario, start, q0_array = item
+    torch.set_num_threads(WORKER_THREADS)
+    scenario, start, q0_array, write_checkpoint = item
     checkpoint = estimate_checkpoint(scenario, start)
-    if checkpoint.exists():
+    if write_checkpoint and checkpoint.exists():
         return load_start_checkpoint(checkpoint)
     q0 = torch.as_tensor(q0_array, dtype=torch.float64)
     skew = torch.zeros((D, D), dtype=torch.float64, requires_grad=True)
     optimizer = torch.optim.LBFGS([skew], lr=1.0, max_iter=500, tolerance_grad=1e-10,
                                   tolerance_change=1e-12, line_search_fn="strong_wolfe")
-    optimizer.step(E5Closure(WORKER_PROBLEM, q0, skew))
+    evaluations = []
+    started = time.perf_counter()
+    optimizer.step(E5Closure(WORKER_PROBLEM, q0, skew, evaluation_seconds=evaluations))
+    elapsed = time.perf_counter() - started
     q = (q0 @ torch.matrix_exp(skew - skew.T)).detach()
     value, flow, curvature = WORKER_PROBLEM.loss(q, track=False)
     result = {"start": int(start), "L_hat": float(value.detach()), "D": float(flow.detach()),
-              "H": float(curvature.detach()), "Q": q.cpu().numpy().astype(np.float64)}
-    save_start_checkpoint(scenario, result)
+              "H": float(curvature.detach()), "Q": q.cpu().numpy().astype(np.float64),
+              "n_evaluations": int(len(evaluations)), "evaluation_seconds_mean": float(np.mean(evaluations)),
+              "start_seconds": float(elapsed), "threads": int(WORKER_THREADS)}
+    if write_checkpoint:
+        save_start_checkpoint(scenario, result)
+        print(json.dumps({"scenario": scenario, "start": int(start), "L_hat": result["L_hat"],
+                          "start_seconds": result["start_seconds"], "threads": result["threads"]}, sort_keys=True), flush=True)
     return result
 
 
 def estimate_e5(problem, scenario):
-    # One worker remains within the task's at-most-three-worker constraint and
-    # avoids the abrupt multiprocess worker termination observed on this host.
-    workers = 1
+    workers = configured_start_workers()
+    threads = configured_threads_per_worker(workers)
     cached = []
     pending = []
     for start, q0 in starts():
@@ -566,13 +595,44 @@ def estimate_e5(problem, scenario):
         if checkpoint.exists():
             cached.append(load_start_checkpoint(checkpoint))
         else:
-            pending.append((scenario, start, q0))
+            pending.append((scenario, start, q0, True))
     completed = []
     if pending:
-        with ProcessPoolExecutor(max_workers=workers, initializer=init_start_worker, initargs=(problem,)) as pool:
+        with ProcessPoolExecutor(max_workers=workers, mp_context=multiprocessing.get_context("spawn"),
+                                 initializer=init_start_worker, initargs=(problem, threads)) as pool:
             completed = list(pool.map(optimize_start, pending))
     result = cached + completed
     return min(result, key=lambda row: (row["L_hat"], row["start"])), result
+
+
+def benchmark_stage(threads):
+    if threads < 1 or threads > core_count():
+        raise RuntimeError(f"benchmark threads must be in [1, {core_count()}]")
+    scenario, start = "S0", 0
+    embedding = load_embedding(scenario)
+    problem = E5Problem(models_for(scenario, "A"), models_for(scenario, "B"),
+                        embedding["z_a"], embedding["z_b"], SCENARIO_REPLICATE[scenario])
+    q0 = np.eye(D, dtype=np.float64)
+    # Exercise the same spawn transport and initializer as production, but do
+    # not overwrite the reusable production checkpoint for this start.
+    with ProcessPoolExecutor(max_workers=1, mp_context=multiprocessing.get_context("spawn"),
+                             initializer=init_start_worker, initargs=(problem, int(threads))) as pool:
+        result = next(pool.map(optimize_start, [(scenario, start, q0, False)]))
+    record = {
+        "scenario": scenario, "start": int(start), "threads": int(threads),
+        "L_hat": float(result["L_hat"]), "D": float(result["D"]), "H": float(result["H"]),
+        "n_evaluations": int(result["n_evaluations"]),
+        "evaluation_seconds_mean": float(result["evaluation_seconds_mean"]),
+        "start_seconds": float(result["start_seconds"]),
+    }
+    path = OUT / "estimate_benchmark.json"
+    payload = json.loads(path.read_text()) if path.exists() else {"scenario": scenario, "start": int(start), "runs": {}}
+    payload["runs"][str(threads)] = record
+    if len(payload["runs"]) >= 2:
+        values = [float(row["L_hat"]) for row in payload["runs"].values()]
+        payload["l_hat_max_abs_difference"] = float(max(values) - min(values))
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    print(json.dumps(record, sort_keys=True), flush=True)
 
 
 def score_scopalign(scenario, q):
@@ -603,7 +663,9 @@ def estimate_stage():
         score_scopalign(scenario, best["Q"])
     np.savez_compressed(OUT / "Q_hats.npz", **q_values)
     pd.DataFrame(start_rows).sort_values(["scenario", "start"]).to_csv(OUT / "estimate_starts.csv", index=False)
-    print(json.dumps({"n_starts": int(len(start_rows)), "start_workers": 1}, sort_keys=True), flush=True)
+    workers = configured_start_workers()
+    print(json.dumps({"n_starts": int(len(start_rows)), "start_workers": workers,
+                      "threads_per_worker": configured_threads_per_worker(workers)}, sort_keys=True), flush=True)
 
 
 def individual_operator(model, z):
@@ -810,13 +872,22 @@ def report_stage():
             stage_for[key] = "flag"
         regeneration[key] = command + " --stage " + stage_for[key]
     meta = make_meta()
+    workers = configured_start_workers()
+    threads = configured_threads_per_worker(workers)
+    benchmark_path = OUT / "estimate_benchmark.json"
+    benchmark = json.loads(benchmark_path.read_text()) if benchmark_path.exists() else {}
+    agreement = benchmark.get("l_hat_max_abs_difference")
+    benchmark_detail = "not available" if agreement is None else f"max |L_hat difference| = {float(agreement):.3e}"
+    artifacts = [{"path": "Q_hats.npz", "sha256": sha(OUT / "Q_hats.npz")}, {"path": "run_meta.json", "sha256": sha(OUT / "run_meta.json")},
+                 {"path": "fit_symmetry.csv", "sha256": sha(OUT / "fit_symmetry.csv")}, {"path": "estimate_starts.csv", "sha256": sha(OUT / "estimate_starts.csv")}]
+    if benchmark_path.exists():
+        artifacts.append({"path": "estimate_benchmark.json", "sha256": sha(benchmark_path)})
     report = {
         "task_id": "T04", "executor": "manus", "branch": "task/T04",
         "commit": subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip(),
         "seed": 20261014, "started": meta["started"], "finished": utcnow(), "status": "stopped" if stopped else "complete",
         "gated": gated, "deliverables": [{"path": path, "sha256": sha(OUT / path)} for path in files],
-        "artifacts": [{"path": "Q_hats.npz", "sha256": sha(OUT / "Q_hats.npz")}, {"path": "run_meta.json", "sha256": sha(OUT / "run_meta.json")},
-                      {"path": "fit_symmetry.csv", "sha256": sha(OUT / "fit_symmetry.csv")}, {"path": "estimate_starts.csv", "sha256": sha(OUT / "estimate_starts.csv")}],
+        "artifacts": artifacts,
         "regeneration": regeneration,
         "deviations": [
             {
@@ -824,8 +895,8 @@ def report_stage():
                 "why": "This supports interruption recovery without changing any start, seed, float64 objective, LBFGS setting, or finished result."
             },
             {
-                "what": "Restricted the E5 clean-start pool to one worker.",
-                "why": "The initial permitted three-worker cloud run terminated abruptly with BrokenProcessPool before producing any start result. A single worker remains within the specified at-most-three-worker limit; it retains all 20 fixed starts, their seeds, float64 objective, and optimizer settings."
+                "what": f"Used {workers} spawn start worker(s) with {threads} torch thread(s) per worker.",
+                "why": f"Spawn avoids the earlier PyTorch fork-worker termination while retaining all 20 fixed starts, seeds, float64 objective, and LBFGS settings. The isolated S0/start-0 benchmark agreement was {benchmark_detail}."
             }
         ],
         "deviations_requested": [],
@@ -840,8 +911,15 @@ def report_stage():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stage", required=True, choices=("data", "embed", "fits", "estimate", "flag", "report", "all"))
-    stage = parser.parse_args().stage
+    parser.add_argument("--stage", required=True, choices=("data", "embed", "fits", "estimate", "benchmark", "flag", "report", "all"))
+    parser.add_argument("--benchmark-threads", type=int)
+    args = parser.parse_args()
+    stage = args.stage
+    if stage == "benchmark":
+        if args.benchmark_threads is None:
+            raise RuntimeError("--benchmark-threads is required for --stage benchmark")
+        benchmark_stage(args.benchmark_threads)
+        return
     stages = ("data", "embed", "fits", "estimate", "flag", "report") if stage == "all" else (stage,)
     for item in stages:
         if item == "data":
