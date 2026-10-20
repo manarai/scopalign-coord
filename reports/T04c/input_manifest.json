@@ -1,0 +1,124 @@
+{
+  "inputs": [
+    {
+      "exists": true,
+      "path": "reports/T04/scripts/t04_run.py",
+      "sha256": "fd8ad2bfe52e614ef8acb1835cc861b0978db688e37bbe6d8ee360a2e99b9cf9"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/fit_symmetry.csv",
+      "sha256": "3701ea6a3a649aff78620b43a7f15cdcf5de8057e1bbdf385b4dd17d4883dfb7"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/embeddings/S0.npz",
+      "sha256": "83412c3a3e3f94952c94b6023d00cb1c6aaae75560d5406505dd9682eddf71ed"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S0_B_20261014.pt",
+      "sha256": "a4a53c69414ccd899ff3bffb4c94a7779b9775c185a219ca94aabd4de2a22906"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S0_B_20261014.npy",
+      "sha256": "3286f87b9c85dcdef53d124d36289f1eaec522dd7c05e7bb9d405190b1f538f3"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S0_B_20261016.pt",
+      "sha256": "c781bbbfeda4d90eef334687e34288534dafe4904467b8cdaa2289fdacd69973"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S0_B_20261016.npy",
+      "sha256": "1e369d9e4a1402aaa9fb405189cc073df1f853c5294dcfc7dcbe11ea5bea5054"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S0_B_20261017.pt",
+      "sha256": "2d1c820d655c6aab5e1d763ecc2bbe63059012886e9eef08665581ba65592587"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S0_B_20261017.npy",
+      "sha256": "47cd3519e9a36721aa23e3f796a2ef1e8afeefdf91d5ad85e98d9a4f28510b82"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S0_B_20261018.pt",
+      "sha256": "3d7dea4fe35c2e09ca6a00a4896cce708a262b335f594f3772f7182e70875a39"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S0_B_20261018.npy",
+      "sha256": "babbb21fefe091086ee4972e02838515a26f74dd4c20001eb086154535a21261"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S0_B_20261019.pt",
+      "sha256": "dda5eafd2654e228bd295153ab62bd7bf2b8c446e9088c02dd16f71b47eb603b"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S0_B_20261019.npy",
+      "sha256": "334a139c077f860090ae08e19f9c3908e4050287569eef63975c7eef1a0a16b4"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/embeddings/S1.npz",
+      "sha256": "ec3f0e34ef751aaa4b1ad287e1d0023a09e543429d8991cc7ef9fa2236b086bc"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S1_B_20261014.pt",
+      "sha256": "9bbd6e0dd19ad14aaaec1a72b5f7ad35db206968f6f0c1626ecc4001d2e37655"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S1_B_20261014.npy",
+      "sha256": "73ede51a76afa7aae292418532e945db739b2823e9051d9ddf0769cacde3c31e"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S1_B_20261016.pt",
+      "sha256": "9fb164ca592b3f3c3b50b1264f51a0d498a0eb32b31485e765279ed1e95eac31"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S1_B_20261016.npy",
+      "sha256": "87358ed03aaa2a6203e77e2c6cb199a35015ed4382b23391c8978a53c244ecea"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S1_B_20261017.pt",
+      "sha256": "9c69faaea816385f0792da27403d789b74b092a05da55051bc0ee1ce698dc79a"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S1_B_20261017.npy",
+      "sha256": "91713bc4041e2ed67692d15d82f8f99cf13b109ebc3acfa3ca10e687d95789c6"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S1_B_20261018.pt",
+      "sha256": "f462c2e7b3b248025f362df60fdc4cca9ef6f2326b556dfc7ab86d205e40e4de"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S1_B_20261018.npy",
+      "sha256": "a3b13b6bca6b6afde58fceee016d0a97ba1948268343d3e7e799036b8948adbd"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/drifts/S1_B_20261019.pt",
+      "sha256": "0656d55aa6bc77174a7865ae68f44d79cca06105689666b0804aaad534ca3e6d"
+    },
+    {
+      "exists": true,
+      "path": "reports/T04/cache/operators/S1_B_20261019.npy",
+      "sha256": "7986bb20b2f7a3d3701bf015daa6f746620a029e9073f309cb1ae722573fe5a9"
+    }
+  ]
+}
