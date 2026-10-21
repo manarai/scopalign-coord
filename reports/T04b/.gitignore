@@ -3,3 +3,5 @@ __pycache__/
 gates.json
 run.log
 run.pid
+.last_published_conditions
+progress_publisher.log
