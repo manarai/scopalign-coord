@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """T04b: semi-synthetic batch × biology sweep using T04's fixed design."""
 import argparse
+import multiprocessing as mp
 import hashlib
 import importlib.util
 import json
@@ -9,6 +10,8 @@ import platform
 import subprocess
 import sys
 import time
+import uuid
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -31,6 +34,8 @@ FS = (0, 1, 2, 4, 8)
 SIGMAS = (0.25, 0.5, 1.0)
 BATCH_TYPES = ("global", "celltype")
 METHODS = ("none", "joint", "harmony", "scvi", "gene_rot")
+SWEEP_WORKERS = 2
+TORCH_THREADS_PER_SWEEP_WORKER = 3
 
 
 def sha(path: Path) -> str:
@@ -102,6 +107,10 @@ def zero_oracle_path(batch_type: str) -> Path:
 
 def condition_result_path(batch_type: str, sigma: float, f: int) -> Path:
     return CACHE / "sweep" / f"{key(batch_type, sigma, f)}.csv"
+
+
+def continuation_path() -> Path:
+    return OUT / "sweep_continuation.json"
 
 
 def gates_path() -> Path:
@@ -336,15 +345,92 @@ def metrics_for_condition(batch_type: str, sigma: float, f: int) -> pd.DataFrame
     return pd.DataFrame(rows)
 
 
+def checkpoint_is_complete(path: Path, batch_type: str, sigma: float, f: int) -> bool:
+    if not path.exists() or path.stat().st_size == 0:
+        return False
+    try:
+        rows = pd.read_csv(path)
+    except (OSError, pd.errors.ParserError, UnicodeDecodeError):
+        return False
+    required = {"batch_type", "sigma", "f", "method", "mix_bg", "retention", "bio_false", "sil"}
+    if not required.issubset(rows.columns) or len(rows) != len(METHODS):
+        return False
+    return (set(rows["method"].astype(str)) == set(METHODS)
+            and rows["batch_type"].astype(str).eq(batch_type).all()
+            and np.allclose(rows["sigma"].to_numpy(dtype=float), float(sigma), rtol=0.0, atol=0.0)
+            and rows["f"].to_numpy(dtype=int).tolist() == [int(f)] * len(METHODS))
+
+
+def checkpoint_records() -> list[dict]:
+    records = []
+    for batch_type, sigma, f in condition_rows():
+        target = condition_result_path(batch_type, sigma, f)
+        if checkpoint_is_complete(target, batch_type, sigma, f):
+            records.append({"batch_type": batch_type, "sigma": float(sigma), "f": int(f),
+                            "path": str(target.relative_to(OUT)), "sha256": sha(target)})
+    return records
+
+
+def atomic_write_csv(table: pd.DataFrame, target: Path) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_name(f".{target.name}.{os.getpid()}.{uuid.uuid4().hex}.tmp")
+    try:
+        with temporary.open("w", encoding="utf-8", newline="") as handle:
+            table.to_csv(handle, index=False)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, target)
+        directory_fd = os.open(target.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_fd)
+        finally:
+            os.close(directory_fd)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+_THREAD_LIMITER = None
+
+
+def init_sweep_worker() -> None:
+    """Set the same three-Torch-thread budget in each clean spawned worker."""
+    global _THREAD_LIMITER
+    import torch
+
+    torch.set_num_threads(TORCH_THREADS_PER_SWEEP_WORKER)
+    torch.set_num_interop_threads(TORCH_THREADS_PER_SWEEP_WORKER)
+    _THREAD_LIMITER = threadpoolctl.threadpool_limits(limits=TORCH_THREADS_PER_SWEEP_WORKER)
+
+
+def configure_spawn_environment() -> None:
+    for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+        os.environ[name] = str(TORCH_THREADS_PER_SWEEP_WORKER)
+
+
+def preflight_condition_worker(spec: tuple[str, float, int]) -> pd.DataFrame:
+    """Rerun a completed reference condition without publishing a checkpoint."""
+    return metrics_for_condition(*spec)
+
+
+def sweep_condition_worker(spec: tuple[str, float, int]) -> dict:
+    """Evaluate one independent condition and atomically save its checkpoint."""
+    batch_type, sigma, f = spec
+    target = condition_result_path(batch_type, sigma, f)
+    if checkpoint_is_complete(target, batch_type, sigma, f):
+        return {"batch_type": batch_type, "sigma": sigma, "f": f, "skipped": True, "elapsed_seconds": 0.0}
+    started = time.perf_counter()
+    table = metrics_for_condition(batch_type, sigma, f)
+    atomic_write_csv(table, target)
+    return {"batch_type": batch_type, "sigma": sigma, "f": f, "skipped": False,
+            "elapsed_seconds": round(time.perf_counter() - started, 3), "pid": os.getpid()}
+
+
 def complete_checkpoints() -> list[tuple[str, float, int]]:
     finished = []
     for batch_type, sigma, f in condition_rows():
         path = condition_result_path(batch_type, sigma, f)
-        if not path.exists():
-            continue
-        table = pd.read_csv(path)
-        expected = set(METHODS)
-        if len(table) == len(METHODS) and set(table["method"].astype(str)) == expected:
+        if checkpoint_is_complete(path, batch_type, sigma, f):
             finished.append((batch_type, sigma, f))
     return finished
 
@@ -359,6 +445,95 @@ def collect_sweep() -> pd.DataFrame:
         raise RuntimeError("Sweep cache does not contain five method rows for every condition")
     table.to_csv(OUT / "sweep.csv", index=False)
     return table
+
+
+def table_value(table: pd.DataFrame, method: str, metric: str) -> float:
+    selected = table.loc[table["method"].astype(str) == method, metric]
+    if len(selected) != 1:
+        raise RuntimeError(f"Expected one row for {method}/{metric}, found {len(selected)}")
+    return float(selected.iloc[0])
+
+
+def parallel_reference_preflight() -> dict:
+    """Require spawned workers to reproduce the two existing T04 conditions."""
+    references = (("global", 0.5, 0), ("global", 0.5, 4))
+    configure_spawn_environment()
+    context = mp.get_context("spawn")
+    results: dict[tuple[str, float, int], pd.DataFrame] = {}
+    with ProcessPoolExecutor(max_workers=SWEEP_WORKERS, mp_context=context, initializer=init_sweep_worker) as pool:
+        futures = {pool.submit(preflight_condition_worker, spec): spec for spec in references}
+        for future in as_completed(futures):
+            results[futures[future]] = future.result()
+    rows = []
+    strict_methods = ("none", "joint", "harmony", "gene_rot")
+    for batch_type, sigma, f in references:
+        saved = pd.read_csv(condition_result_path(batch_type, sigma, f))
+        rerun = results[(batch_type, sigma, f)]
+        metrics = ("mix_bg", "bio_false", "sil") if f == 0 else ("mix_bg", "retention", "sil")
+        for method in METHODS:
+            for metric in metrics:
+                prior = table_value(saved, method, metric)
+                current = table_value(rerun, method, metric)
+                rows.append({"batch_type": batch_type, "sigma": sigma, "f": f, "method": method,
+                             "metric": metric, "saved": prior, "rerun": current,
+                             "abs_difference": abs(prior - current)})
+    strict_diffs = [row["abs_difference"] for row in rows if row["method"] in strict_methods]
+    scvi_diffs = [row["abs_difference"] for row in rows if row["method"] == "scvi"]
+    maximum = float(max(strict_diffs))
+    if maximum > 1e-6:
+        raise RuntimeError(f"Spawn-worker strict reference preflight failed: maximum absolute difference {maximum}")
+    return {"conditions": [{"batch_type": b, "sigma": s, "f": f} for b, s, f in references],
+            "comparisons": rows, "strict_methods_max_abs": maximum,
+            "scvi_max_abs": float(max(scvi_diffs))}
+
+
+def json_atomic_write(path: Path, value: dict) -> None:
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.{uuid.uuid4().hex}.tmp")
+    try:
+        temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+def previous_serial_runner_sha256() -> str | None:
+    try:
+        serial = subprocess.check_output(
+            ["git", "-C", str(ROOT), "show", "HEAD^:reports/T04b/scripts/t04b_run.py"])
+    except subprocess.CalledProcessError:
+        return None
+    return hashlib.sha256(serial).hexdigest()
+
+
+def create_parallel_continuation(pending: list[tuple[str, float, int]]) -> dict:
+    value = {
+        "created": utcnow(),
+        "pre_parallel_runner_sha256": previous_serial_runner_sha256(),
+        "parallel_runner_sha256": sha(Path(__file__)),
+        "requirements_lock_sha256": sha(OUT / "requirements.lock"),
+        "platform": platform.platform(),
+        "workers": SWEEP_WORKERS,
+        "start_method": "spawn",
+        "threads_per_worker": TORCH_THREADS_PER_SWEEP_WORKER,
+        "thread_environment": {name: os.environ.get(name) for name in
+                               ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS")},
+        "pre_stop_valid_checkpoints": checkpoint_records(),
+        "invalid_or_recomputed_targets": [],
+        "canonical_submission_order": [{"batch_type": b, "sigma": s, "f": f} for b, s, f in condition_rows()],
+        "submitted_conditions": [{"batch_type": b, "sigma": s, "f": f} for b, s, f in pending],
+        "completion_order": [],
+        "unchanged_method_configuration": {
+            "data_archives": "cached condition matrices created by --stage data",
+            "scvi_seed": 20261014, "scvi_n_latent": D, "scvi_max_epochs": 400,
+            "scvi_accelerator": "cpu", "scvi_devices": 1,
+            "harmony_seed": 20261014, "harmony_max_iter": 20,
+            "scores": ["mix_bg", "retention", "bio_false", "sil"],
+        },
+    }
+    value["preflight"] = parallel_reference_preflight()
+    json_atomic_write(continuation_path(), value)
+    return value
 
 
 def reproduction_check(table: pd.DataFrame) -> tuple[float, float, pd.DataFrame]:
@@ -425,20 +600,28 @@ def sweep_stage() -> None:
     if not (OUT / "data_meta.json").exists():
         raise RuntimeError("Run --stage data first")
     total = len(condition_rows())
-    for batch_type, sigma, f in condition_rows():
-        target = condition_result_path(batch_type, sigma, f)
-        if target.exists():
-            rows = pd.read_csv(target)
-            if len(rows) == len(METHODS) and set(rows.method.astype(str)) == set(METHODS):
-                continue
-        started = time.perf_counter()
-        table = metrics_for_condition(batch_type, sigma, f)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        table.to_csv(target, index=False)
-        done = len(complete_checkpoints())
-        print(json.dumps({"stage": "sweep", "event": "condition_complete", "completed_conditions": done,
-                          "total_conditions": total, "batch_type": batch_type, "sigma": sigma, "f": f,
-                          "elapsed_seconds": round(time.perf_counter() - started, 3)}, sort_keys=True), flush=True)
+    pending = []
+    for spec in condition_rows():
+        target = condition_result_path(*spec)
+        if target.exists() and not checkpoint_is_complete(target, *spec):
+            raise RuntimeError(f"Incomplete condition checkpoint requires review: {target}")
+        if not checkpoint_is_complete(target, *spec):
+            pending.append(spec)
+    if pending:
+        continuation = (json.loads(continuation_path().read_text()) if continuation_path().exists()
+                        else create_parallel_continuation(pending))
+        configure_spawn_environment()
+        context = mp.get_context("spawn")
+        with ProcessPoolExecutor(max_workers=SWEEP_WORKERS, mp_context=context, initializer=init_sweep_worker) as pool:
+            futures = [pool.submit(sweep_condition_worker, spec) for spec in pending]
+            for future in as_completed(futures):
+                result = future.result()
+                done = len(complete_checkpoints())
+                continuation["completion_order"].append(result)
+                json_atomic_write(continuation_path(), continuation)
+                print(json.dumps({"stage": "sweep", "event": "condition_complete", "completed_conditions": done,
+                                  "total_conditions": total, "workers": SWEEP_WORKERS, **result},
+                                 sort_keys=True), flush=True)
     table = collect_sweep()
     values, positive = aggregate_gates(table)
     update_gates(**values)
@@ -521,7 +704,8 @@ def report_stage() -> None:
     for name in values:
         regeneration[name] = command + (" --stage report" if name == "t04b_outcome" else " --stage sweep")
     artifacts = []
-    for name in ("data_meta.json", "data_manifest.json", "reproduction.csv", "win_conditions.csv", "run_meta.json"):
+    for name in ("data_meta.json", "data_manifest.json", "reproduction.csv", "win_conditions.csv", "run_meta.json",
+                 "sweep_continuation.json"):
         path = OUT / name
         if path.exists():
             artifacts.append({"path": name, "sha256": sha(path)})
@@ -539,7 +723,10 @@ def report_stage() -> None:
         "deliverables": [{"path": name, "sha256": sha(OUT / name)} for name in files],
         "artifacts": artifacts,
         "regeneration": regeneration,
-        "deviations": [],
+        "deviations": [{
+            "what": "Completed independent sweep conditions with two spawn-worker processes and three Torch CPU threads per worker, retaining atomic per-condition CSV checkpoints.",
+            "why": "The serial runner used three of six available CPU cores and did not complete. Each worker preserves the pre-registered cached condition matrix, seeds, methods, 400-epoch CPU scVI fit, and scoring procedure; conditions have no cross-condition state."
+        }],
         "deviations_requested": [],
         "observations": [
             "Cached 30 condition matrices and six batch-free oracle archives before the sweep.",
