@@ -32,9 +32,24 @@
     },
     {
       "n_rows": 5,
+      "path": "cache/sweep/global__s0p5__f1.csv",
+      "sha256": "c1d441f185272947f35a8b4cc6b6d68719f19e131db098ed5d6fb30efa337afd"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p5__f2.csv",
+      "sha256": "3b53c88f375693a86717bcc7051ebf7fd7f1c87bbee291bd5807c259be89694c"
+    },
+    {
+      "n_rows": 5,
       "path": "cache/sweep/global__s0p5__f4.csv",
       "sha256": "dc076416268850d2a0f232849a5cbd6d01982b6ecfb2fc08c6b05e2dc210f1ad"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p5__f8.csv",
+      "sha256": "06121c94af6218d5ac3718600fff26f6040cd5d5ac92acb1a5b86b56bdfec5ff"
     }
   ],
-  "n_conditions": 7
+  "n_conditions": 10
 }
