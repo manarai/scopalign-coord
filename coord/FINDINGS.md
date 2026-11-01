@@ -597,3 +597,21 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 1.94373e-07
 - Decision rule outcome: weak (1.5 < 1.83 < 2.0; 2 of 5 seeds ≥ 2). Inside one batch, operators see the interferon response at ~2× noise (control 0.9); positions see it at ~18×. Response moves cells more than it reshapes the landscape.
 - Commit: task/T04c @ 8bb57c5 (Manus cloud)
+
+## 2026-11-01 — T04b (ACCEPT; outcome none) — light recompute (exact from sweep.csv; T04 conditions rerun end to end)
+
+- n_conditions: 30
+- repro_t04_max_abs: 4.996e-16
+- repro_t04_scvi_abs: 0
+- frac_rigid_removes_batch: 0.416667
+- frac_harmony_removes_batch: 0.666667
+- frac_scvi_removes_batch: 1
+- frac_rigid_wins: 0.208333
+- frac_rigid_wins_global: 0.333333
+- frac_rigid_wins_celltype: 0.0833333
+- median_gain: 0.157609
+- bio_false_max_gene_rot: 0.0896826
+- bio_false_max_harmony: 0.0413513
+- bio_false_max_scvi: 0.0967211
+- Decision rule outcome: none (0.208 < 0.25). Rigid gene rotation wins in 5/24 conditions (global σ 0.25/0.5 at f 2, 4; celltype σ 0.25 f 2). The T04 advantage is not general; T04 is a case study.
+- Commit: task/T04b @ 161f333 (report 2d7b50b; Manus cloud)
