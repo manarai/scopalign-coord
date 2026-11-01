@@ -1,0 +1,27 @@
+pair,cell_type,n_left,n_right,eligible
+P1,B cells,780,780,True
+P1,Cycling cells,1,1,False
+P1,DC,79,79,False
+P1,HSC/MPP,10,10,False
+P1,ILC,332,332,True
+P1,Macrophages,1,1,False
+P1,Mast cells,1,1,False
+P1,Megakaryocyte precursor,2,2,False
+P1,Megakaryocytes/platelets,74,74,False
+P1,Monocytes,1895,1895,True
+P1,Plasma cells,9,9,False
+P1,T cells,2293,2293,True
+P1,pDC,41,41,False
+P2,B cells,780,780,True
+P2,Cycling cells,1,1,False
+P2,DC,79,79,False
+P2,HSC/MPP,10,10,False
+P2,ILC,332,332,True
+P2,Macrophages,1,1,False
+P2,Mast cells,1,1,False
+P2,Megakaryocyte precursor,2,2,False
+P2,Megakaryocytes/platelets,74,74,False
+P2,Monocytes,1895,1895,True
+P2,Plasma cells,9,9,False
+P2,T cells,2293,2293,True
+P2,pDC,41,41,False
