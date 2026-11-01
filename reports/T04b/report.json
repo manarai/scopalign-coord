@@ -1,0 +1,119 @@
+{
+  "artifacts": [
+    {
+      "path": "data_meta.json",
+      "sha256": "c2002e6fe20da614cacc64ba6dd27dbad7e7b4e62366bd44fb629ee7ffacbacb"
+    },
+    {
+      "path": "data_manifest.json",
+      "sha256": "cf6a512304411b8b18842e42d3ac61ff49642636ec0da40add2127cfaf8af835"
+    },
+    {
+      "path": "reproduction.csv",
+      "sha256": "9b5267495c84103554a5c080d53123a5a3c7fbb31be301e3529eb738aec3577f"
+    },
+    {
+      "path": "win_conditions.csv",
+      "sha256": "3e24a031c824c9453934db8db5b28296a78db76901f9dcd88e36fa428ca1fe81"
+    },
+    {
+      "path": "run_meta.json",
+      "sha256": "6a4eabf8e306b128eb60615cdfaa39536f6c6ce5be001ae3b086ffb23cb2d73b"
+    },
+    {
+      "path": "sweep_continuation.json",
+      "sha256": "a53bae8e433e054c0e5572cba0cecc85b7f1ce784114ab79e8118599d7acc114"
+    }
+  ],
+  "branch": "task/T04b",
+  "commit": "161f33310060e3ec178401587e673e7def54a01a",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56"
+    },
+    {
+      "path": "sweep.csv",
+      "sha256": "2ac185a35d31d57e651866ecd236051037aa874e4710b48b666c98f177a2d785"
+    },
+    {
+      "path": "fig_retention.png",
+      "sha256": "74f193d6bee7273bbd7af6abb679165d35479d706f7d6c1c9c107dab53fe6e1a"
+    },
+    {
+      "path": "fig_mixing.png",
+      "sha256": "39a63e872bad117f0fa7508e533b4079f69e5b7a5929aabebd1108d0927f36ea"
+    },
+    {
+      "path": "fig_wins.png",
+      "sha256": "f26306bb40203881a19f017630405543fb91f32e48e95300a33645684e3964a0"
+    },
+    {
+      "path": "scripts/t04b_run.py",
+      "sha256": "bf0ef5b4fe40d9486b23fad13701112d1bb18ac68135ccf83f4f9ab85bb33c05"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Completed independent sweep conditions with two spawn-worker processes and three Torch CPU threads per worker, retaining atomic per-condition CSV checkpoints.",
+      "why": "The serial runner used three of six available CPU cores and did not complete. Each worker preserves the pre-registered cached condition matrix, seeds, methods, 400-epoch CPU scVI fit, and scoring procedure; conditions have no cross-condition state."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-11-01T03:59:08.553331+00:00",
+  "gated": {
+    "bio_false_max_gene_rot": 0.0896825948069836,
+    "bio_false_max_harmony": 0.0413513098920968,
+    "bio_false_max_scvi": 0.096721131445074,
+    "frac_harmony_removes_batch": 0.6666666666666666,
+    "frac_rigid_removes_batch": 0.4166666666666667,
+    "frac_rigid_wins": 0.20833333333333334,
+    "frac_rigid_wins_celltype": 0.08333333333333333,
+    "frac_rigid_wins_global": 0.3333333333333333,
+    "frac_scvi_removes_batch": 1.0,
+    "median_gain": 0.15760941964207476,
+    "n_conditions": 30,
+    "repro_t04_max_abs": 4.996003610813204e-16,
+    "repro_t04_scvi_abs": 0.0,
+    "t04b_outcome": "none"
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56",
+  "observations": [
+    "Cached 30 condition matrices and six batch-free oracle archives before the sweep.",
+    "The two global sigma=0.5 reference matrices equal the corresponding T04 cached count matrices.",
+    "Per-condition sweep checkpoints are stored under the gitignored cache directory."
+  ],
+  "regeneration": {
+    "bio_false_max_gene_rot": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "bio_false_max_harmony": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "bio_false_max_scvi": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "fig_mixing.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage all",
+    "fig_retention.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage all",
+    "fig_wins.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage all",
+    "frac_harmony_removes_batch": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "frac_rigid_removes_batch": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "frac_rigid_wins": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "frac_rigid_wins_celltype": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "frac_rigid_wins_global": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "frac_scvi_removes_batch": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "median_gain": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "n_conditions": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "repro_t04_max_abs": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "repro_t04_scvi_abs": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage sweep",
+    "requirements.lock": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage all",
+    "scripts/t04b_run.py": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage all",
+    "sweep.csv": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage all",
+    "t04b_outcome": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/T04b/scripts/t04b_run.py --stage report"
+  },
+  "seed": 20261014,
+  "started": "2026-10-20T10:05:01.098665+00:00",
+  "status": "complete",
+  "task_id": "T04b"
+}
