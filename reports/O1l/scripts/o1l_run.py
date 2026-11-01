@@ -13,7 +13,7 @@ import os
 import subprocess
 import sys
 import tempfile
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -350,6 +350,11 @@ def init_start_worker(problem):
 def optimise_start(item):
     """O1k's exact LBFGS configuration, applied to one issued start."""
     torch.set_num_threads(1)
+    return optimise_start_inprocess(item)
+
+
+def optimise_start_inprocess(item):
+    """The same O1k LBFGS routine when torch threads are set by its caller."""
     start, q0_numpy = item
     q0 = torch.as_tensor(q0_numpy, dtype=torch.float64)
     skew = torch.zeros((WORKER_PROBLEM.d, WORKER_PROBLEM.d), dtype=torch.float64, requires_grad=True)
@@ -361,13 +366,15 @@ def optimise_start(item):
 
 
 def refine(problem, items):
-    """Refine exactly eight selected starts with one active worker (at most three)."""
+    """Refine exactly eight starts with at most three in-process workers."""
     global WORKER_PROBLEM
-    # macOS local execution policy denies PyTorch's shared-memory helper used
-    # by the default spawned workers; the fork context also terminates workers.
-    # The serial path retains O1k's loss and every LBFGS setting unchanged.
+    # Local policy denies PyTorch's cross-process shared-memory helper and fork
+    # workers terminate.  Read-only models and independent LBFGS state permit
+    # the same issued optimisation in at most three in-process threads.
+    torch.set_num_threads(1)
     WORKER_PROBLEM = problem
-    answers = [optimise_start(item) for item in items]
+    with ThreadPoolExecutor(max_workers=start_workers()) as executor:
+        answers = list(executor.map(optimise_start_inprocess, items))
     return min(answers, key=lambda answer: (answer["L_hat"], answer["start"])), answers
 
 
@@ -924,7 +931,7 @@ def report_stage():
         "task_id": "O1l", "executor": "manus", "branch": "task/O1l", "commit": git_commit(), "seed": 20261014,
         "started": meta["started"], "finished": datetime.now(timezone.utc).isoformat(), "status": "complete", "gated": gated,
         "deliverables": checksum_entries(deliverable_paths), "artifacts": checksum_entries(artifact_paths), "regeneration": regeneration_commands(),
-        "deviations": [{"what": "Used one serial refinement worker and report-local matplotlib/fontconfig cache directories.", "why": "The local execution policy denied PyTorch's default spawned shared-memory helper; a three-worker fork context terminated workers. The serial path retains O1k's loss and LBFGS settings, and cache placement does not affect analysis values."}],
+        "deviations": [{"what": "Used an in-process thread executor with at most three refinement workers and report-local matplotlib/fontconfig cache directories.", "why": "The local execution policy denied PyTorch's default spawned shared-memory helper and a three-worker fork context terminated workers. Threads retain O1k's loss, selected starts, and LBFGS settings, while cache placement does not affect analysis values."}],
         "deviations_requested": [], "observations": [], "known_failures": KNOWN_FAILURES,
         "lockfile_sha256": sha(OUT / "requirements.lock"),
     }

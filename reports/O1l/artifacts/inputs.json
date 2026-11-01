@@ -235,7 +235,7 @@
       "case": "g1p15_n10000_r1",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p15_n10000_r1.npz",
       "input_sha256": "c403ba3d9ded9b3b0511af88d008e05ad189861aa408bad84abc66e72e7af609",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -249,7 +249,7 @@
       "case": "g1p15_n10000_r2",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p15_n10000_r2.npz",
       "input_sha256": "f78d442055218e9424b15a174cd92ec13f240cf678ab4bd2eb4d6d09c741593f",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -263,7 +263,7 @@
       "case": "g1p33_n1000_r0",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n1000_r0.npz",
       "input_sha256": "3ddd9fdf730fe7ac54ec17918ee786c16ce02cfaf7c39e7f4a782a20d771a686",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -277,7 +277,7 @@
       "case": "g1p33_n1000_r1",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n1000_r1.npz",
       "input_sha256": "cb239f947bb4f60718b4728a0dda193687409efee763482bded40099ba12b3f9",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -291,7 +291,7 @@
       "case": "g1p33_n1000_r2",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n1000_r2.npz",
       "input_sha256": "6bc3b54c7b9a6d03abf66edca80345518259c523be59c2b5599656e4b2d18c95",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -305,7 +305,7 @@
       "case": "g1p33_n3000_r0",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n3000_r0.npz",
       "input_sha256": "74da76e9d787747fbc0c1881c93de85d60962375182092ef7333526a7bf71c8a",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -319,7 +319,7 @@
       "case": "g1p33_n3000_r1",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n3000_r1.npz",
       "input_sha256": "aded3fedc6379b3f4708795e2eceea2820c9b882d5f6c81f63e73edd7272e81c",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -2314,12 +2314,12 @@
   },
   "source_cases": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cases.csv",
-    "rows": 52,
-    "sha256": "dfdeeab718a2e65393b9963ca960f40a9e0ee24f84385aa4a8cef8a2d989f621"
+    "rows": 59,
+    "sha256": "eae9b16bf0a8d3b7ca2b11a43d47defc6e072dc9db71f1fe627ba76b57d396d6"
   },
   "source_fit_symmetry": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/fit_symmetry.csv",
     "rows": 360,
-    "sha256": "2482329edf6ce68bda0b57c2767fb670abe62f6ca38791d968b8ae7884ce5dec"
+    "sha256": "837d7471a2b059fedfd7269c745c2f761f53fd56e0fb60a60641668a2be6e209"
   }
 }
