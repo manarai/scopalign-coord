@@ -665,16 +665,46 @@ def report_stage() -> None:
     print(json.dumps({"stage": "report", **gated}, sort_keys=True), flush=True)
 
 
+def checkpoint_stage(stage: str) -> None:
+    """Commit and push report products after each all-stage checkpoint.
+
+    The cache and detached-run files remain excluded by reports/K3/.gitignore.
+    This only publishes already-written stage outputs and does not alter any
+    pre-registered computation.
+    """
+    if os.environ.get("K3_AUTO_CHECKPOINT", "1") != "1":
+        return
+    subprocess.run(["git", "-C", str(ROOT), "add", "reports/K3"], check=True)
+    changed = subprocess.run(
+        ["git", "-C", str(ROOT), "diff", "--cached", "--quiet"]
+    ).returncode
+    if changed == 0:
+        return
+    if changed != 1:
+        raise RuntimeError(f"git diff --cached failed after K3 {stage} stage: {changed}")
+    subprocess.run(
+        ["git", "-C", str(ROOT), "commit", "-m", f"task: K3 {stage} stage"],
+        check=True,
+    )
+    subprocess.run(["git", "-C", str(ROOT), "push", "origin", "task/K3"], check=True)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--stage", required=True, choices=("fits", "compare", "report", "all"))
     stage = parser.parse_args().stage
     if stage in ("fits", "all"):
         fits_stage()
+        if stage == "all":
+            checkpoint_stage("fits")
     if stage in ("compare", "all") and not stopped():
         compare_stage()
+        if stage == "all":
+            checkpoint_stage("compare")
     if stage in ("report", "all"):
         report_stage()
+        if stage == "all":
+            checkpoint_stage("report")
 
 
 if __name__ == "__main__":
