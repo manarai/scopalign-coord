@@ -1,0 +1,100 @@
+{
+  "artifacts": [
+    {
+      "path": "input_manifest.json",
+      "sha256": "960452ec0fe6bd09a785ca6a3a884c331b763c98953870623b598351ce36761b"
+    },
+    {
+      "path": "latent_check.json",
+      "sha256": "700d6411cd2f655a859eb8be8d9534851319db0a98466e2a264da26136433659"
+    },
+    {
+      "path": "type_counts.csv",
+      "sha256": "873a23d20e2b3c3cda213863a081b8995136fc5b094c9f088cc8b36eb83a0708"
+    },
+    {
+      "path": "fit_symmetry.csv",
+      "sha256": "5ea40145f2551e81a84d6c05df752d2fc26d3910ff0f01eb8d4e00f818b04cc1"
+    },
+    {
+      "path": "zero_variance.csv",
+      "sha256": "b48cf7e8c0da7f5cf67fd63cea92395138711f066480e1e97c9cdc9260a8711f"
+    },
+    {
+      "path": "run_meta.json",
+      "sha256": "c8a75125c90a9456db5944d903f2d2956896ebef9622350b9a18e91464504da8"
+    }
+  ],
+  "branch": "task/K3",
+  "commit": "e0b1876137b79fee617476ef30b709074552c58a",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56"
+    },
+    {
+      "path": "ratios.csv",
+      "sha256": "62ab1e0eb6a34b5aa8df29461ef6854356154ed84dca1e23e1f78ae9f021dc64"
+    },
+    {
+      "path": "fig_network_ratios.png",
+      "sha256": "bd2d77ffa5289dd2e79fb0422d3e42694fe9c1adeb3dd18a4998028fdc2e4a43"
+    },
+    {
+      "path": "scripts/k3_run.py",
+      "sha256": "94c14917ea0db401e96bb2606126ad6a4fb6adb9d59b61f62a2243f362e227ea"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-11-01T16:02:24.401715+00:00",
+  "gated": {
+    "corr_ratio_bio": 0.8634137278862917,
+    "corr_ratio_genebatch": 0.8885747524129896,
+    "corr_ratio_tech": 0.8292122334759218,
+    "corr_ratio_type": 1.3676214066176189,
+    "k3_outcome": "batch_sensitive",
+    "latent_check_rel": 4.650513890607436e-05,
+    "n_types_P1": 4,
+    "n_types_P2": 4,
+    "net_ratio_bio": 0.45527437805756366,
+    "net_ratio_genebatch": 2.212249220370591,
+    "net_ratio_tech": 1.4686861237436797,
+    "net_ratio_type": 9.730445282498499,
+    "symmetry_max": 2.023813294727006e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56",
+  "observations": [
+    "Operator and correlation-network distances were evaluated without saving 2000 by 2000 network arrays."
+  ],
+  "regeneration": {
+    "corr_ratio_bio": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage compare",
+    "corr_ratio_genebatch": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage compare",
+    "corr_ratio_tech": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage compare",
+    "corr_ratio_type": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage compare",
+    "fig_network_ratios.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage all",
+    "k3_outcome": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage report",
+    "latent_check_rel": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage fits",
+    "n_types_P1": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage fits",
+    "n_types_P2": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage fits",
+    "net_ratio_bio": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage compare",
+    "net_ratio_genebatch": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage compare",
+    "net_ratio_tech": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage compare",
+    "net_ratio_type": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage compare",
+    "ratios.csv": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage all",
+    "requirements.lock": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage all",
+    "scripts/k3_run.py": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage all",
+    "symmetry_max": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K3/scripts/k3_run.py --stage fits"
+  },
+  "seed": 20261014,
+  "started": "2026-11-01T04:08:15.735807+00:00",
+  "status": "complete",
+  "task_id": "K3"
+}

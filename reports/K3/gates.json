@@ -3,6 +3,7 @@
   "corr_ratio_genebatch": 0.8885747524129896,
   "corr_ratio_tech": 0.8292122334759218,
   "corr_ratio_type": 1.3676214066176189,
+  "k3_outcome": "batch_sensitive",
   "latent_check_rel": 4.650513890607436e-05,
   "n_types_P1": 4,
   "n_types_P2": 4,
