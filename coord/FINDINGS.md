@@ -632,3 +632,19 @@ planner's recomputed values, not the executor's reported ones.
 - corr_ratio_bio: 0.863414
 - Decision rule outcome: batch_sensitive (genebatch 2.21 > 2.0). The operator gene network separates cell types (9.7×) but shifts with the gene-level batch and does not see the interferon response (0.46×).
 - Commit: task/K3 @ e0b1876 (report 59ea202; Manus cloud)
+
+## 2026-11-01 — K4 (ACCEPT; outcome anchors_equal) — light recompute (exact from fingerprints.npz; null regenerated)
+
+- n_pairs_P1: 19
+- n_pairs_P2: 17
+- acc_op_P1: 1
+- acc_op_P2: 0.823529
+- acc_op_P3: 0.823529
+- acc_expr_P1: 1
+- acc_expr_P2: 1
+- acc_expr_P3: 1
+- chance_P2: 0.218647
+- p_op_P2: 0.000999001
+- symmetry_max: 2.02381e-07
+- Decision rule outcome: anchors_equal (operator anchors ≥ 0.80 in P1 and P2; not ≥ expression + 0.10). Operator fingerprints match clusters well beyond chance without labels, but below expression means (1.00) under a gene-level batch.
+- Commit: task/K4 @ d90203e (report 8cb24dc; Manus cloud)
