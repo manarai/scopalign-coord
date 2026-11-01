@@ -9,6 +9,7 @@ are strictly read-only inputs at the absolute O1k path declared below.
 import argparse
 import hashlib
 import json
+import multiprocessing
 import os
 import subprocess
 import sys
@@ -361,13 +362,17 @@ def optimise_start(item):
 
 
 def refine(problem, items):
-    """Refine exactly eight selected starts with one active worker (at most three)."""
-    global WORKER_PROBLEM
-    # macOS local execution policy denies PyTorch's shared-memory helper used
-    # when pickling this Problem into a spawned process.  A serial worker keeps
-    # O1k's loss and every LBFGS setting unchanged while respecting <=3 workers.
-    WORKER_PROBLEM = problem
-    answers = [optimise_start(item) for item in items]
+    """Refine eight selected starts with three forked workers (at most three)."""
+    # The default macOS spawn context serializes this torch-backed Problem through
+    # PyTorch's prohibited shared-memory helper.  Fork preserves the same loss,
+    # selected starts, and LBFGS settings without that helper.
+    with ProcessPoolExecutor(
+        max_workers=start_workers(),
+        mp_context=multiprocessing.get_context("fork"),
+        initializer=init_start_worker,
+        initargs=(problem,),
+    ) as executor:
+        answers = list(executor.map(optimise_start, items))
     return min(answers, key=lambda answer: (answer["L_hat"], answer["start"])), answers
 
 
@@ -924,7 +929,7 @@ def report_stage():
         "task_id": "O1l", "executor": "manus", "branch": "task/O1l", "commit": git_commit(), "seed": 20261014,
         "started": meta["started"], "finished": datetime.now(timezone.utc).isoformat(), "status": "complete", "gated": gated,
         "deliverables": checksum_entries(deliverable_paths), "artifacts": checksum_entries(artifact_paths), "regeneration": regeneration_commands(),
-        "deviations": [{"what": "Used one serial refinement worker and report-local matplotlib/fontconfig cache directories.", "why": "The local execution policy denied PyTorch's spawned shared-memory helper and global font-cache writes; the serial path retains O1k's loss and LBFGS settings and cache placement does not affect analysis values."}],
+        "deviations": [{"what": "Used a three-worker fork context for refinement and report-local matplotlib/fontconfig cache directories.", "why": "The local execution policy denied PyTorch's default spawned shared-memory helper and global font-cache writes; the fork context retains O1k's loss and LBFGS settings, and cache placement does not affect analysis values."}],
         "deviations_requested": [], "observations": [], "known_failures": KNOWN_FAILURES,
         "lockfile_sha256": sha(OUT / "requirements.lock"),
     }
