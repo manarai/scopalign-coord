@@ -846,6 +846,11 @@ def o1g_models_readonly(o1g, case):
     for seed in o1g.SEEDS20:
         for side, bucket in (("X", mx), ("Y", my)):
             path = Path(o1g.local_fit(case, side, seed)).resolve()
+            # O1g itself deliberately reuses O1b's first five fits instead of
+            # copying them into its local cache.  Preserve that exact fallback
+            # without calling get_models(), which would write under O1g.
+            if not path.is_file() and int(seed) in tuple(o1g.FIRST5):
+                path = Path(o1g.old_fit(case, side, seed)).resolve()
             if not path.is_file():
                 raise RuntimeError(
                     "O1k copy check requires O1g's cached Test R fit, but it is missing: "
