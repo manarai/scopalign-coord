@@ -1,0 +1,155 @@
+{
+  "checkpoints": [
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f0.csv",
+      "sha256": "eb78de8a02a0a2ac2250e901a82a993b504a471d81e241f6fd55daae34893319"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f1.csv",
+      "sha256": "0240b571f6b84304d4e9cf804e01c152a4f04e03b79ea4b4f9b30afc93a768b4"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f2.csv",
+      "sha256": "b560b49ee17195aa93e2012f880772aa35f982c3324a711dbcde3de56c528184"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f4.csv",
+      "sha256": "e0ab770a76c52e855f4dab66b4d3c14eb8a4353998ebd38a134988f2ef5d9f3f"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f8.csv",
+      "sha256": "8ce6bfcce2cebcf0c1de949c4946383793310be574f738cc55dd00cad7490b98"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f0.csv",
+      "sha256": "49d2766546a8ae5a974774c39431efff18200c2d94376c790b64970927f560e2"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f1.csv",
+      "sha256": "b13dbae38d37e23e1096ee3012f3c237c8b5b7c5508c470d4af04e657053e8bc"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f2.csv",
+      "sha256": "607b4fcce3f1f87e85d38a87ecc65638c68155b55a063c40c84d099e4a336a02"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f4.csv",
+      "sha256": "2c9028351a6fbe1b1a96dd627e689bfeaaf75b308c905fe9e92bcf689df29230"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f8.csv",
+      "sha256": "d6e1699da56140839749909df73c6f556aeb3f29a574f5ac6f87e2ac1d1af21a"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f0.csv",
+      "sha256": "7f7272df0bb063d9e4ebf8047df4d7c795183ca0989c044235dff370f0b2e5b3"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f1.csv",
+      "sha256": "ddcd883b931036508c50ec4e2d2a885b3ded1bf2e53eed3e034e264e6a141437"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f2.csv",
+      "sha256": "86502b3cf30b175958f6212ef0a83f1fffedd37566ea2e1dc666651e58a8b5f7"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f4.csv",
+      "sha256": "4be32ccd7af203bd6c6ec29f6a3f3e4d56af7864c38c48f5bf66ed6f59559c0d"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f8.csv",
+      "sha256": "77bbe413df46edd6123b1e8ffc965a607e99e8081635c45e66264eb1f76f703d"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p25__f0.csv",
+      "sha256": "13aa92e33405acaa2ebc66acff265ac75744f6e5b7df1c9956ae431f2061856e"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p25__f1.csv",
+      "sha256": "01a69d2a81fc497f4e405040a7c78bd72057162894163fc8d2f2e70949ce8a72"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p25__f2.csv",
+      "sha256": "8ddd655602c514ff1f162f55adcada7edc6595d5a4a145717c0662d48d891f0e"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p25__f4.csv",
+      "sha256": "e08e7743c52ba1c570c81009e948830dbd7543dc5cced280addb7098aceb2269"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p25__f8.csv",
+      "sha256": "cb49c69107bdfdfac8348b15cf455503c8dda64547c4dfdd7850c6b90144a5b0"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p5__f0.csv",
+      "sha256": "2e82e3591ae01a3442e71a6e66954a55b6f179d501f3a370c113b94b7fa6bd96"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p5__f1.csv",
+      "sha256": "c1d441f185272947f35a8b4cc6b6d68719f19e131db098ed5d6fb30efa337afd"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p5__f2.csv",
+      "sha256": "3b53c88f375693a86717bcc7051ebf7fd7f1c87bbee291bd5807c259be89694c"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p5__f4.csv",
+      "sha256": "dc076416268850d2a0f232849a5cbd6d01982b6ecfb2fc08c6b05e2dc210f1ad"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s0p5__f8.csv",
+      "sha256": "06121c94af6218d5ac3718600fff26f6040cd5d5ac92acb1a5b86b56bdfec5ff"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s1p0__f0.csv",
+      "sha256": "bb40cc5a88744a61c7a6eba89a479d0dbf3d8b283649b855229b319210018f05"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s1p0__f1.csv",
+      "sha256": "625c91263befa4b400998be2d492dad1cab038cff11735fafc20eb434853640b"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s1p0__f2.csv",
+      "sha256": "c4a12202acd886391d2cb790698d8c3f193ae41d27802442b95ec616c4f0d6aa"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s1p0__f4.csv",
+      "sha256": "74c7a4336ea28c85b10d99cdf73f6e34367169b5e5a78c32ed2ea6450d10c163"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/global__s1p0__f8.csv",
+      "sha256": "b93517078cc6c450d63c02461456929be6ce67f04679ca0f212393a349206d70"
+    }
+  ],
+  "n_conditions": 30
+}
