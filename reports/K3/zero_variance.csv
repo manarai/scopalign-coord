@@ -1,0 +1,21 @@
+pair,comparison,type,side,n_zero_variance
+P1,tech,B cells,left,329
+P1,tech,B cells,right,287
+P1,tech,ILC,left,429
+P1,tech,ILC,right,424
+P1,tech,Monocytes,left,147
+P1,tech,Monocytes,right,150
+P1,tech,T cells,left,190
+P1,tech,T cells,right,168
+P2,genebatch,B cells,left,390
+P2,genebatch,B cells,right,423
+P2,genebatch,ILC,left,503
+P2,genebatch,ILC,right,554
+P2,genebatch,Monocytes,left,198
+P2,genebatch,Monocytes,right,232
+P2,genebatch,T cells,left,239
+P2,genebatch,T cells,right,269
+P1,type,Monocytes_vs_T_cells,left,150
+P1,type,Monocytes_vs_T_cells,right,168
+S1,bio,Monocytes_responders_vs_nonresponders,left,345
+S1,bio,Monocytes_responders_vs_nonresponders,right,336

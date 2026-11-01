@@ -1,6 +1,14 @@
 {
+  "corr_ratio_bio": 0.8634137278862917,
+  "corr_ratio_genebatch": 0.8885747524129896,
+  "corr_ratio_tech": 0.8292122334759218,
+  "corr_ratio_type": 1.3676214066176189,
   "latent_check_rel": 4.650513890607436e-05,
   "n_types_P1": 4,
   "n_types_P2": 4,
+  "net_ratio_bio": 0.45527437805756366,
+  "net_ratio_genebatch": 2.212249220370591,
+  "net_ratio_tech": 1.4686861237436797,
+  "net_ratio_type": 9.730445282498499,
   "symmetry_max": 2.023813294727006e-07
 }
