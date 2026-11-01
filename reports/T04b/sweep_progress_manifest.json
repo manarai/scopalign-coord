@@ -37,6 +37,31 @@
     },
     {
       "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f2.csv",
+      "sha256": "607b4fcce3f1f87e85d38a87ecc65638c68155b55a063c40c84d099e4a336a02"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f4.csv",
+      "sha256": "2c9028351a6fbe1b1a96dd627e689bfeaaf75b308c905fe9e92bcf689df29230"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f8.csv",
+      "sha256": "d6e1699da56140839749909df73c6f556aeb3f29a574f5ac6f87e2ac1d1af21a"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f0.csv",
+      "sha256": "7f7272df0bb063d9e4ebf8047df4d7c795183ca0989c044235dff370f0b2e5b3"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f1.csv",
+      "sha256": "ddcd883b931036508c50ec4e2d2a885b3ded1bf2e53eed3e034e264e6a141437"
+    },
+    {
+      "n_rows": 5,
       "path": "cache/sweep/global__s0p25__f0.csv",
       "sha256": "13aa92e33405acaa2ebc66acff265ac75744f6e5b7df1c9956ae431f2061856e"
     },
@@ -111,5 +136,5 @@
       "sha256": "b93517078cc6c450d63c02461456929be6ce67f04679ca0f212393a349206d70"
     }
   ],
-  "n_conditions": 22
+  "n_conditions": 27
 }
