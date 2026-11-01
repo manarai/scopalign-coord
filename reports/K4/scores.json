@@ -1,0 +1,38 @@
+{
+  "null_seed": 20261400,
+  "pair_order": [
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "pairs": {
+    "P1": {
+      "acc_expr": 1.0,
+      "acc_op": 1.0,
+      "chance": 0.23826315789473682,
+      "n_col_clusters": 19,
+      "n_pairs": 19,
+      "n_row_clusters": 20,
+      "p_op": 0.000999000999000999
+    },
+    "P2": {
+      "acc_expr": 1.0,
+      "acc_op": 0.8235294117647058,
+      "chance": 0.2186470588235294,
+      "n_col_clusters": 17,
+      "n_pairs": 17,
+      "n_row_clusters": 19,
+      "p_op": 0.000999000999000999
+    },
+    "P3": {
+      "acc_expr": 1.0,
+      "acc_op": 0.8235294117647058,
+      "chance": 0.22441176470588234,
+      "n_col_clusters": 17,
+      "n_pairs": 17,
+      "n_row_clusters": 19,
+      "p_op": 0.000999000999000999
+    }
+  },
+  "permutations": 1000
+}

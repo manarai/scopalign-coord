@@ -1,0 +1,107 @@
+pair,fingerprint,row_cluster,col_cluster,distance,row_label,col_label,correct
+P1,operator,C01,C03,0.36478411690501916,T cells,T cells,True
+P1,operator,C02,C01,1.422494253199027,Monocytes,Monocytes,True
+P1,operator,C03,C02,0.47907264794330595,T cells,T cells,True
+P1,operator,C04,C05,0.64711824594430523,B cells,B cells,True
+P1,operator,C05,C04,1.6041797770304773,Monocytes,Monocytes,True
+P1,operator,C06,C06,0.42211791374418473,T cells,T cells,True
+P1,operator,C07,C09,3.4324274434260071,Monocytes,Monocytes,True
+P1,operator,C08,C07,0.19795668231246433,ILC,ILC,True
+P1,operator,C09,C08,0.86252863352640596,B cells,B cells,True
+P1,operator,C11,C12,0.65844724116137854,Monocytes,Monocytes,True
+P1,operator,C12,C10,0.31093322953076347,T cells,T cells,True
+P1,operator,C13,C13,0.51624640315872405,Monocytes,Monocytes,True
+P1,operator,C14,C11,0.37715103014287371,T cells,T cells,True
+P1,operator,C15,C16,1.7185111693814046,DC,DC,True
+P1,operator,C16,C15,0.16850515499825172,Megakaryocytes/platelets,Megakaryocytes/platelets,True
+P1,operator,C17,C14,0.39927445988564297,T cells,T cells,True
+P1,operator,C18,C17,1.0540478111206464,B cells,B cells,True
+P1,operator,C19,C18,0.61194595564420184,pDC,pDC,True
+P1,operator,C20,C19,0.94496043780836625,Monocytes,Monocytes,True
+P1,expression,C01,C03,0.0022396075364221613,T cells,T cells,True
+P1,expression,C02,C01,0.0018851507292833025,Monocytes,Monocytes,True
+P1,expression,C03,C02,0.0024848729865858399,T cells,T cells,True
+P1,expression,C04,C05,0.0019791855286535043,B cells,B cells,True
+P1,expression,C05,C09,0.0062819484394924796,Monocytes,Monocytes,True
+P1,expression,C06,C06,0.0021823283936789339,T cells,T cells,True
+P1,expression,C07,C04,0.0014888065737710399,Monocytes,Monocytes,True
+P1,expression,C08,C07,0.0023712346612607682,ILC,ILC,True
+P1,expression,C09,C08,0.0038794735379212852,B cells,B cells,True
+P1,expression,C10,C11,0.0049562608647273354,T cells,T cells,True
+P1,expression,C11,C12,0.0022525025458871584,Monocytes,Monocytes,True
+P1,expression,C12,C10,0.0055438376518225363,T cells,T cells,True
+P1,expression,C13,C13,0.003249035062585004,Monocytes,Monocytes,True
+P1,expression,C15,C16,0.0041561791578207385,DC,DC,True
+P1,expression,C16,C15,0.0095928419855402236,Megakaryocytes/platelets,Megakaryocytes/platelets,True
+P1,expression,C17,C14,0.035977453492251787,T cells,T cells,True
+P1,expression,C18,C17,0.013525676194134362,B cells,B cells,True
+P1,expression,C19,C18,0.0097643043024325804,pDC,pDC,True
+P1,expression,C20,C19,0.011608611768317956,Monocytes,Monocytes,True
+P2,operator,C01,C02,0.57866054843170756,T cells,T cells,True
+P2,operator,C02,C01,0.6405550653368548,T cells,T cells,True
+P2,operator,C03,C03,1.3515687906880276,Monocytes,Monocytes,True
+P2,operator,C04,C05,1.4011488517372948,Monocytes,Monocytes,True
+P2,operator,C05,C06,0.58296027553654239,B cells,B cells,True
+P2,operator,C06,C08,0.63188767055943429,T cells,ILC,False
+P2,operator,C08,C07,1.6026106764738295,Monocytes,Monocytes,True
+P2,operator,C09,C09,0.53094137426850596,B cells,B cells,True
+P2,operator,C10,C14,1.8536642104542078,Monocytes,DC,False
+P2,operator,C11,C12,0.64705112786820485,T cells,T cells,True
+P2,operator,C12,C11,0.65491926339611573,Monocytes,Monocytes,True
+P2,operator,C14,C13,0.24675404226430961,Megakaryocytes/platelets,Megakaryocytes/platelets,True
+P2,operator,C15,C10,1.438897467804416,DC,Monocytes,False
+P2,operator,C16,C04,0.43346403800399552,T cells,T cells,True
+P2,operator,C17,C15,1.1747345948469612,B cells,B cells,True
+P2,operator,C18,C16,0.4345244522781187,pDC,pDC,True
+P2,operator,C19,C17,0.82603373449188255,Monocytes,Monocytes,True
+P2,expression,C01,C01,0.026560877057815735,T cells,T cells,True
+P2,expression,C02,C02,0.027733669734081312,T cells,T cells,True
+P2,expression,C03,C03,0.029810679245448224,Monocytes,Monocytes,True
+P2,expression,C04,C05,0.028568478043868528,Monocytes,Monocytes,True
+P2,expression,C05,C06,0.024844798482375752,B cells,B cells,True
+P2,expression,C06,C04,0.030826158035170748,T cells,T cells,True
+P2,expression,C07,C08,0.026864703370683918,ILC,ILC,True
+P2,expression,C08,C07,0.029023207348350955,Monocytes,Monocytes,True
+P2,expression,C09,C09,0.030807206468541404,B cells,B cells,True
+P2,expression,C10,C10,0.02965138463775685,Monocytes,Monocytes,True
+P2,expression,C12,C11,0.034722898824141368,Monocytes,Monocytes,True
+P2,expression,C13,C12,0.064908104748652162,T cells,T cells,True
+P2,expression,C14,C13,0.033346040457072679,Megakaryocytes/platelets,Megakaryocytes/platelets,True
+P2,expression,C15,C14,0.032800050049210938,DC,DC,True
+P2,expression,C17,C15,0.064882406060474684,B cells,B cells,True
+P2,expression,C18,C16,0.040174250242477894,pDC,pDC,True
+P2,expression,C19,C17,0.046428908129400037,Monocytes,Monocytes,True
+P3,operator,C01,C02,0.36081826649346038,T cells,T cells,True
+P3,operator,C03,C07,2.6828225325974464,Monocytes,Monocytes,True
+P3,operator,C04,C03,3.2346254027070773,Monocytes,Monocytes,True
+P3,operator,C05,C05,0.8437185003970068,B cells,B cells,True
+P3,operator,C06,C01,0.59502572840678214,T cells,T cells,True
+P3,operator,C07,C08,0.33082036067869619,ILC,ILC,True
+P3,operator,C08,C12,1.9025170486859295,Monocytes,DC,False
+P3,operator,C09,C09,0.44767426288655343,B cells,B cells,True
+P3,operator,C10,C11,1.8843298780964566,Monocytes,Monocytes,True
+P3,operator,C11,C15,1.3424743915148496,T cells,Monocytes,False
+P3,operator,C12,C10,9.4725208689323903,Monocytes,Monocytes,True
+P3,operator,C13,C14,0.31606795701192747,T cells,T cells,True
+P3,operator,C14,C13,0.61586993589824457,Megakaryocytes/platelets,Megakaryocytes/platelets,True
+P3,operator,C15,C06,2.0050890222141482,DC,Monocytes,False
+P3,operator,C16,C04,0.66232413137134794,T cells,T cells,True
+P3,operator,C17,C16,0.75141784329312422,B cells,B cells,True
+P3,operator,C18,C17,0.38518286345511171,pDC,pDC,True
+P3,expression,C01,C02,0.026001860573982905,T cells,T cells,True
+P3,expression,C02,C01,0.028055710758302266,T cells,T cells,True
+P3,expression,C03,C10,0.053861747266958804,Monocytes,Monocytes,True
+P3,expression,C04,C03,0.050954617986534889,Monocytes,Monocytes,True
+P3,expression,C05,C05,0.024369840024302425,B cells,B cells,True
+P3,expression,C06,C04,0.030361627020398352,T cells,T cells,True
+P3,expression,C07,C08,0.027317730578983457,ILC,ILC,True
+P3,expression,C08,C06,0.033087283004019197,Monocytes,Monocytes,True
+P3,expression,C09,C09,0.029905479933487022,B cells,B cells,True
+P3,expression,C10,C11,0.031590010600414886,Monocytes,Monocytes,True
+P3,expression,C12,C15,0.037930964398278255,Monocytes,Monocytes,True
+P3,expression,C13,C14,0.072762299839446487,T cells,T cells,True
+P3,expression,C14,C13,0.03099858702797853,Megakaryocytes/platelets,Megakaryocytes/platelets,True
+P3,expression,C15,C12,0.032447541724528017,DC,DC,True
+P3,expression,C17,C16,0.048566167957187045,B cells,B cells,True
+P3,expression,C18,C17,0.040638120315316995,pDC,pDC,True
+P3,expression,C19,C07,0.074606512975362915,Monocytes,Monocytes,True

@@ -1,0 +1,138 @@
+{
+  "artifacts": [
+    {
+      "path": "input_manifest.json",
+      "sha256": "7c04b2fdc027cf5c3465722fbc6f0b21b1ee37c54ef711522934817e001019a7"
+    },
+    {
+      "path": "run_meta.json",
+      "sha256": "fefaeea60c8f15a62214fc7eba59f376a6a9821f7bc4e49719a5d481f2245829"
+    },
+    {
+      "path": "symmetry_stats.csv",
+      "sha256": "be34ead9ac105a137ac27df7f0fcd2d58ddddb31db5e76e43cc5449b89b59148"
+    },
+    {
+      "path": "cluster_drops.json",
+      "sha256": "78d8dd066b8da4ef352cca8db86d40c1980af9ea68e85d4a5277fd468ad236fc"
+    },
+    {
+      "path": "scores.json",
+      "sha256": "fc760d5ff5431c257c0758273244c5c13357dcbccbd199010a0540c733af07e0"
+    },
+    {
+      "path": "gates.json",
+      "sha256": "724995f8679dc131cdc9fb873ee432d5abf60e874b9bf354ad1f3439f1b5dbef"
+    },
+    {
+      "path": "fingerprints.npz",
+      "sha256": "6b6d0a290ec61f03aaf1012281eacb5a2afdd659341ed18c239fdd222d4f8aca"
+    },
+    {
+      "path": "cache/match_state.json",
+      "sha256": "ee582c1a5821308cf5e959311bb39c2e5d0edb407c22437f7b05b4a496512288"
+    },
+    {
+      "path": "cache/clusters/P1_H1.npz",
+      "sha256": "18553cacedc1838db0e72a005a8ff4e835a52d1e98797b8d90ad1236bd4d5837"
+    },
+    {
+      "path": "cache/clusters/P1_H2.npz",
+      "sha256": "07580d0475aab8dec4c6f53b1ec4911a530f09a0ae124817405a634de7b630bb"
+    },
+    {
+      "path": "cache/clusters/P2_A.npz",
+      "sha256": "a5dec955264e1b2232375cbc4bce9f2d6a559f20cfd07c6f6677aca40ddf02a9"
+    },
+    {
+      "path": "cache/clusters/P2_B.npz",
+      "sha256": "fc65e7b1c0f29375c4d012c345f717ea66840ae2bc95af3d91df4361ce1c6068"
+    },
+    {
+      "path": "cache/clusters/P3_A.npz",
+      "sha256": "467f6219f914945fdc4a719b7fa324e231776c8160b08947eb527754d8d19250"
+    },
+    {
+      "path": "cache/clusters/P3_B.npz",
+      "sha256": "80494238043c18b1907dc736c915699b4780f1b9c0a3d126abe5cb314d6ed9d3"
+    }
+  ],
+  "branch": "task/K4",
+  "commit": "d90203eaaee9d82c3c1d53b616bf231162e7543b",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56"
+    },
+    {
+      "path": "clusters.csv",
+      "sha256": "a7ca48d472f0795aa2870ea1172ae396c9f785eb01a18f36367cf33d6dfca68d"
+    },
+    {
+      "path": "matches.csv",
+      "sha256": "dd874e4f1eefca42c7f91351d0ff896df1880437a1667713b02853e358d3543e"
+    },
+    {
+      "path": "fig_anchors.png",
+      "sha256": "debd4fadfe7cdcd0f970ae6dfcbbb45eb84bdd30009412814c3fe56e4a0cbd62"
+    },
+    {
+      "path": "scripts/k4_run.py",
+      "sha256": "b9c1ac18b00bdd62251b72f697ffdd8eee742c43d64eb8a672052bfcee3fcaa2"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-11-01T16:50:44.149932+00:00",
+  "gated": {
+    "acc_expr_P1": 1.0,
+    "acc_expr_P2": 1.0,
+    "acc_expr_P3": 1.0,
+    "acc_op_P1": 1.0,
+    "acc_op_P2": 0.8235294117647058,
+    "acc_op_P3": 0.8235294117647058,
+    "chance_P2": 0.2186470588235294,
+    "k4_outcome": "anchors_equal",
+    "n_pairs_P1": 19,
+    "n_pairs_P2": 17,
+    "p_op_P2": 0.000999000999000999,
+    "symmetry_max": 2.023813294727006e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "209947f93bae764d9247ce5b8673ec21b9df67c592b247af35c90e0f9da29b56",
+  "observations": [
+    "K4 \u2014 Anchoring: can operator fingerprints match cell groups across batches without labels?",
+    "Operator fingerprints use the saved float64 operators and saved checkpoint symmetry values only.",
+    "Cluster labels are majority coarse cell_type values calculated after Leiden clustering for scoring and display."
+  ],
+  "regeneration": {
+    "acc_expr_P1": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "acc_expr_P2": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "acc_expr_P3": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "acc_op_P1": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "acc_op_P2": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "acc_op_P3": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "chance_P2": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "clusters.csv": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage cluster",
+    "fig_anchors.png": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage report",
+    "k4_outcome": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage report",
+    "matches.csv": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "n_pairs_P1": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "n_pairs_P2": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "p_op_P2": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage match",
+    "report.json": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage report",
+    "requirements.lock": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage check",
+    "scripts/k4_run.py": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage all",
+    "symmetry_max": "cd \"$HOME/scopalign-cloud\" && .venv/bin/python reports/K4/scripts/k4_run.py --stage check"
+  },
+  "seed": 20261014,
+  "started": "2026-11-01T16:50:03.455643+00:00",
+  "status": "complete",
+  "task_id": "K4"
+}

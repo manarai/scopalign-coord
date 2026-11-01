@@ -1,0 +1,14 @@
+{
+  "acc_expr_P1": 1.0,
+  "acc_expr_P2": 1.0,
+  "acc_expr_P3": 1.0,
+  "acc_op_P1": 1.0,
+  "acc_op_P2": 0.8235294117647058,
+  "acc_op_P3": 0.8235294117647058,
+  "chance_P2": 0.2186470588235294,
+  "k4_outcome": "anchors_equal",
+  "n_pairs_P1": 19,
+  "n_pairs_P2": 17,
+  "p_op_P2": 0.000999000999000999,
+  "symmetry_max": 2.023813294727006e-07
+}
