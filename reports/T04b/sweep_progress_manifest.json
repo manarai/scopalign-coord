@@ -7,6 +7,36 @@
     },
     {
       "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f1.csv",
+      "sha256": "0240b571f6b84304d4e9cf804e01c152a4f04e03b79ea4b4f9b30afc93a768b4"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f2.csv",
+      "sha256": "b560b49ee17195aa93e2012f880772aa35f982c3324a711dbcde3de56c528184"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f4.csv",
+      "sha256": "e0ab770a76c52e855f4dab66b4d3c14eb8a4353998ebd38a134988f2ef5d9f3f"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p25__f8.csv",
+      "sha256": "8ce6bfcce2cebcf0c1de949c4946383793310be574f738cc55dd00cad7490b98"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f0.csv",
+      "sha256": "49d2766546a8ae5a974774c39431efff18200c2d94376c790b64970927f560e2"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s0p5__f1.csv",
+      "sha256": "b13dbae38d37e23e1096ee3012f3c237c8b5b7c5508c470d4af04e657053e8bc"
+    },
+    {
+      "n_rows": 5,
       "path": "cache/sweep/global__s0p25__f0.csv",
       "sha256": "13aa92e33405acaa2ebc66acff265ac75744f6e5b7df1c9956ae431f2061856e"
     },
@@ -81,5 +111,5 @@
       "sha256": "b93517078cc6c450d63c02461456929be6ce67f04679ca0f212393a349206d70"
     }
   ],
-  "n_conditions": 16
+  "n_conditions": 22
 }
