@@ -214,7 +214,7 @@ that K0 shows to be reproducible, can decide it.
 | T02d | T02c Part 1 with basin-floor operators (30 lowest-energy cells per cluster); written before T02c's result | ACCEPT (2026-10-15) — frame agreement (1.20; centroid 1.09) |
 | T04  | Hypothesis test: PBMC halves + known gene-level batch + known interferon response in half of B's monocytes; 6 methods scored on batch removal, biology retention, operator flag | ACCEPT (2026-10-20) — not_supported: E5 rotation fails under a gene-level batch (mix 0.07, retention 0.68); operator flag works for no method; rigid gene rotation alone keeps biology (0.91 vs Harmony/scVI 0.63) |
 | T04c | Diagnostic: within-batch operator contrast (B responders vs non-responders; S0 control) from T04's cached fits | ACCEPT (2026-10-20) — weak: operators 1.83× noise (S0 0.88), positions 18× → response moves cells more than it reshapes operators |
-| T04b | Sweep: biology effect size × batch strength; rigid correction vs Harmony vs scVI | issued (2026-10-20; Manus cloud) |
+| T04b | Sweep: biology effect size × batch strength; rigid correction vs Harmony vs scVI | ACCEPT (2026-11-01) — none: rigid wins 5/24 (0.21 < 0.25); wins only at σ ≤ 0.5, f 2–4; under-mixes at σ 1.0, f 8 and most cell-type batches; scVI mixes in 24/24 → T04 is a case study |
 | T03  | Two-lab dataset: carry `A` to `z`; residual = biology check | blocked by T04 |
 | T05  | Benchmark vs Harmony / scVI on scib metrics + preservation of a known biological difference | blocked by T03 |
 | T05a | Pilot benchmark on the K2 pair: joint PCA, centring, Harmony, scVI, gene-anchored rotation; mixing, silhouette, operator frame agreement | ACCEPT (2026-10-15) — Harmony best (mix 1.00, sil 0.447, frame 1.35); ours not competitive on this pair |
@@ -226,6 +226,8 @@ that K0 shows to be reproducible, can decide it.
 | O1h  | Diagnostic: E5b top-k axis error on one cached Test R case (n 2759, r 0); saves all start rotations | ACCEPT (2026-10-18) — partial: top-3 axes err 0.05, top-5 0.12, top-10 0.21, all 30 0.60 → information fades with variance |
 | O1i  | E5r: rotation restricted to the operator-defined top-k subspace (k = 5 gated; 3, 8 reported), complement left unchanged; screened sign starts | ACCEPT (2026-10-18) — fails (top-5 err 0.93; Test F mix 0.26): operator-defined subspace does not transfer (flat spectra); position-covariance subspace would |
 | O1j  | E5p: axes from each copy's position covariance (rule 13a); top-5 block rotation + remaining axis signs from operators | issued (2026-10-18) |
+| O1k  | Positive control: E5b on a synthetic 10-d Gaussian-mixture landscape with known rotation — exact vs fitted fields × well anisotropy γ × n (test vs operator) | issued (2026-11-01; Mac) |
+| O1l  | Search fix on O1k's landscape: starts from each copy's axes × all 1024 sign patterns (screen, refine 8) + basin-radius diagnostic; exact and fitted fields | pre-registered (2026-11-01; blocked by O1k ACCEPT) |
 | O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
 | O1d  | E6 one shared energy with a learnable rotation (ESM) | pre-registered (parallel allowed) |
 | O1e  | E8 fused Gromov–Wasserstein initial matching + E3 ICP | pre-registered (parallel allowed) |
