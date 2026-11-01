@@ -28,6 +28,7 @@ from sklearn.neighbors import NearestNeighbors
 
 from scjdo2.energy_drift import _EnergyMLP
 
+MAIN_TORCH_THREADS = torch.get_num_threads()
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "reports" / "O1l"
 CACHE = OUT / "cache"
@@ -323,6 +324,33 @@ class Problem:
         return dl + hl, dl, hl
 
 
+def screen_losses(problem, q_values, q_batch=4):
+    """Evaluate unchanged Problem.loss algebra for sign starts in bounded batches."""
+    q_values = torch.as_tensor(np.asarray(q_values, dtype=np.float64), dtype=torch.float64)
+    values = []
+    for begin in range(0, len(q_values), int(q_batch)):
+        q = q_values[begin : begin + int(q_batch)]
+        b = len(q)
+        nx, ny = len(problem.x), len(problem.y)
+        nxa, nyb = len(problem.xa), len(problem.yb)
+        uy, _ = ensemble(problem.my, torch.einsum("nd,bkd->bnk", problem.x, q).reshape(b * nx, problem.d), False, False, d=problem.d)
+        ux, _ = ensemble(problem.mx, torch.einsum("nd,bdk->bnk", problem.y, q).reshape(b * ny, problem.d), False, False, d=problem.d)
+        uy = uy.reshape(b, nx, problem.d)
+        ux = ux.reshape(b, ny, problem.d)
+        left_d = uy - torch.einsum("nd,bkd->bnk", problem.ux, q)
+        right_d = ux - torch.einsum("nd,bdk->bnk", problem.uy, q)
+        dl = (torch.sum(left_d * left_d, dim=(1, 2)) / problem.du + torch.sum(right_d * right_d, dim=(1, 2)) / problem.dv) / 2
+        _, jy = ensemble(problem.my, torch.einsum("nd,bkd->bnk", problem.xa, q).reshape(b * nxa, problem.d), True, False, d=problem.d)
+        _, jx = ensemble(problem.mx, torch.einsum("nd,bdk->bnk", problem.yb, q).reshape(b * nyb, problem.d), True, False, d=problem.d)
+        jy = jy.reshape(b, nxa, problem.d, problem.d)
+        jx = jx.reshape(b, nyb, problem.d, problem.d)
+        qj = torch.einsum("bij,njk,blk->bnil", q, problem.jx, q)
+        qtj = torch.einsum("bji,njk,bkl->bnil", q, problem.jy, q)
+        hl = (torch.sum((jy - qj) ** 2, dim=(1, 2, 3)) / problem.dx + torch.sum((jx - qtj) ** 2, dim=(1, 2, 3)) / problem.dy) / 2
+        values.append((dl + hl).detach().cpu().numpy())
+    return np.concatenate(values)
+
+
 class Closure:
     """O1k's unchanged LBFGS manifold closure."""
 
@@ -494,6 +522,9 @@ def estimate_one_case(rung, gamma, n, r, case, landscape):
     path = case_cache_path(rung, case)
     if case_cache_complete(path):
         return False
+    # Optimisation workers use one torch thread; restore O1k's launch-default
+    # main-process setting for the independent screen and problem construction.
+    torch.set_num_threads(MAIN_TORCH_THREADS)
     x, y, _, _, q_star = sample_case(gamma, n, r, landscape)
     true_x, true_y = exact_models(gamma, q_star, landscape)
     if rung == "A":
@@ -507,10 +538,8 @@ def estimate_one_case(rung, gamma, n, r, case, landscape):
     eig_y, uy = np.linalg.eigh(np.cov(y, rowvar=False))
     eig_x, ux = eig_x[::-1], ux[:, ::-1]
     eig_y, uy = eig_y[::-1], uy[:, ::-1]
-    losses = np.empty(1 << D, dtype=np.float64)
-    for s_index in range(1 << D):
-        q0 = torch.as_tensor(sign_start(s_index, ux, uy), dtype=torch.float64)
-        losses[s_index] = float(problem.loss(q0, False)[0].detach())
+    q_starts = np.stack([sign_start(s_index, ux, uy) for s_index in range(1 << D)], axis=0)
+    losses = screen_losses(problem, q_starts, q_batch=4)
     screen_order = np.asarray(sorted(range(1 << D), key=lambda index: (float(losses[index]), int(index))), dtype=np.int64)
     selected = screen_order[:8]
     best, _ = refine(problem, [(int(index), sign_start(int(index), ux, uy)) for index in selected])

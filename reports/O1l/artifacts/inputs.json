@@ -333,7 +333,7 @@
       "case": "g1p33_n3000_r2",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n3000_r2.npz",
       "input_sha256": "18e735cd422654ca01eeee316191790526f51955e8d1ad024874bca1e549898c",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -347,7 +347,7 @@
       "case": "g1p33_n10000_r0",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n10000_r0.npz",
       "input_sha256": "87d2f6920c2b3d84e9a190dccddc012096a05b443e580db041a2e5aa162914cd",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -361,7 +361,7 @@
       "case": "g1p33_n10000_r1",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n10000_r1.npz",
       "input_sha256": "4d00ea38a50d4ff36d5aad7b7c6c54a85881f2d3cc4242e3761dffc228b51147",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -375,7 +375,7 @@
       "case": "g1p33_n10000_r2",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p33_n10000_r2.npz",
       "input_sha256": "da42eef77212aa094873c24dd3e7b0f3a5368c6f02d38f400cd13edb2e933444",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -2314,12 +2314,12 @@
   },
   "source_cases": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cases.csv",
-    "rows": 59,
-    "sha256": "eae9b16bf0a8d3b7ca2b11a43d47defc6e072dc9db71f1fe627ba76b57d396d6"
+    "rows": 63,
+    "sha256": "2413380a43e92a34447e7d2c06c94cf4e3bfc6b4b3e9c3b230256f9ee9114aa2"
   },
   "source_fit_symmetry": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/fit_symmetry.csv",
     "rows": 360,
-    "sha256": "837d7471a2b059fedfd7269c745c2f761f53fd56e0fb60a60641668a2be6e209"
+    "sha256": "818c4fbd170761c1da91ec5c4799d958839dbd35aab45628f212e442ac7cb718"
   }
 }
