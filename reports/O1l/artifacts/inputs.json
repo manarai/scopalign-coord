@@ -137,7 +137,7 @@
       "case": "g1p15_n1000_r0",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p15_n1000_r0.npz",
       "input_sha256": "e652f2dac974dddb5b2abc07ca9521405aeeef15546b48a2f2b724743a181587",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -2314,12 +2314,12 @@
   },
   "source_cases": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cases.csv",
-    "rows": 45,
-    "sha256": "c0bfba460c5051e40f7823cb23839107cf415158dec54d8d27788d6affead6b5"
+    "rows": 46,
+    "sha256": "a4518add7ac392117e4cc697ff753934498a46c96ae28f96b33c0f98f54b095b"
   },
   "source_fit_symmetry": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/fit_symmetry.csv",
     "rows": 360,
-    "sha256": "a72302e58dc451d7411b9d5910c51d612027f0acf6b970d31df44bcdc90d006e"
+    "sha256": "92d1a3c4d202077c4d1f2913112b33e57a3cc86596afdb922a9685ca5ed1995a"
   }
 }

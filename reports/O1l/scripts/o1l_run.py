@@ -132,8 +132,9 @@ def make_meta():
     CACHE.mkdir(parents=True, exist_ok=True)
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
     gitignore = OUT / ".gitignore"
-    if not gitignore.exists():
-        gitignore.write_text("cache/\n__pycache__/\nrun.log\nrun.pid\n")
+    ignored = "cache/\n__pycache__/\nrun.log\nrun.pid\n.cache/\n.mplconfig/\n"
+    if not gitignore.exists() or gitignore.read_text() != ignored:
+        gitignore.write_text(ignored)
     meta_path = OUT / "run_meta.json"
     if not meta_path.exists():
         atomic_json(meta_path, {"started": datetime.now(timezone.utc).isoformat()})
@@ -360,9 +361,13 @@ def optimise_start(item):
 
 
 def refine(problem, items):
-    """Refine exactly eight selected starts, with no more than three workers."""
-    with ProcessPoolExecutor(max_workers=start_workers(), initializer=init_start_worker, initargs=(problem,)) as executor:
-        answers = list(executor.map(optimise_start, items))
+    """Refine exactly eight selected starts with one active worker (at most three)."""
+    global WORKER_PROBLEM
+    # macOS local execution policy denies PyTorch's shared-memory helper used
+    # when pickling this Problem into a spawned process.  A serial worker keeps
+    # O1k's loss and every LBFGS setting unchanged while respecting <=3 workers.
+    WORKER_PROBLEM = problem
+    answers = [optimise_start(item) for item in items]
     return min(answers, key=lambda answer: (answer["L_hat"], answer["start"])), answers
 
 
@@ -919,7 +924,8 @@ def report_stage():
         "task_id": "O1l", "executor": "manus", "branch": "task/O1l", "commit": git_commit(), "seed": 20261014,
         "started": meta["started"], "finished": datetime.now(timezone.utc).isoformat(), "status": "complete", "gated": gated,
         "deliverables": checksum_entries(deliverable_paths), "artifacts": checksum_entries(artifact_paths), "regeneration": regeneration_commands(),
-        "deviations": [], "deviations_requested": [], "observations": [], "known_failures": KNOWN_FAILURES,
+        "deviations": [{"what": "Used one serial refinement worker and report-local matplotlib/fontconfig cache directories.", "why": "The local execution policy denied PyTorch's spawned shared-memory helper and global font-cache writes; the serial path retains O1k's loss and LBFGS settings and cache placement does not affect analysis values."}],
+        "deviations_requested": [], "observations": [], "known_failures": KNOWN_FAILURES,
         "lockfile_sha256": sha(OUT / "requirements.lock"),
     }
     if set(report["gated"]) != set(GATED_KEYS) or len(report["gated"]) != len(GATED_KEYS):
