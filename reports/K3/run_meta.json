@@ -1,0 +1,19 @@
+{
+  "drift_seeds": [
+    20261014,
+    20261016,
+    20261017,
+    20261018,
+    20261019
+  ],
+  "null_rng": 20261300,
+  "null_traversal": [
+    "network_kind operator then correlation",
+    "comparison tech, genebatch, type, bio",
+    "sorted type",
+    "operator seed then split"
+  ],
+  "operator_centroid_cells": 30,
+  "seed": 20261014,
+  "started": "2026-11-01T04:08:15.735807+00:00"
+}
