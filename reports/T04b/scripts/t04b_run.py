@@ -394,18 +394,19 @@ _THREAD_LIMITER = None
 
 
 def init_sweep_worker() -> None:
-    """Set the same three-Torch-thread budget in each clean spawned worker."""
-    global _THREAD_LIMITER
+    """Set T04's three-Torch-thread setting in each clean spawned worker."""
     import torch
 
     torch.set_num_threads(TORCH_THREADS_PER_SWEEP_WORKER)
     torch.set_num_interop_threads(TORCH_THREADS_PER_SWEEP_WORKER)
-    _THREAD_LIMITER = threadpoolctl.threadpool_limits(limits=TORCH_THREADS_PER_SWEEP_WORKER)
 
 
 def configure_spawn_environment() -> None:
+    # T04's serial run had no explicit native-BLAS environment caps: NumPy's
+    # OpenBLAS pool therefore used the host default (six threads). Preserve
+    # that exact numerical regime; torch's own thread setting is fixed above.
     for name in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
-        os.environ[name] = str(TORCH_THREADS_PER_SWEEP_WORKER)
+        os.environ.pop(name, None)
 
 
 def preflight_condition_worker(spec: tuple[str, float, int]) -> pd.DataFrame:
