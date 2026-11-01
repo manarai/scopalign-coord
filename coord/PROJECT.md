@@ -226,6 +226,7 @@ that K0 shows to be reproducible, can decide it.
 | O1h  | Diagnostic: E5b top-k axis error on one cached Test R case (n 2759, r 0); saves all start rotations | ACCEPT (2026-10-18) — partial: top-3 axes err 0.05, top-5 0.12, top-10 0.21, all 30 0.60 → information fades with variance |
 | O1i  | E5r: rotation restricted to the operator-defined top-k subspace (k = 5 gated; 3, 8 reported), complement left unchanged; screened sign starts | ACCEPT (2026-10-18) — fails (top-5 err 0.93; Test F mix 0.26): operator-defined subspace does not transfer (flat spectra); position-covariance subspace would |
 | O1j  | E5p: axes from each copy's position covariance (rule 13a); top-5 block rotation + remaining axis signs from operators | issued (2026-10-18) |
+| O1k  | Positive control: E5b on a synthetic 10-d Gaussian-mixture landscape with known rotation — exact vs fitted fields × well anisotropy γ × n (test vs operator) | issued (2026-11-01; Mac) |
 | O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
 | O1d  | E6 one shared energy with a learnable rotation (ESM) | pre-registered (parallel allowed) |
 | O1e  | E8 fused Gromov–Wasserstein initial matching + E3 ICP | pre-registered (parallel allowed) |
