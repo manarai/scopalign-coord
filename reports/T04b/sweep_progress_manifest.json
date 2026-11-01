@@ -62,6 +62,21 @@
     },
     {
       "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f2.csv",
+      "sha256": "86502b3cf30b175958f6212ef0a83f1fffedd37566ea2e1dc666651e58a8b5f7"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f4.csv",
+      "sha256": "4be32ccd7af203bd6c6ec29f6a3f3e4d56af7864c38c48f5bf66ed6f59559c0d"
+    },
+    {
+      "n_rows": 5,
+      "path": "cache/sweep/celltype__s1p0__f8.csv",
+      "sha256": "77bbe413df46edd6123b1e8ffc965a607e99e8081635c45e66264eb1f76f703d"
+    },
+    {
+      "n_rows": 5,
       "path": "cache/sweep/global__s0p25__f0.csv",
       "sha256": "13aa92e33405acaa2ebc66acff265ac75744f6e5b7df1c9956ae431f2061856e"
     },
@@ -136,5 +151,5 @@
       "sha256": "b93517078cc6c450d63c02461456929be6ce67f04679ca0f212393a349206d70"
     }
   ],
-  "n_conditions": 27
+  "n_conditions": 30
 }
