@@ -615,3 +615,20 @@ planner's recomputed values, not the executor's reported ones.
 - bio_false_max_scvi: 0.0967211
 - Decision rule outcome: none (0.208 < 0.25). Rigid gene rotation wins in 5/24 conditions (global σ 0.25/0.5 at f 2, 4; celltype σ 0.25 f 2). The T04 advantage is not general; T04 is a case study.
 - Commit: task/T04b @ 161f333 (report 2d7b50b; Manus cloud)
+
+## 2026-11-01 — K3 (ACCEPT; outcome batch_sensitive) — light recompute (ratios.csv exact; correlation distance spot-checked from raw data)
+
+- n_types_P1: 4
+- n_types_P2: 4
+- latent_check_rel: 4.65051e-05
+- symmetry_max: 2.02381e-07
+- net_ratio_tech: 1.46869
+- net_ratio_genebatch: 2.21225
+- net_ratio_type: 9.73045
+- net_ratio_bio: 0.455274
+- corr_ratio_tech: 0.829212
+- corr_ratio_genebatch: 0.888575
+- corr_ratio_type: 1.36762
+- corr_ratio_bio: 0.863414
+- Decision rule outcome: batch_sensitive (genebatch 2.21 > 2.0). The operator gene network separates cell types (9.7×) but shifts with the gene-level batch and does not see the interferon response (0.46×).
+- Commit: task/K3 @ e0b1876 (report 59ea202; Manus cloud)
