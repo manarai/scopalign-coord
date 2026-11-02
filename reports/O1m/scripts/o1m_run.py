@@ -89,6 +89,7 @@ def sample(g,r):
     x=draw(xl,xe);yp=draw(yl,ye);return x,yp@q.T,xl,yl,q
 class ExactEnergy(torch.nn.Module):
     def __init__(self,g,qbase=None):
+        super().__init__()
         l=landscape();qbase=np.eye(D) if qbase is None else np.asarray(qbase,dtype=np.float64)
         prec=np.einsum("kij,j,klj->kil",l["rotations"],1.0/sigma2(g),l["rotations"]);prec=.5*(prec+np.swapaxes(prec,1,2))
         self.register_buffer("means",torch.as_tensor(l["means"],dtype=torch.float64));self.register_buffer("precision",torch.as_tensor(prec,dtype=torch.float64));self.register_buffer("qbase",torch.as_tensor(qbase,dtype=torch.float64))
