@@ -156,7 +156,8 @@ def screen_refine(p,ux,uy):
     losses=o1l().screen_losses(p,np.stack(qs),q_batch=1)
     order=np.asarray(sorted(range(1024),key=lambda i:(float(losses[i]),int(i))),dtype=np.int64)[:8]
     best,answers=o1l().refine(p,[(int(i),qs[int(i)]) for i in order])
-    rank=int(np.flatnonzero(np.argsort(np.asarray([ (float(losses[i]),i) for i in range(1024)],dtype=[("l",float),("i",int)]),order=("l","i"))["i"]==int(best["start"]))[0])+1
+    full_order=sorted(range(1024),key=lambda i:(float(losses[i]),int(i)))
+    rank=int(full_order.index(int(best["start"])))+1
     return best,np.asarray(losses,dtype=np.float64),comp,sw,rank
 
 def case_path(kind,key): return CACHE/kind/f"{key}.npz"
