@@ -674,7 +674,7 @@ def basin_one_case(rung, gamma, r, case, landscape):
     true_x, true_y = exact_models(gamma, q_star, landscape)
     mx, my = (true_x, true_y) if rung == "A" else get_models(case)
     problem = Problem(mx, my, x, y, r, d=D)
-    rows = []
+    starts = []
     for i in range(1, 6):
         generator = np.random.default_rng(20264400 + i)
         g = generator.standard_normal((D, D))
@@ -683,9 +683,20 @@ def basin_one_case(rung, gamma, r, case, landscape):
         for target in (0.05, 0.10, 0.20, 0.40):
             theta = find_theta(q_star, a, target)
             q0 = q_star @ expm(theta * a)
-            answer = optimise_single(problem, q0)
-            final_err = float(np.linalg.norm(np.asarray(answer["Q"], dtype=np.float64) - q_star, ord="fro") / np.sqrt(20.0))
-            rows.append((i, target, theta, final_err, int(final_err <= 0.10)))
+            starts.append((i, target, theta, q0))
+    global WORKER_PROBLEM
+    torch.set_num_threads(1)
+    WORKER_PROBLEM = problem
+
+    def run_start(item):
+        i, target, theta, q0 = item
+        answer = optimise_start_inprocess((0, q0))
+        final_err = float(np.linalg.norm(np.asarray(answer["Q"], dtype=np.float64) - q_star, ord="fro") / np.sqrt(20.0))
+        return i, target, theta, final_err, int(final_err <= 0.10)
+
+    with ThreadPoolExecutor(max_workers=start_workers()) as executor:
+        rows = list(executor.map(run_start, starts))
+    rows.sort(key=lambda row: (row[0], row[1]))
     atomic_npz(path, i=np.asarray([row[0] for row in rows], dtype=np.int64), t=np.asarray([row[1] for row in rows], dtype=np.float64), theta=np.asarray([row[2] for row in rows], dtype=np.float64), final_err=np.asarray([row[3] for row in rows], dtype=np.float64), returned=np.asarray([row[4] for row in rows], dtype=np.int64))
     print(json.dumps({"event": "basin_case_finished", "rung": rung, "gamma": gamma, "r": r}, sort_keys=True), flush=True)
     return True
@@ -960,7 +971,7 @@ def report_stage():
         "task_id": "O1l", "executor": "manus", "branch": "task/O1l", "commit": git_commit(), "seed": 20261014,
         "started": meta["started"], "finished": datetime.now(timezone.utc).isoformat(), "status": "complete", "gated": gated,
         "deliverables": checksum_entries(deliverable_paths), "artifacts": checksum_entries(artifact_paths), "regeneration": regeneration_commands(),
-        "deviations": [{"what": "Used an in-process thread executor with at most three refinement workers and report-local matplotlib/fontconfig cache directories.", "why": "The local execution policy denied PyTorch's default spawned shared-memory helper and a three-worker fork context terminated workers. Threads retain O1k's loss, selected starts, and LBFGS settings, while cache placement does not affect analysis values."}],
+        "deviations": [{"what": "Used an in-process thread executor with at most three independent refinement or basin-start workers and report-local matplotlib/fontconfig cache directories.", "why": "The local execution policy denied PyTorch's default spawned shared-memory helper and a three-worker fork context terminated workers. Threads retain O1k's loss, selected starts, and LBFGS settings, while cache placement does not affect analysis values."}],
         "deviations_requested": [], "observations": [], "known_failures": KNOWN_FAILURES,
         "lockfile_sha256": sha(OUT / "requirements.lock"),
     }
