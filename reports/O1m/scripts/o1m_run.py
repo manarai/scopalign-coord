@@ -266,7 +266,7 @@ def pbmc_stage():
 
 def basin_one(r):
     key=f"R_n2759_r{r}";pout=case_path("basin",key)
-    if complete(pout,("i","t","theta","final_err","returned")):return False
+    if complete(pout,("i","t","theta","final_err","final_L","returned")):return False
     x,y,qstar=pbmc_r(r);mx,my,_=models_manifest(key);pr=problem(mx,my,x,y,r);rows=[]
     for i in range(1,6):
       a=np.random.default_rng(20264400+i).standard_normal((D,D));a=a-a.T;a=a/np.linalg.norm(a,"fro")
@@ -278,14 +278,14 @@ def basin_one(r):
         mid=(lo+hi)/2
         if dist(mid)<target:lo=mid
         else:hi=mid
-       theta=(lo+hi)/2;q0=qstar@expm(theta*a);L=o1l();L.WORKER_PROBLEM=pr;ans=L.optimise_start_inprocess((0,q0));err=float(np.linalg.norm(np.asarray(ans["Q"])-qstar,"fro")/np.sqrt(60));rows.append((i,target,theta,err,int(err<=.10)))
-    atomic_npz(pout,i=np.asarray([z[0] for z in rows]),t=np.asarray([z[1] for z in rows]),theta=np.asarray([z[2] for z in rows]),final_err=np.asarray([z[3] for z in rows]),returned=np.asarray([z[4] for z in rows]));stag("basin_case",replicate=r);return True
+       theta=(lo+hi)/2;q0=qstar@expm(theta*a);L=o1l();L.WORKER_PROBLEM=pr;ans=L.optimise_start_inprocess((0,q0));err=float(np.linalg.norm(np.asarray(ans["Q"])-qstar,"fro")/np.sqrt(60));final_l=float(ans["L_hat"]);rows.append((i,target,theta,err,final_l,int(err<=.10)))
+    atomic_npz(pout,i=np.asarray([z[0] for z in rows]),t=np.asarray([z[1] for z in rows]),theta=np.asarray([z[2] for z in rows]),final_err=np.asarray([z[3] for z in rows]),final_L=np.asarray([z[4] for z in rows]),returned=np.asarray([z[5] for z in rows]));stag("basin_case",replicate=r);return True
 def basin_stage():
     make_dirs();rows=[]
     for r in REPS:basin_one(r)
     for r in REPS:
       with np.load(case_path("basin",f"R_n2759_r{r}"),allow_pickle=False) as d:
-       rows += [{"replicate":r,"i":int(i),"t":float(t),"theta":float(th),"final_err":float(e),"returned":int(ret)} for i,t,th,e,ret in zip(d["i"],d["t"],d["theta"],d["final_err"],d["returned"])]
+       rows += [{"replicate":r,"i":int(i),"t":float(t),"theta":float(th),"final_err":float(e),"final_L":float(l),"returned":int(ret)} for i,t,th,e,l,ret in zip(d["i"],d["t"],d["theta"],d["final_err"],d["final_L"],d["returned"])]
     atomic_csv(OUT/"basin.csv",pd.DataFrame(rows).sort_values(["replicate","i","t"]))
 
 def figures(s,b):
@@ -331,7 +331,7 @@ def report_stage():
       with np.load(p,allow_pickle=False) as d:
        if "screen_losses" in d:screen.append({"case":p.stem,"n_screen":int(len(d["screen_losses"])),"min_loss":float(np.min(d["screen_losses"]))})
     atomic_csv(ART/"screen.csv",pd.DataFrame(screen))
-    rep={"task_id":"O1m","executor":"manus","branch":"task/O1m","commit":subprocess.check_output(["git","-C",str(ROOT),"rev-parse","HEAD"],text=True).strip(),"seed":20261014,"started":m["started"],"finished":datetime.now(timezone.utc).isoformat(),"status":"complete","gated":g,"deliverables":checks(deliv),"artifacts":checks(arts),"regeneration":{x:cmd+" --stage all" for x in list(deliv)+list(arts)+list(GATES)},"deviations":[],"deviations_requested":[],"observations":[],"known_failures":KNOWN,"lockfile_sha256":sha(OUT/"requirements.lock")}
+    rep={"task_id":"O1m","executor":"manus","branch":"task/O1m","commit":subprocess.check_output(["git","-C",str(ROOT),"rev-parse","HEAD"],text=True).strip(),"seed":20261014,"started":m["started"],"finished":datetime.now(timezone.utc).isoformat(),"status":"complete","gated":g,"deliverables":checks(deliv),"artifacts":checks(arts),"regeneration":{x:cmd+" --stage all" for x in list(deliv)+list(arts)+list(GATES)},"deviations":[{"what":"Corrected task-local ExactEnergy base-module initialization before any synthetic case was written.","why":"The initial wrapper could not register its fixed buffers; completed 60 drift fits were retained and neither fitting configuration nor analysis inputs changed."},{"what":"Replaced a screen-rank output bookkeeping expression with deterministic Python lexicographic ordering by (loss, start index).","why":"The original NumPy indexing expression failed after the full screen and refinements completed; the prescribed ranking and selected starts are unchanged."},{"what":"Added final_L to each basin CSV/cache row before the basin stage.","why":"The pre-registered procedure requires recording each start’s final error and objective; no completed analysis cache is altered."}],"deviations_requested":[],"observations":[],"known_failures":KNOWN,"lockfile_sha256":sha(OUT/"requirements.lock")}
     atomic_json(OUT/"report.json",rep);stag("report_finished",validity=bool(valid),gated=g)
 def main():
     p=argparse.ArgumentParser();p.add_argument("--stage",required=True,choices=("check","fits","synth","pbmc","basin","report","all"));s=p.parse_args().stage
