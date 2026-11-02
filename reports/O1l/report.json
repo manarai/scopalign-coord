@@ -1,0 +1,112 @@
+{
+  "artifacts": [
+    {
+      "path": "artifacts/inputs.json",
+      "sha256": "2919508aa98f20453a3692b747b8e7a13a3247ab49a73312a5fcaa41513409b1"
+    },
+    {
+      "path": "artifacts/screen.csv",
+      "sha256": "d9ba25cb27c114320e57a9678e74625fad3b505073c7deb141a00ccfa10ea1cf"
+    },
+    {
+      "path": "artifacts/Q_hats.npz",
+      "sha256": "a862ee3427fb82e7233fcf7062809a35d8f9096574c934b605ac8ca74d9c4177"
+    }
+  ],
+  "branch": "task/O1l",
+  "commit": "3058b25d02a39ad812f1f17a412a29e880802a54",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385"
+    },
+    {
+      "path": "cases.csv",
+      "sha256": "09bcbd662c70722db351c3d1d57939b78462358572f1bc073c1d19f7c2aebfee"
+    },
+    {
+      "path": "basin.csv",
+      "sha256": "eca1a604e5523c8a56302b066c8ffcf38231d8c8c292b55ae36525ee47bcd13b"
+    },
+    {
+      "path": "fig_ladder.png",
+      "sha256": "dcb241957b0b73b35f6b1712056389da512760255eb58aa72a918698f27f3fdd"
+    },
+    {
+      "path": "fig_basin.png",
+      "sha256": "4b51dd167eca6520f7ef521d6047db63f758bdfdba51fea2d8966cc26b46bfae"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "fd4f0b4dd323c4a6bfa9dfee4e148de9892670a83a6113c9d987ce610a84a317"
+    },
+    {
+      "path": "scripts/o1l_run.py",
+      "sha256": "5615a113506731daf8051388546e5884d0c4269d291a012c08712c9ab9720c6e"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Used an in-process thread executor with at most three independent refinement or basin-start workers and report-local matplotlib, fontconfig, and Numba cache directories.",
+      "why": "The local execution policy denied PyTorch's default spawned shared-memory helper and a three-worker fork context terminated workers; Scanpy required a writable Numba cache. Threads retain O1k's loss, selected starts, and LBFGS settings, while cache placement does not affect analysis values."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-11-02T02:55:26.405917+00:00",
+  "gated": {
+    "basin_radius_A": 0.2,
+    "basin_radius_B": 0.4,
+    "errA_s_max": 0.463593099238498,
+    "errB_s_g115_n10000": 0.0379483730897802,
+    "errB_s_g115_n3000": 0.0805630680168431,
+    "errB_s_g133_n10000": 0.0180056826334431,
+    "errB_s_g133_n3000": 0.0407084718577788,
+    "errB_s_g160_n10000": 0.0135011798741036,
+    "errB_s_g160_n3000": 0.025980845347609,
+    "inputs_match": 1,
+    "l_star_repro_max": 1.401298464324817e-45,
+    "n_cases": 72,
+    "negctrl_err_shape_A_s": 0.9985619244705788,
+    "o1l_outcome": "search_unfixed"
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385",
+  "observations": [],
+  "regeneration": {
+    "artifacts/Q_hats.npz": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "artifacts/inputs.json": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage check",
+    "artifacts/screen.csv": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "basin.csv": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage basin",
+    "basin_radius_A": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage basin",
+    "basin_radius_B": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage basin",
+    "cases.csv": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "errA_s_max": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "errB_s_g115_n10000": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "errB_s_g115_n3000": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "errB_s_g133_n10000": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "errB_s_g133_n3000": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "errB_s_g160_n10000": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "errB_s_g160_n3000": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "fig_basin.png": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage report",
+    "fig_ladder.png": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage report",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage report",
+    "inputs_match": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage check",
+    "l_star_repro_max": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "n_cases": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "negctrl_err_shape_A_s": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage estimate",
+    "o1l_outcome": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage report",
+    "report.json": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage report",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python -m pip freeze > reports/O1l/requirements.lock",
+    "scripts/o1l_run.py": "cd \"$HOME/Documents/scopalign-manus-O1l\" && .venv/bin/python reports/O1l/scripts/o1l_run.py --stage all"
+  },
+  "seed": 20261014,
+  "started": "2026-11-01T16:50:38.284551+00:00",
+  "status": "complete",
+  "task_id": "O1l"
+}
