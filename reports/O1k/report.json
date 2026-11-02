@@ -1,0 +1,106 @@
+{
+  "artifacts": [
+    {
+      "path": "artifacts/landscape.npz",
+      "sha256": "cd3e86103ae78a62d6113a3477a5518f0e470e825246c37761e51bab68daac64"
+    },
+    {
+      "path": "artifacts/Q_hats.npz",
+      "sha256": "76bf901d265bc4b0002aaeb22da74e76962b53a144bfaafd643352c96778cfd9"
+    },
+    {
+      "path": "check.json",
+      "sha256": "ec1ed788a7c7512f490430fee6c7fea45f5cf8ff80c7fb732b5adb23509792e9"
+    }
+  ],
+  "branch": "task/O1k",
+  "commit": "7ac85abea6a26ec7653a85489e179cac7260c689",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385"
+    },
+    {
+      "path": "cases.csv",
+      "sha256": "2b266d98efd21d433cac35a23e9ed69d56145a40f18215ad469633877c5ba605"
+    },
+    {
+      "path": "fit_symmetry.csv",
+      "sha256": "c9f40c0e912daccca677720e38cfdb964a69c57ff20a02f0d8ee51b6f17c5172"
+    },
+    {
+      "path": "fig_ladder.png",
+      "sha256": "ea285198430cdbc3a968f0c5f597f2bc1bb909996a3675a873ce3b83ae86ad7d"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "f19c535f9bdaf82eb0411594a44093cc7d21fc8384e0a906ccfd957184169c98"
+    },
+    {
+      "path": "scripts/o1k_run.py",
+      "sha256": "5731a9a1a54e596275323166136baebc25c9d758d9504381c322e521319493c8"
+    }
+  ],
+  "deviations": [],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-11-02T01:58:15.285520+00:00",
+  "gated": {
+    "errA_max": 1.0018254070901935,
+    "errB_g115_n10000": 0.4485488045850428,
+    "errB_g115_n3000": 0.0805638058999969,
+    "errB_g133_n10000": 0.0180059159714965,
+    "errB_g133_n3000": 0.0407086286000391,
+    "errB_g160_n10000": 0.6324890780865922,
+    "errB_g160_n3000": 0.0259811379712724,
+    "fe_J_3000": 0.2998037052154774,
+    "fe_u_3000": 0.26629413332852614,
+    "frac_hat_below_star_B": 0.5925925925925926,
+    "loss_copy_check": 0.0,
+    "n_cases": 72,
+    "negctrl_err_shape_A": 0.9252961703791276,
+    "o1k_outcome": "test_fault",
+    "start_overlap": 0,
+    "symmetry_max": 2.1770921421193634e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "760ae0af6213b3fdb95508d12c02b44e8cbfb2627c403fa7e6c44e52043f5385",
+  "observations": [],
+  "regeneration": {
+    "artifacts/Q_hats.npz": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage estimate",
+    "artifacts/landscape.npz": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage check",
+    "cases.csv": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage estimate",
+    "check.json": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage check",
+    "errA_max": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "errB_g115_n10000": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "errB_g115_n3000": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "errB_g133_n10000": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "errB_g133_n3000": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "errB_g160_n10000": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "errB_g160_n3000": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "fe_J_3000": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "fe_u_3000": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "fig_ladder.png": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "fit_symmetry.csv": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage fits",
+    "frac_hat_below_star_B": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "loss_copy_check": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage check",
+    "n_cases": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "negctrl_err_shape_A": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "o1k_outcome": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "report.json": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage report",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python -m pip freeze > reports/O1k/requirements.lock",
+    "scripts/o1k_run.py": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage all",
+    "start_overlap": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage check",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus-O1k\" && .venv/bin/python reports/O1k/scripts/o1k_run.py --stage fits"
+  },
+  "seed": 20261014,
+  "started": "2026-11-01T11:36:07.767411+00:00",
+  "status": "complete",
+  "task_id": "O1k"
+}
