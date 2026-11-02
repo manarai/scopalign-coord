@@ -648,3 +648,41 @@ planner's recomputed values, not the executor's reported ones.
 - symmetry_max: 2.02381e-07
 - Decision rule outcome: anchors_equal (operator anchors ≥ 0.80 in P1 and P2; not ≥ expression + 0.10). Operator fingerprints match clusters well beyond chance without labels, but below expression means (1.00) under a gene-level batch.
 - Commit: task/K4 @ d90203e (report 8cb24dc; Manus cloud)
+
+## 2026-11-02 — O1k (ACCEPT; outcome test_fault) — light recompute (exact from cases.csv)
+
+- n_cases: 72
+- start_overlap: 0
+- loss_copy_check: 0
+- symmetry_max: 2.17709e-07
+- negctrl_err_shape_A: 0.925296
+- errA_max: 1.00183
+- errB_g115_n3000: 0.0805638
+- errB_g133_n3000: 0.0407086
+- errB_g160_n3000: 0.0259811
+- errB_g115_n10000: 0.448549
+- errB_g133_n10000: 0.0180059
+- errB_g160_n10000: 0.632489
+- frac_hat_below_star_B: 0.592593
+- fe_u_3000: 0.266294
+- fe_J_3000: 0.299804
+- Decision rule outcome: test_fault (errA_max 1.00 > 0.10). With exact fields, random starts never reach L(Q*) ≈ 1e-30, so the search fails. Fitted fields recover the rotation at n 3000; random-start misses at n 10000 all have L(Q̂) > L(Q*).
+- Commit: task/O1k @ 18d4c73 (report 7ac85ab; Mac). Copy check read O1b's fits (O1g reused them); exact agreement.
+
+## 2026-11-02 — O1l (ACCEPT; outcome search_unfixed) — light recompute (exact from cases.csv, basin.csv)
+
+- n_cases: 72
+- inputs_match: 1
+- l_star_repro_max: 1.4013e-45
+- negctrl_err_shape_A_s: 0.998562
+- errA_s_max: 0.463593
+- errB_s_g115_n3000: 0.0805631
+- errB_s_g133_n3000: 0.0407085
+- errB_s_g160_n3000: 0.0259808
+- errB_s_g115_n10000: 0.0379484
+- errB_s_g133_n10000: 0.0180057
+- errB_s_g160_n10000: 0.0135012
+- basin_radius_A: 0.2
+- basin_radius_B: 0.4
+- Decision rule outcome: search_unfixed (errA_s_max 0.46 from the single cell exact/γ 1.6/n 1000; the other exact cells reach 1e-6). Reading: from axis-sign starts, scJDO2-fitted operators recover the known rotation (≤ 0.10) for every γ ≥ 1.15 at n ≥ 3000, inside PBMC's anisotropy range (UMAP mix 0.999 vs known answer 0.998). Synthetic d = 10 only.
+- Commit: task/O1l @ ba3b2ce (report 3058b25; Mac)
