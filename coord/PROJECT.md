@@ -229,6 +229,7 @@ that K0 shows to be reproducible, can decide it.
 | O1j  | E5p: axes from each copy's position covariance (rule 13a); top-5 block rotation + remaining axis signs from operators | issued (2026-10-18) |
 | O1k  | Positive control: E5b on a synthetic 10-d Gaussian-mixture landscape with known rotation — exact vs fitted fields × well anisotropy γ × n (test vs operator) | ACCEPT (2026-11-02) — test_fault: exact fields, random starts err 0.72–1.00 (L ≫ L* ≈ 1e-30); fitted fields recover at n 3000 (0.08/0.04/0.03) but random starts miss at n 10000 → search, not information |
 | O1l  | Search fix on O1k's landscape: starts from each copy's axes × all 1024 sign patterns (screen, refine 8) + basin-radius diagnostic; exact and fitted fields | ACCEPT (2026-11-02) — search_unfixed (one cell: exact, γ 1.6, n 1000, err 0.46; others 1e-6); **fitted fields from axis starts ≤ 0.10 for all γ > 1, n ≥ 3000** (n 10000: 0.04/0.02/0.01); basin A 0.2, B 0.4 |
+| O1m  | Fixed search (axis starts + sign screen + full refine) at d = 30: synthetic bridge (exact/fitted, γ 1.05/1.15) then PBMC Test R/F + basin; separates search / dimension / data | issued (2026-11-02; Mac) |
 | O1c  | E7 joint diagonalisation (energy-decile operators) + drift-skew axis signs + commutator refinement | pre-registered (parallel allowed) |
 | O1d  | E6 one shared energy with a learnable rotation (ESM) | pre-registered (parallel allowed) |
 | O1e  | E8 fused Gromov–Wasserstein initial matching + E3 ICP | pre-registered (parallel allowed) |
