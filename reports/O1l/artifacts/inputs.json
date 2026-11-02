@@ -487,7 +487,7 @@
       "case": "g1p60_n10000_r1",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p60_n10000_r1.npz",
       "input_sha256": "b6883ed9fe84fd44ff9a56e3f1285e767325ad7da8642256c3bb166582308d03",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     },
     {
@@ -501,7 +501,7 @@
       "case": "g1p60_n10000_r2",
       "case_archive": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cache/cases/B_g1p60_n10000_r2.npz",
       "input_sha256": "6880d47f322ea7fdec3ff3358330d99792cb8fbf4e466a123f56edde228d0a7e",
-      "metadata_matches": false,
+      "metadata_matches": true,
       "rung": "B"
     }
   ],
@@ -2307,19 +2307,19 @@
       "sha256": "4837d6d6b1370deaf3b44f4f999cbcbcd7e2c713aee5672b5a656dbd13d35f6c"
     }
   ],
-  "inputs_match": 0,
+  "inputs_match": 1,
   "o1k_landscape": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/artifacts/landscape.npz",
     "sha256": "cd3e86103ae78a62d6113a3477a5518f0e470e825246c37761e51bab68daac64"
   },
   "source_cases": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/cases.csv",
-    "rows": 70,
-    "sha256": "2afcdecebddebebb34d07be87bdc47713e627bec49356c320497efa4f7db2686"
+    "rows": 72,
+    "sha256": "2b266d98efd21d433cac35a23e9ed69d56145a40f18215ad469633877c5ba605"
   },
   "source_fit_symmetry": {
     "path": "/Users/terooatt/Documents/scopalign-manus-O1k/reports/O1k/fit_symmetry.csv",
     "rows": 360,
-    "sha256": "271272ee9d7d639c2274dfa12aa03543a9bc6f8d2f2f09362f070bb74f066fb0"
+    "sha256": "c9f40c0e912daccca677720e38cfdb964a69c57ff20a02f0d8ee51b6f17c5172"
   }
 }

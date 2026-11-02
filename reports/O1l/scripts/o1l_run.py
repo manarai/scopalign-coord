@@ -133,7 +133,7 @@ def make_meta():
     CACHE.mkdir(parents=True, exist_ok=True)
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
     gitignore = OUT / ".gitignore"
-    ignored = "cache/\n__pycache__/\nrun.log\nrun.pid\n.cache/\n.mplconfig/\n"
+    ignored = "cache/\n__pycache__/\nrun.log\nrun.pid\n.cache/\n.mplconfig/\n.numba/\n"
     if not gitignore.exists() or gitignore.read_text() != ignored:
         gitignore.write_text(ignored)
     meta_path = OUT / "run_meta.json"
@@ -971,7 +971,7 @@ def report_stage():
         "task_id": "O1l", "executor": "manus", "branch": "task/O1l", "commit": git_commit(), "seed": 20261014,
         "started": meta["started"], "finished": datetime.now(timezone.utc).isoformat(), "status": "complete", "gated": gated,
         "deliverables": checksum_entries(deliverable_paths), "artifacts": checksum_entries(artifact_paths), "regeneration": regeneration_commands(),
-        "deviations": [{"what": "Used an in-process thread executor with at most three independent refinement or basin-start workers and report-local matplotlib/fontconfig cache directories.", "why": "The local execution policy denied PyTorch's default spawned shared-memory helper and a three-worker fork context terminated workers. Threads retain O1k's loss, selected starts, and LBFGS settings, while cache placement does not affect analysis values."}],
+        "deviations": [{"what": "Used an in-process thread executor with at most three independent refinement or basin-start workers and report-local matplotlib, fontconfig, and Numba cache directories.", "why": "The local execution policy denied PyTorch's default spawned shared-memory helper and a three-worker fork context terminated workers; Scanpy required a writable Numba cache. Threads retain O1k's loss, selected starts, and LBFGS settings, while cache placement does not affect analysis values."}],
         "deviations_requested": [], "observations": [], "known_failures": KNOWN_FAILURES,
         "lockfile_sha256": sha(OUT / "requirements.lock"),
     }
