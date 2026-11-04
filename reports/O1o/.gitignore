@@ -1,0 +1,8 @@
+cache/
+__pycache__/
+run.log
+run.pid
+run.lock
+.mplconfig/
+.cache/
+.numba/
