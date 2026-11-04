@@ -709,3 +709,18 @@ planner's recomputed values, not the executor's reported ones.
 - frame_ratio_F: 1.40936
 - Decision rule outcome: search_d30 (PBMC fails Test R and Test F; exact-field search fails at d 30, γ 1.15). Reading: PBMC basin starts at 0.05 converge to a point 0.15–0.18 from Q* with lower loss than Q*, so the fitted-field minimum is displaced.
 - Commit: task/O1m @ df0dc41 (Mac)
+
+## 2026-11-04 — O1n (ACCEPT; outcome op_works_lowd) — light recompute (exact from csvs; d = 2 independently reproduced)
+
+- symmetry_max: 1.83986e-07
+- latent_check_rel: 0
+- err_R_d2 / d3 / d5 / d10: 0.00457317 / 0.00219148 / 0.0064403 / 0.0160158
+- err_R_skew_d2 / d3 / d5 / d10: 0.0104628 / 0.0125294 / 0.0923293 / 0.467021
+- mix_F_d2 / d3 / d5 / d10: 1.00055 / 0.99379 / 0.991343 / 0.97893
+- mix_F_skew_d2 / d3 / d5 / d10: 0.998623 / 0.992256 / 0.980555 / 0.605183
+- mix_F_noA_d2 / d3 / d5 / d10: 0.998617 / 0.99225 / 0.980555 / 0.344412
+- rho_kde_d2: 0.805106
+- rho_kde_d3: 0.151098
+- d_max_op: 10
+- Decision rule outcome: op_works_lowd. In 5–10 PCs of real PBMC, operators recover a known rotation and align the real halves as well as the gene answer (mix 0.98), beating a positions-only rule; in 2–3 PCs positions suffice. With O1m (d 30 fails), the working range is 5–10 dims. Same-run halves only.
+- Commit: task/O1n @ 211e0d8 (Mac)
