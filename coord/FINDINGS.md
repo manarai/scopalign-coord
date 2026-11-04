@@ -686,3 +686,26 @@ planner's recomputed values, not the executor's reported ones.
 - basin_radius_B: 0.4
 - Decision rule outcome: search_unfixed (errA_s_max 0.46 from the single cell exact/γ 1.6/n 1000; the other exact cells reach 1e-6). Reading: from axis-sign starts, scJDO2-fitted operators recover the known rotation (≤ 0.10) for every γ ≥ 1.15 at n ≥ 3000, inside PBMC's anisotropy range (UMAP mix 0.999 vs known answer 0.998). Synthetic d = 10 only.
 - Commit: task/O1l @ ba3b2ce (report 3058b25; Mac)
+
+## 2026-11-04 — O1m (ACCEPT; outcome search_d30) — light recompute (exact from csvs)
+
+- symmetry_max: 2.13457e-07
+- fits_match: 1
+- l_star_repro_max: 0
+- negctrl_err_shape_d30: 0.988614
+- errA_d30_g105: 0.116388
+- errA_d30_g115: 0.813101
+- errB_d30_g105: 0.590631
+- errB_d30_g115: 0.272956
+- err_R_2759: 0.654172
+- err_R_top5_2759: 0.145041
+- err_R_top10_2759: 0.255596
+- frac_hat_below_star_R: 0.333333
+- basin_radius_R: 0
+- mix_F: 0.750713
+- mix_F_noA: 0.311943
+- sil_F: 0.389739
+- sil_F_noA: 0.380834
+- frame_ratio_F: 1.40936
+- Decision rule outcome: search_d30 (PBMC fails Test R and Test F; exact-field search fails at d 30, γ 1.15). Reading: PBMC basin starts at 0.05 converge to a point 0.15–0.18 from Q* with lower loss than Q*, so the fitted-field minimum is displaced.
+- Commit: task/O1m @ df0dc41 (Mac)
