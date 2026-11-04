@@ -1,0 +1,153 @@
+{
+  "artifacts": [
+    {
+      "path": "artifacts/inputs.json",
+      "sha256": "eab7e3b76f02b9d3c50e90e2a3cb9959811e8e6309624aeb92a59c427d51c542"
+    },
+    {
+      "path": "artifacts/screen.csv",
+      "sha256": "73c39c7c242c8c2fb6de6e68e4caed1104c1bd0142b94fdc25da3b993568f805"
+    },
+    {
+      "path": "artifacts/Q_hats.npz",
+      "sha256": "f99532b20a7f1f3217fcd6016d7be5afd611537b3be35c26337abdfb3ae44662"
+    },
+    {
+      "path": "artifacts/Q_hat_F.npy",
+      "sha256": "0742ebdd04ecfc6b14dde9ceff518fe1741dc742257ec4d5659d82a7718dc375"
+    }
+  ],
+  "branch": "task/O1m",
+  "commit": "8ae86b9a16fbae45017c96023e410719dad0ebf9",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "da28c7fb3bd851984a969190da99ea8ec49a2d34f45345c1c915e33168682bcb"
+    },
+    {
+      "path": "synth_cases.csv",
+      "sha256": "30dc73ecb92e36784b57a51cf82ebe5d229b6e4d7accaacfeab28d263288d245"
+    },
+    {
+      "path": "testR.csv",
+      "sha256": "303335d0b1731afad8c866592ab86d31228e06491dd5d9643de6591e3b91d440"
+    },
+    {
+      "path": "testF.csv",
+      "sha256": "ed13de0ce8aaf75e6540a2b9350e3d47558791d3050ae78b65d498669c90fb61"
+    },
+    {
+      "path": "basin.csv",
+      "sha256": "2e849bfe512c26a9f5c15b3753a5199196f6d95c3a1f966b684ffd21e2418d14"
+    },
+    {
+      "path": "fit_symmetry.csv",
+      "sha256": "bc274b00b4c7011dced6d1c1bff8489772a2e6249b9b4c8823ef60502f7882e3"
+    },
+    {
+      "path": "fig_ladder.png",
+      "sha256": "8ca066172b11e7796338c50c011fd94d708df07bbb549b9f254d41bc001c1a18"
+    },
+    {
+      "path": "fig_basin.png",
+      "sha256": "a5da8b93385b5ed0a82695fd615878af1fe113f7f68545c4af34a020356e3aea"
+    },
+    {
+      "path": "fig_umap.png",
+      "sha256": "984f246a50e0c64768e42511acfd0346aa9dbad57d8a7c325d652acb3b312ecc"
+    },
+    {
+      "path": "scripts/o1m_run.py",
+      "sha256": "951734d3d1a2fe5c5fcda8af9273b7baa267b9c014bf2d4650bd5e69295f921d"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Corrected task-local ExactEnergy base-module initialization before any synthetic case was written.",
+      "why": "The initial wrapper could not register its fixed buffers; completed 60 drift fits were retained and neither fitting configuration nor analysis inputs changed."
+    },
+    {
+      "what": "Replaced a screen-rank output bookkeeping expression with deterministic Python lexicographic ordering by (loss, start index).",
+      "why": "The original NumPy indexing expression failed after the full screen and refinements completed; the prescribed ranking and selected starts are unchanged."
+    },
+    {
+      "what": "Added final_L to each basin CSV/cache row before the basin stage.",
+      "why": "The pre-registered procedure requires recording each start\u2019s final error and objective; no completed analysis cache is altered."
+    },
+    {
+      "what": "Evaluated the 1024 full-loss screen candidates in bounded batches of two rather than one at a time.",
+      "why": "The one-at-a-time PBMC screen had no completed checkpoint after four hours. Each candidate remains evaluated under the same full float64 D+H loss, with the same starts, lexicographic ranking, and eight LBFGS refinements; batching only changes execution scheduling while respecting the local ensemble-memory limit."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-11-04T06:35:56.666607+00:00",
+  "gated": {
+    "basin_radius_R": 0.0,
+    "errA_d30_g105": 0.1163883242770053,
+    "errA_d30_g115": 0.8131008058421219,
+    "errB_d30_g105": 0.5906311902240653,
+    "errB_d30_g115": 0.2729563197653941,
+    "err_R_2759": 0.6541718015578782,
+    "err_R_top10_2759": 0.2555959145132183,
+    "err_R_top5_2759": 0.1450410515055313,
+    "fits_match": 1,
+    "frac_hat_below_star_R": 0.3333333333333333,
+    "frame_ratio_F": 1.409361667003029,
+    "l_star_repro_max": 0.0,
+    "mix_F": 0.7507128186541016,
+    "mix_F_noA": 0.3119427328742298,
+    "negctrl_err_shape_d30": 0.9886141787184742,
+    "o1m_outcome": "search_d30",
+    "sil_F": 0.3897393335874128,
+    "sil_F_noA": 0.3808341700830633,
+    "symmetry_max": 2.1345701384234417e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "da28c7fb3bd851984a969190da99ea8ec49a2d34f45345c1c915e33168682bcb",
+  "observations": [],
+  "regeneration": {
+    "artifacts/Q_hat_F.npy": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "artifacts/Q_hats.npz": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "artifacts/inputs.json": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "artifacts/screen.csv": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "basin.csv": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "basin_radius_R": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "errA_d30_g105": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "errA_d30_g115": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "errB_d30_g105": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "errB_d30_g115": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "err_R_2759": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "err_R_top10_2759": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "err_R_top5_2759": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "fig_basin.png": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "fig_ladder.png": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "fig_umap.png": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "fit_symmetry.csv": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "fits_match": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "frac_hat_below_star_R": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "frame_ratio_F": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "l_star_repro_max": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "mix_F": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "mix_F_noA": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "negctrl_err_shape_d30": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "o1m_outcome": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "scripts/o1m_run.py": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "sil_F": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "sil_F_noA": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "synth_cases.csv": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "testF.csv": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all",
+    "testR.csv": "cd \"$HOME/Documents/scopalign-manus-O1m\" && .venv/bin/python reports/O1m/scripts/o1m_run.py --stage all"
+  },
+  "seed": 20261014,
+  "started": "2026-11-02T09:27:26.743134+00:00",
+  "status": "complete",
+  "task_id": "O1m"
+}
