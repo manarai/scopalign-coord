@@ -166,7 +166,7 @@ scikit-learn==1.9.1
 scikit-misc==0.5.3
 scipy==1.16.3
 -e git+ssh://git@github.com/manarai/scJDO.git@cbfd591b9ce279723941fe90cae8deb284ea3936#egg=scjdo&subdirectory=../../../scopalign-manus/vendor/scJDO-v1-r25
--e git+https://github.com/manarai/scJDO2.git@a2a5c82cd872453952087a5aa1c4e7e0df428c57#egg=scjdo2
+-e git+https://github.com/manarai/scJDO2.git@ff4049a6b2237a1df3bc2b6b0c24615445776265#egg=scjdo2
 scvelo==0.3.4
 scverse-misc==0.0.3
 scvi-tools==1.4.2
