@@ -724,3 +724,26 @@ planner's recomputed values, not the executor's reported ones.
 - d_max_op: 10
 - Decision rule outcome: op_works_lowd. In 5–10 PCs of real PBMC, operators recover a known rotation and align the real halves as well as the gene answer (mix 0.98), beating a positions-only rule; in 2–3 PCs positions suffice. With O1m (d 30 fails), the working range is 5–10 dims. Same-run halves only.
 - Commit: task/O1n @ 211e0d8 (Mac)
+
+## 2026-11-04 — O1o (ACCEPT; outcome chemistry_only) — light recompute (exact from pairs.csv)
+
+- symmetry_max: 1.8819e-07
+- mix_noA_K2: 0.525697
+- mix_E5s_K2: 0.885415
+- mix_skew_K2: 0.514138
+- mix_gene_K2: 0.879979
+- mix_harmony_K2: 0.986412
+- sil_noA_K2: 0.567668
+- sil_E5s_K2: 0.573831
+- err_gene_K2: 0.0851535
+- mix_noA_A: 0.0492083
+- mix_E5s_A: 0.1004
+- mix_skew_A: 0.0368708
+- mix_gene_A: 0.182296
+- mix_harmony_A: 0.804279
+- sil_noA_A: 0.195523
+- sil_E5s_A: 0.13232
+- err_gene_A: 0.976641
+- n_pass_A: 0
+- Decision rule outcome: chemistry_only. Operator rotation at d 10 corrects a real chemistry batch as well as the gene rotation (no genes used), but no rotation (operator or gene) corrects donor pairs; Harmony does.
+- Commit: task/O1o @ b313ad6 (Mac)
