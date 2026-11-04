@@ -1,0 +1,136 @@
+{
+  "artifacts": [
+    {
+      "path": "artifacts/Q_hats.npz",
+      "sha256": "1a32e153b018b1ae70d069baa76fcaf8f73f9cc342180084cfdac995e5ccbdd7"
+    },
+    {
+      "path": "artifacts/inputs.json",
+      "sha256": "752c2edbf10b9d97a1023e8b00bbd4e47dd2e2a8e5fd0170796620de5d26b4c8"
+    }
+  ],
+  "branch": "task/O1n",
+  "commit": "aec948eeafe3d321d4db3cc799b615a0408ddf6b",
+  "deliverables": [
+    {
+      "path": "requirements.lock",
+      "sha256": "da28c7fb3bd851984a969190da99ea8ec49a2d34f45345c1c915e33168682bcb"
+    },
+    {
+      "path": "testR.csv",
+      "sha256": "33f0a83aaa82c4c6d59fe36cf402f54e7bf12e9a08455fca9d8cd613260fc218"
+    },
+    {
+      "path": "testF.csv",
+      "sha256": "18ce965d2c0dfa0d7397f1cfafba85018e75e232b64ad8b26edbcb5e21ee6988"
+    },
+    {
+      "path": "rho_kde.csv",
+      "sha256": "1630a97490e4eb21979d036ec91740c800ad6752f09aa857432d85d52a065652"
+    },
+    {
+      "path": "fit_symmetry.csv",
+      "sha256": "64a243b0e3d526a42f5a98284fd9276fdb2f7fd3d0e017397fe41a7051b27533"
+    },
+    {
+      "path": "fig_sweep.png",
+      "sha256": "3349ec6bc4bc8d41b59002c16f899d901068664efcbf08eab75dd8073d4f9d42"
+    },
+    {
+      "path": "fig_views_d2.png",
+      "sha256": "b88effdde613c25f55690002e47bd895e11619b6de6f80d5c652efe5fea5c49a"
+    },
+    {
+      "path": "scripts/o1n_run.py",
+      "sha256": "e2c3157a83ea7f04f78fb0efdd6ae7c0fa1c1b8fd6de6720d35f13f1f9cb3408"
+    }
+  ],
+  "deviations": [
+    {
+      "what": "Used report-local Matplotlib/fontconfig/Numba caches and O1l's in-process refinement executor, capped at three workers.",
+      "why": "Shared environment and input worktrees are read-only. O1l's issued runner uses an in-process thread executor to avoid the local PyTorch spawned shared-memory restriction; all loss and LBFGS settings are unchanged."
+    }
+  ],
+  "deviations_requested": [],
+  "executor": "manus",
+  "finished": "2026-11-04T09:03:12.739689+00:00",
+  "gated": {
+    "d_max_op": 10,
+    "err_R_d10": 0.016015791742920147,
+    "err_R_d2": 0.004573174805112465,
+    "err_R_d3": 0.002191475628733461,
+    "err_R_d5": 0.006440298504821631,
+    "err_R_skew_d10": 0.46702117574288726,
+    "err_R_skew_d2": 0.010462820496217985,
+    "err_R_skew_d3": 0.01252935306634637,
+    "err_R_skew_d5": 0.09232933407673266,
+    "latent_check_rel": 0.0,
+    "mix_F_d10": 0.9789295638516371,
+    "mix_F_d2": 1.0005497160807055,
+    "mix_F_d3": 0.9937900205388426,
+    "mix_F_d5": 0.9913434819379002,
+    "mix_F_noA_d10": 0.34441222665216864,
+    "mix_F_noA_d2": 0.9986166485441585,
+    "mix_F_noA_d3": 0.9922496073456565,
+    "mix_F_noA_d5": 0.9805545487495471,
+    "mix_F_skew_d10": 0.6051830373323668,
+    "mix_F_skew_d2": 0.9986226893802101,
+    "mix_F_skew_d3": 0.9922556481817083,
+    "mix_F_skew_d5": 0.9805545487495471,
+    "o1n_outcome": "op_works_lowd",
+    "rho_kde_d2": 0.8051060099589745,
+    "rho_kde_d3": 0.15109773934838255,
+    "symmetry_max": 1.839862662222913e-07
+  },
+  "known_failures": [
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.1]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.3]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_saddle_localisation[0.5]",
+    "tests/test_phase_b_pitchfork.py::test_pitchfork_half_split_reproducibility"
+  ],
+  "lockfile_sha256": "da28c7fb3bd851984a969190da99ea8ec49a2d34f45345c1c915e33168682bcb",
+  "observations": [],
+  "regeneration": {
+    "artifacts/Q_hats.npz": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "artifacts/inputs.json": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage check",
+    "d_max_op": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage report",
+    "err_R_d10": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "err_R_d2": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "err_R_d3": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "err_R_d5": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "err_R_skew_d10": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "err_R_skew_d2": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "err_R_skew_d3": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "err_R_skew_d5": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "fig_sweep.png": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage report",
+    "fig_views_d2.png": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage report",
+    "fit_symmetry.csv": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage fits",
+    "latent_check_rel": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage check",
+    "mix_F_d10": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_d2": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_d3": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_d5": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_noA_d10": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_noA_d2": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_noA_d3": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_noA_d5": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_skew_d10": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_skew_d2": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_skew_d3": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "mix_F_skew_d5": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "o1n_outcome": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage report",
+    "report.json": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage report",
+    "requirements.lock": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python -m pip freeze > reports/O1n/requirements.lock",
+    "rho_kde.csv": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "rho_kde_d2": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "rho_kde_d3": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR",
+    "scripts/o1n_run.py": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage all",
+    "symmetry_max": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage fits",
+    "testF.csv": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testF",
+    "testR.csv": "cd \"$HOME/Documents/scopalign-manus-O1n\" && .venv/bin/python reports/O1n/scripts/o1n_run.py --stage testR"
+  },
+  "seed": 20261014,
+  "started": "2026-11-04T08:32:04.594772+00:00",
+  "status": "complete",
+  "task_id": "O1n"
+}
